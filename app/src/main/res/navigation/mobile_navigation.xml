@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_dashboard"
-        android:name="com.mkshmnv.djinni.ui.home.HomeFragment"
+        android:name="com.mkshmnv.djinni.ui.dashboard.DashboardFragment"
         android:label="@string/menu_dashboard"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_inbox"
-        android:name="com.mkshmnv.djinni.ui.gallery.GalleryFragment"
+        android:name="com.mkshmnv.djinni.ui.inbox.InboxFragment"
         android:label="@string/menu_inbox"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_jobs"
-        android:name="com.mkshmnv.djinni.ui.slideshow.SlideshowFragment"
+        android:name="com.mkshmnv.djinni.ui.jobs.JobsFragment"
         android:label="@string/menu_jobs"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
