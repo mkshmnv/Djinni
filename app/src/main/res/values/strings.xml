@@ -7,11 +7,12 @@
     <string name="nav_user_avatar">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+<!--    Menu names-->
     <string name="menu_dashboard">Dashboard</string>
     <string name="menu_inbox">Inbox</string>
     <string name="menu_jobs">Jobs</string>
     <string name="menu_salaries">Salaries</string>
-    <string name="profile">Profile</string>
-    <string name="account">Account</string>
-    <string name="exit">Exit</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_account">Account</string>
+    <string name="menu_exit">Exit</string>
 </resources>

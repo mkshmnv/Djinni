@@ -9,13 +9,13 @@
 
     <ImageView
         android:id="@+id/iv_user_avatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:contentDescription="@string/nav_user_avatar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/ic_profile_24dp" />
 
     <TextView
         android:id="@+id/tv_user_name"
