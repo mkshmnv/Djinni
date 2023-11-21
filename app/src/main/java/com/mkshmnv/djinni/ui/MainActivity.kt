@@ -1,4 +1,4 @@
-package com.mkshmnv.djinni
+package com.mkshmnv.djinni.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -10,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

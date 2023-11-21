@@ -1,42 +1,30 @@
 package com.mkshmnv.djinni.ui.dashboard
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.mkshmnv.djinni.databinding.FragmentHomeBinding
+import androidx.fragment.app.viewModels
+import com.mkshmnv.djinni.Logger
+import com.mkshmnv.djinni.R
+import com.mkshmnv.djinni.databinding.FragmentDashboardBinding
+import com.mkshmnv.djinni.ui.viewBinding
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
-    private var _binding: FragmentHomeBinding? = null
+    private val binding: FragmentDashboardBinding by viewBinding()
+    private val viewModel: DashboardViewModel by viewModels()
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
-
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+    @SuppressLint("SetJavaScriptEnabled")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Logger.logcat("Created", this::class.simpleName)
+        binding.webViewTemp.apply {
+            webViewClient = WebViewClient()
+            val webSettings = settings
+            webSettings.javaScriptEnabled = true
+            loadUrl("https://djinni.co/my/dashboard/")
         }
-        return root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
