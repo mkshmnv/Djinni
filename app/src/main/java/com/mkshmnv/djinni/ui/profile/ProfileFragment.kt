@@ -45,7 +45,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spMethodComm.adapter = adapter
+                spPrefMethodComm.adapter = adapter
             }
 
 //            UpdateProfile

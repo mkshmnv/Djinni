@@ -19,29 +19,24 @@
 
     <!-- Profile - start -->
     <string name="menu_profile">Profile</string>
-    <string name="my_account">My account</string>
-    <string name="search_active">Active search</string>
-    <string name="tip_search_active">Djinni shows you as an active candidate to all recruiters and sends you a message to every contact</string>
-    <string name="search_passive">Passive search</string>
-    <string name="tip_search_passive">Passive search is currently only available to candidates with 2+ years of experience</string>
-    <string name="search_off">Not looking</string>
-    <string name="tip_search_off">Djinni doesn\'t show you as an active candidate, recruiters can\'t write to you</string>
-    <string name="view_your_profile">View your public profile</string>
-    <string name="raise_your_profile">Raise your profile in the search</string>
-    <string name="position">Position</string>
-    <string name="category">Category</string>
-    <string name="skills">Skills</string>
-    <string name="salary">Salary</string>
-    <string name="experience">Experience</string>
-    <string name="keywords_for_recruiters">Additional keywords that will help recruiters find you when searching for candidates</string>
-    <string name="amount_after_tax">Amount after tax</string>
-    <string-array name="countries">
-        <item>Ukraine</item>
-        <item>Poland</item>
-        <item>Czech Republic</item>
-        <!-- TODO Add all countries -->
-    </string-array>
 
+    <string name="my_account">My account</string>
+
+    <string name="search_active">Active search</string>
+    <string name="search_active_tip">Djinni shows you as an active candidate to all recruiters and sends you a message to every contact</string>
+    <string name="search_passive">Passive search</string>
+    <string name="search_passive_tip">Passive search is currently only available to candidates with 2+ years of experience</string>
+    <string name="search_off">Not looking</string>
+    <string name="search_off_tip">Djinni doesn\'t show you as an active candidate, recruiters can\'t write to you</string>
+
+    <string name="view_your_profile">View your public profile</string>
+
+    <string name="raise_your_profile">Raise your profile in the search</string>
+    <!-- TODO raise_your_profile tip -->
+
+    <string name="position">Position</string>
+
+    <string name="category">Category</string>
     <string-array name="categories">
         <item>Android</item>
         <item>Recruiter</item>
@@ -49,6 +44,77 @@
         <!-- TODO Add all categories -->
     </string-array>
 
+    <string name="skills">Skills</string>
+    <string name="skills_tip">Additional keywords that will help recruiters find you when searching for candidates</string>
+
+<!--    <string name="experience">Experience</string>-->
+
+    <string name="salary_expectations">Salary expectations</string>
+    <string name="salary_expectations_tip">Amount after tax</string>
+    <!-- TODO similar candidates according to statistics -->
+
+    <string name="country">Country of residence</string>
+    <string-array name="countries">
+        <item>Ukraine</item>
+        <item>Poland</item>
+        <item>Czech Republic</item>
+        <!-- TODO Add all countries -->
+    </string-array>
+    <string name="always_online">I can work and be in touch</string>
+    <string name="leave_country">I can leave if necessary</string>
+    <string name="country_moving">Considering moving to another country</string>
+
+    <string name="city">City</string>
+    <string name="city_tip">City where you are now</string>
+    <string name="city_moving">Considering moving to another city</string>
+
+    <string name="english_level">English level</string>
+    <string name="no_english">No English</string>
+    <string name="beginner_elementary">Beginner/Elementary</string>
+    <string name="pre_intermediate">Pre-Intermediate</string>
+    <string name="intermediate">Intermediate</string>
+    <string name="upper_intermediate">Upper-Intermediate</string>
+    <string name="advanced_fluent">Advanced/Fluent</string>
+
+    <string name="experience">Experience</string>
+    <string name="experience_tip">Tell us what projects and tasks you\'ve done, what technologies you\'ve used, your current role in the team, and where you want to grow.</string>
+
+    <string name="achievement">Achievement</string>
+    <string name="achievement_tip">The more specific, the better. For interesting must have offers.</string>
+
+    <string name="expectation">Expectation</string>
+    <string name="expectation_tip">Write what you want from work. And write what you don not want too.</string>
+    <string name="combatant">I am a combatant in the Defense Forces of Ukraine</string>
+
+    <string name="employ_options">Employment options</string>
+    <string name="remote">Remote work</string>
+    <string name="office">Office</string>
+    <string name="part_time">Part-time</string>
+    <string name="freelance">Freelance (one-off projects)</string>
+
+    <string name="hourly_rate">Hourly rate</string>
+
+    <string name="not_considering">Not considering</string>
+    <string name="domains">Domains</string>
+    <string name="adult">Adult</string>
+    <string name="gambling">Gambling</string>
+    <string name="dating">Dating</string>
+    <string name="gamedev">Gamedev</string>
+    <string name="blockchain_crypto">Blockchain/Crypto</string>
+    <string name="companies">Types of companies</string>
+    <string name="startup">Startup</string>
+    <string name="product">Product</string>
+    <string name="outstaff">Outstaff</string>
+    <string name="outsource">Outsource</string>
+    <string name="agency">Agency</string>
+
+    <string name="pref_lang">Preferred language of communication</string>
+    <string name="pref_lang_tip">We will inform the employer in which language you are most comfortable communicating.</string>
+    <string name="lang_english">English</string>
+    <string name="lang_ukrainian">Ukrainian</string>
+
+
+    <string name="method_comm">Preferred method of communication</string>
     <string-array name="methods">
         <item>Does not matter</item>
         <item>Djinni</item>
@@ -64,20 +130,12 @@
     <string name="menu_account">Account</string>
     <!-- Exit -->
     <string name="menu_exit">Exit</string>
-    <string name="country">Country of residence</string>
-    <string name="country_moving">Considering moving to another country</string>
-    <string name="city_moving">Considering moving to another city</string>
-    <string name="city">City</string>
-    <string name="city_now">City where you are now</string>
-    <string name="english">English level</string>
-    <string name="no_english">No English</string>
-    <string name="beginner_elementary">Beginner/Elementary</string>
-    <string name="pre_intermediate">Pre-Intermediate</string>
-    <string name="intermediate">Intermediate</string>
-    <string name="upper_intermediate">Upper-Intermediate</string>
-    <string name="advanced_fluent">Advanced/Fluent</string>
+
+
     <string name="delete_account">Delete account</string>
     <string name="update_profile">Update profile</string>
-    <string name="method_comm">Preferred method of communication</string>
+    <string name="question_employer">Question for the employer</string>
+    <string name="question_employer_tip">What exactly would you like to know first of all?</string>
+
 
 </resources>

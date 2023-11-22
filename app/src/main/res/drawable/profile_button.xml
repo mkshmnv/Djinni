@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="10dp"/> <!-- Радіус для круглих кутів -->
+    <solid android:color="@color/blue_djinni"/> <!-- Колір кнопки -->
+    <!-- Ви також можете додати <stroke> для бордеру, якщо потрібно -->
+</shape>
