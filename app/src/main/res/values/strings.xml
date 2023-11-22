@@ -7,12 +7,77 @@
     <string name="nav_user_avatar">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-<!--    Menu names-->
+    <!--    Menu names-->
+    <!-- Dashboard -->
     <string name="menu_dashboard">Dashboard</string>
+    <!-- Inbox -->
     <string name="menu_inbox">Inbox</string>
+    <!-- Jobs -->
     <string name="menu_jobs">Jobs</string>
+    <!-- Salaries -->
     <string name="menu_salaries">Salaries</string>
+
+    <!-- Profile - start -->
     <string name="menu_profile">Profile</string>
+    <string name="my_account">My account</string>
+    <string name="search_active">Active search</string>
+    <string name="tip_search_active">Djinni shows you as an active candidate to all recruiters and sends you a message to every contact</string>
+    <string name="search_passive">Passive search</string>
+    <string name="tip_search_passive">Passive search is currently only available to candidates with 2+ years of experience</string>
+    <string name="search_off">Not looking</string>
+    <string name="tip_search_off">Djinni doesn\'t show you as an active candidate, recruiters can\'t write to you</string>
+    <string name="view_your_profile">View your public profile</string>
+    <string name="raise_your_profile">Raise your profile in the search</string>
+    <string name="position">Position</string>
+    <string name="category">Category</string>
+    <string name="skills">Skills</string>
+    <string name="salary">Salary</string>
+    <string name="experience">Experience</string>
+    <string name="keywords_for_recruiters">Additional keywords that will help recruiters find you when searching for candidates</string>
+    <string name="amount_after_tax">Amount after tax</string>
+    <string-array name="countries">
+        <item>Ukraine</item>
+        <item>Poland</item>
+        <item>Czech Republic</item>
+        <!-- TODO Add all countries -->
+    </string-array>
+
+    <string-array name="categories">
+        <item>Android</item>
+        <item>Recruiter</item>
+        <item>iOS</item>
+        <!-- TODO Add all categories -->
+    </string-array>
+
+    <string-array name="methods">
+        <item>Does not matter</item>
+        <item>Djinni</item>
+        <item>Email</item>
+        <item>Phone</item>
+        <item>Skype</item>
+        <item>WhatsApp</item>
+        <item>Telegram</item>
+        <item>LinkedIn</item>
+    </string-array>
+    <!-- Profile - end -->
+
     <string name="menu_account">Account</string>
+    <!-- Exit -->
     <string name="menu_exit">Exit</string>
+    <string name="country">Country of residence</string>
+    <string name="country_moving">Considering moving to another country</string>
+    <string name="city_moving">Considering moving to another city</string>
+    <string name="city">City</string>
+    <string name="city_now">City where you are now</string>
+    <string name="english">English level</string>
+    <string name="no_english">No English</string>
+    <string name="beginner_elementary">Beginner/Elementary</string>
+    <string name="pre_intermediate">Pre-Intermediate</string>
+    <string name="intermediate">Intermediate</string>
+    <string name="upper_intermediate">Upper-Intermediate</string>
+    <string name="advanced_fluent">Advanced/Fluent</string>
+    <string name="delete_account">Delete account</string>
+    <string name="update_profile">Update profile</string>
+    <string name="method_comm">Preferred method of communication</string>
+
 </resources>
