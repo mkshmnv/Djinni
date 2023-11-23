@@ -4,7 +4,6 @@
     android:id="@+id/fragment_profile"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="?attr/actionBarSize"
     android:theme="@style/Theme.Djinni.Profile">
 
     <LinearLayout
@@ -142,6 +141,8 @@
                 android:inputType="textMultiLine"
                 android:scrollbars="vertical" />
 
+            <!--            TODO implement skills like website -->
+
         </LinearLayout>
 
         <LinearLayout
@@ -182,9 +183,12 @@
                 android:id="@+id/et_salary"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:drawableStart="@drawable/ic_dollar_24dp"
                 android:hint="@string/salary_expectations_tip"
                 android:importantForAutofill="no"
                 android:inputType="numberDecimal" />
+
+            <!--            TODO implement salaries of similar candidates according to statistics -->
 
         </LinearLayout>
 
@@ -452,12 +456,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/hourly_rate" />
 
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_hourly_rate"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/ic_dollar_24dp"
                 android:importantForAutofill="no"
                 android:inputType="numberDecimal" />
+
+
             <!--            TODO add dollar -->
 
         </LinearLayout>
@@ -478,8 +485,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false">
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -593,9 +600,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:hint="@string/question_employer_tip"
+                android:importantForAutofill="no"
                 android:inputType="textMultiLine"
-                android:scrollbars="vertical"
-                android:importantForAutofill="no" />
+                android:scrollbars="vertical" />
 
         </LinearLayout>
 
@@ -620,16 +627,16 @@
 
                 <CheckBox
                     android:id="@+id/chb_ukrainian"
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/lang_ukrainian" />
 
                 <CheckBox
                     android:id="@+id/chb_english"
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/lang_english" />
 
             </LinearLayout>
