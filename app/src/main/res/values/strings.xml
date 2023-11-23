@@ -48,7 +48,23 @@
     <string name="skills">Skills</string>
     <string name="skills_tip">Additional keywords that will help recruiters find you when searching for candidates</string>
 
-<!--    <string name="experience">Experience</string>-->
+    <string name="experience_seekbar">Experience</string>
+    <string name="experience_without">without experience</string>
+    <string name="experience_6_months">6 months</string>
+    <string name="experience_1_year">1 year</string>
+    <string name="experience_1_5_years">1.5 years</string>
+    <string name="experience_2_years">2 years</string>
+    <string name="experience_2_5_years">2.5 years</string>
+    <string name="experience_3_years">3 years</string>
+    <string name="experience_4_years">4 years</string>
+    <string name="experience_5_years">5 years</string>
+    <string name="experience_6_years">6 years</string>
+    <string name="experience_7_years">7 years</string>
+    <string name="experience_8_years">8 years</string>
+    <string name="experience_9_years">9 years</string>
+    <string name="experience_10_years">10 years</string>
+    <string name="experience_more_10_years">more than 10 years</string>
+    <string name="error">error</string>
 
     <string name="salary_expectations">Salary expectations</string>
     <string name="salary_expectations_tip">Amount after tax</string>

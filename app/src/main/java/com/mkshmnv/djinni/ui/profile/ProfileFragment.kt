@@ -3,6 +3,7 @@ package com.mkshmnv.djinni.ui.profile
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mkshmnv.djinni.Logger
@@ -19,6 +20,40 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         Logger.logcat("onViewCreated", this::class.simpleName)
 
         binding.apply {
+
+            sbExperience.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(
+                    seekBar: SeekBar?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
+                    tvExperienceYear.text = when (seekBar?.progress) {
+                        0 -> getString(R.string.experience_without)
+                        1 -> getString(R.string.experience_6_months)
+                        2 -> getString(R.string.experience_1_year)
+                        3 -> getString(R.string.experience_1_5_years)
+                        4 -> getString(R.string.experience_2_years)
+                        5 -> getString(R.string.experience_2_5_years)
+                        6 -> getString(R.string.experience_3_years)
+                        7 -> getString(R.string.experience_4_years)
+                        8 -> getString(R.string.experience_5_years)
+                        9 -> getString(R.string.experience_6_years)
+                        10 -> getString(R.string.experience_7_years)
+                        11 -> getString(R.string.experience_8_years)
+                        12 -> getString(R.string.experience_9_years)
+                        13 -> getString(R.string.experience_10_years)
+                        14 -> getString(R.string.experience_more_10_years)
+                        else -> getString(R.string.error)
+                    }
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                }
+            })
+
             ArrayAdapter.createFromResource(
                 requireActivity(),
                 R.array.categories,

@@ -53,7 +53,7 @@
         <LinearLayout
             android:id="@+id/ll_buttons"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:visibility="visible">
 
@@ -140,7 +140,6 @@
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:scrollbars="vertical" />
-
             <!--            TODO implement skills like website -->
 
         </LinearLayout>
@@ -156,13 +155,24 @@
                 android:id="@+id/tv_experience"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/experience" />
+                android:text="@string/experience_seekbar" />
 
-            <!--            TODO implement Year SeekBar -->
             <SeekBar
                 android:id="@+id/sb_experience"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="wrap_content"
+                android:max="14"
+                android:progress="0"
+                android:progressTint="@color/gray_djinni"
+                android:stepSize="1"
+                android:thumb="@drawable/style_profile_year_seekbar_thumb" />
+
+            <TextView
+                android:id="@+id/tv_experience_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/experience_without"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -187,7 +197,6 @@
                 android:hint="@string/salary_expectations_tip"
                 android:importantForAutofill="no"
                 android:inputType="numberDecimal" />
-
             <!--            TODO implement salaries of similar candidates according to statistics -->
 
         </LinearLayout>
@@ -464,9 +473,6 @@
                 android:importantForAutofill="no"
                 android:inputType="numberDecimal" />
 
-
-            <!--            TODO add dollar -->
-
         </LinearLayout>
 
         <LinearLayout
@@ -669,7 +675,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:background="#0969da"
             android:text="@string/update_profile" />
 
         <LinearLayout
@@ -693,7 +698,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/delete_account"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 
