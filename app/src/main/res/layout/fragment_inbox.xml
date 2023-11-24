@@ -4,20 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
+    android:theme="@style/Theme.Djinni.Inbox"
     tools:context=".ui.inbox.InboxFragment">
 
-    <TextView
-        android:id="@+id/text_gallery"
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_offers"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:text="fragment_inbox"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:text="@string/inbox_offers"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_inbox_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:drawableEnd="@drawable/ic_search_24dp"
+        android:hint="@string/inbox_search"
+        app:layout_constraintTop_toBottomOf="@+id/tv_offers"
+        tools:layout_editor_absoluteX="15dp" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tl_inbox_filters"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_inbox_search"
+        app:tabGravity="fill"
+        app:tabIndicator="@drawable/inbox_tab_indicator"
+        app:tabIndicatorColor="@color/blue_djinni"
+        app:tabIndicatorHeight="50dp"
+        app:tabSelectedTextColor="@color/gray_djinni"
+        app:tabTextAppearance="@style/InboxTabLayout"
+        app:tabTextColor="@color/blue_djinni">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/inbox_filter_all" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/inbox_filter_new" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/inbox_filter_active" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/inbox_filter_favorites" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/inbox_filter_archive" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_inbox_offers"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tl_inbox_filters" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,8 +11,19 @@
     <!--    Menu names-->
     <!-- Dashboard -->
     <string name="menu_dashboard">Dashboard</string>
-    <!-- Inbox -->
+
+    <!-- Inbox(Offers) - start -->
     <string name="menu_inbox">Inbox</string>
+    <string name="inbox_offers">Offers</string>
+    <string name="inbox_search">Name, company, email or LinkedIn</string>
+    <string name="inbox_filter_all">All</string>
+    <string name="inbox_filter_new">New</string>
+    <string name="inbox_filter_active">Active</string>
+    <string name="inbox_filter_favorites">Favorites</string>
+    <string name="inbox_filter_archive">Archive</string>
+
+    <!-- Inbox - end -->
+
     <!-- Jobs -->
     <string name="menu_jobs">Jobs</string>
     <!-- Salaries -->
