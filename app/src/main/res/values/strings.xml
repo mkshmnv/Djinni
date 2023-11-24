@@ -18,10 +18,17 @@
     <!-- Salaries -->
     <string name="menu_salaries">Salaries</string>
 
+    <!-- TabLayout Profile - start -->
+    <string name="my_account">My account</string>
+    <string name="tab_profile">Profile</string>
+    <string name="tab_subs">Subs</string>
+    <string name="tab_cv">CV</string>
+    <string name="tab_stoplist">Stoplist</string>
+    <string name="tab_hires">Hires</string>
+    <!-- TabLayout Profile - end -->
+
     <!-- Profile - start -->
     <string name="menu_profile">Profile</string>
-
-    <string name="my_account">My account</string>
 
     <string name="search_active">Active search</string>
     <string name="search_active_tip">Djinni shows you as an active candidate to all recruiters and sends you a message to every contact</string>
@@ -397,17 +404,54 @@
     <string name="delete_account">Delete account</string>
     <!-- Profile - end -->
 
-    <string name="menu_account">Account</string>
+    <!-- Account - start -->
+    <string name="account_description">Job search on Djinni is anonymous. \nOnly those to whom you open contacts will see your personal data.</string>
+    <string name="account_full_name">First and last name</string>
+    <string name="account_full_name_tip">Full name, please. There is no need to write Slava S.</string>
+    <string name="account_email">Email</string>
+    <string name="account_skype">Skype</string>
+    <string name="account_phone">Phone</string>
+    <string name="account_telegram">Telegram</string>
+    <string name="account_whatsapp">WhatsApp</string>
+    <string name="account_linkedin">LinkedIn profile</string>
+    <string name="account_github">GitHub</string>
+    <string name="account_portfolio">Portfolio</string>
+    <string name="account_portfolio_tip">Any link can be specified: Behance, Dropbox, Google Docs, etc.</string>
+    <string name="account_cv">CV</string>
+    <string name="account_cv_tip">Employers are more comfortable working with PDF and the file name CV_Imya_Pryzvysche.pdf</string>
+    <string name="account_save">Save</string>
+    <!-- Account - end -->
 
-    <string name="tab_profile">Profile</string>
-    <string name="tab_subs">Subs</string>
-    <string name="tab_cv">CV</string>
-    <string name="tab_stoplist">Stoplist</string>
-    <string name="tab_hires">Hires</string>
+    <!-- Subscriptions - start -->
+    <string name="subs_vacancies">Vacancies according to my profile</string>
+    <string name="subs_vacancies_tip">if the profile is online and there are no vacancies</string>
+    <string name="subs_vacancies_email">To email: test@test.com</string>
+    <string name="subs_vacancies_not_send">Do not send</string>
+    <string name="subs_notifications">Notifications from employers and subscriptions to vacancies</string>
+    <string name="subs_notifications_tip">if the profile is online and there are no vacancies</string>
+    <string name="subs_notifications_email">To email: test@test.com</string>
+    <string name="subs_notifications_telegram">in Telegram</string>
+    <string name="subs_offers_recruiters">Automatic offers from recruiters</string>
+    <string name="subs_offers_recruiters_tip">Recruiters can create jobs with automatic offers to candidates who match the job description</string>
+    <string name="subs_receive_offers">I want to receive automatic offers</string>
+    <string name="subs_disable_all">Disable all subscriptions from Djinni</string>
+    <!-- Subscriptions - end -->
+
+    <!-- Stoplist - start -->
+    <string name="stoplist_hide">Hide your profile from selected employers</string>
+    <string name="stoplist_search">Search</string>
+    <string name="stoplist_search_tip">For example: Weyland-Yutani Corporation or Carter Burke</string>
+    <string name="stoplist_blocked_companies">Blocked companies</string>
+    <string name="stoplist_blocked_companies_tip">You have not blocked any companies</string>
+    <string name="stoplist_blocked_recruiters">Blocked recruiters</string>
+    <string name="stoplist_blocked_recruiters_tip">You have not blocked any of the recruiters</string>
+    <string name="stoplist_hidden_vacancies">Hidden vacancies</string>
+    <string name="stoplist_hidden_vacancies_tip">There are no hidden vacancies</string>
+    <string name="stoplist_how_work">How does it work?</string>
+    <string name="stoplist_how_work_description">Every time your profile comes up in the search results of an employer, Djinni checks whether that employer is on your stop list. If so, your profile disappears for him. Even if such an employer goes to your profile on Djinni, he will only see \"profile inactive\". Magic. \n\nWe cannot give a 100% guarantee that an employer will not find your profile on Djinni if they set such a goal. The purpose of the stop letter is to avoid awkward situations when you are accidentally found by an employer with whom you would not like to communicate.</string>
+    <!-- Stoplist - end -->
 
     <!-- Exit -->
     <string name="menu_exit">Exit</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

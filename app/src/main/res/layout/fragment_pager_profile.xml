@@ -12,6 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabGravity="fill"
+        app:tabTextColor="@color/gray_djinni"
+        app:tabIndicatorColor="@color/blue_djinni"
+        app:tabSelectedTextColor="@color/blue_djinni"
         app:tabTextAppearance="@style/ProfileTabLayout" />
 
     <androidx.viewpager2.widget.ViewPager2

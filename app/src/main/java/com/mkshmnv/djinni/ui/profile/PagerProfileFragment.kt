@@ -6,11 +6,11 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
-import com.mkshmnv.djinni.databinding.FragmentViewPagerProfileBinding
+import com.mkshmnv.djinni.databinding.FragmentPagerProfileBinding
 import com.mkshmnv.djinni.ui.viewBinding
 
-class PagerProfileFragment : Fragment(R.layout.fragment_view_pager_profile) {
-    private val binding: FragmentViewPagerProfileBinding by viewBinding()
+class PagerProfileFragment : Fragment(R.layout.fragment_pager_profile) {
+    private val binding: FragmentPagerProfileBinding by viewBinding()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

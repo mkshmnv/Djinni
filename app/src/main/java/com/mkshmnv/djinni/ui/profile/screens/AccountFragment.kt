@@ -8,6 +8,7 @@ import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentAccountBinding
 import com.mkshmnv.djinni.ui.viewBinding
 
+// Contacts and CV
 class AccountFragment : Fragment(R.layout.fragment_account) {
     private val binding: FragmentAccountBinding by viewBinding()
 
