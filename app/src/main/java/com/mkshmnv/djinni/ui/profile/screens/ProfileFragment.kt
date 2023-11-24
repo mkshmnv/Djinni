@@ -1,4 +1,4 @@
-package com.mkshmnv.djinni.ui.profile
+package com.mkshmnv.djinni.ui.profile.screens
 
 import android.os.Bundle
 import android.view.View
@@ -9,11 +9,12 @@ import androidx.fragment.app.viewModels
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentProfileBinding
+import com.mkshmnv.djinni.ui.profile.PagerViewModel
 import com.mkshmnv.djinni.ui.viewBinding
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding: FragmentProfileBinding by viewBinding()
-    private val viewModel: ProfileViewModel by viewModels()
+    private val viewModel: PagerViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

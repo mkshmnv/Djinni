@@ -15,17 +15,29 @@
         android:id="@+id/nav_inbox"
         android:name="com.mkshmnv.djinni.ui.inbox.InboxFragment"
         android:label="@string/menu_inbox"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_inbox" />
 
     <fragment
         android:id="@+id/nav_jobs"
         android:name="com.mkshmnv.djinni.ui.jobs.JobsFragment"
         android:label="@string/menu_jobs"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_jobs" />
 
     <fragment
         android:id="@+id/nav_my_profile"
-        android:name="com.mkshmnv.djinni.ui.profile.ProfileFragment"
+        android:name="com.mkshmnv.djinni.ui.profile.screens.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_my_account"
+        android:name="com.mkshmnv.djinni.ui.profile.screens.AccountFragment"
+        android:label="Account"
+        tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/nav_view_pager_profile_fragment"
+        android:name="com.mkshmnv.djinni.ui.profile.PagerProfileFragment"
+        android:label="@string/my_account"
+        tools:layout="@layout/fragment_view_pager_profile" />
 </navigation>

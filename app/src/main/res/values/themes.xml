@@ -73,6 +73,10 @@
         <item name="buttonTint">@color/blue_djinni</item>
     </style>
 
+    <style name="ProfileTabLayout" parent="Widget.Material3.TabLayout">
+        <item name="android:textSize">50sp</item>
+    </style>
+
     <style name="Theme.Djinni.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Djinni.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

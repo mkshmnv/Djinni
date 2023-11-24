@@ -4,10 +4,19 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_view_pager_profile_fragment"
+            android:icon="@drawable/ic_profile_24dp"
+            android:title="@string/menu_profile" />
+
+        <item android:title="" />
+
         <item
             android:id="@+id/nav_dashboard_web_view"
             android:icon="@drawable/ic_dashboard_24dp"
             android:title="@string/menu_dashboard" />
+
         <item
             android:id="@+id/nav_inbox"
             android:icon="@drawable/ic_inbox_24dp"
@@ -20,38 +29,13 @@
             android:id="@+id/nav_salaries"
             android:icon="@drawable/ic_salaries_24dp"
             android:title="@string/menu_salaries" />
-    </group>
 
-    <item android:title="" />
+        <item android:title="" />
 
-    <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_my_profile"
-            android:icon="@drawable/ic_profile_24dp"
-            android:title="@string/menu_profile" />
-        <item
-            android:id="@+id/nav_my_account"
-            android:icon="@drawable/ic_account_24dp"
-            android:title="@string/menu_account" />
-        <item
-            android:id="@+id/nav_my_subscriptions"
-            android:icon="@drawable/ic_account_24dp"
-            android:title="@string/menu_subscriptions" />
-        <item
-            android:id="@+id/nav_my_stoplist"
-            android:icon="@drawable/ic_account_24dp"
-            android:title="@string/menu_stoplist" />
-        <item
-            android:id="@+id/nav_my_hires"
-            android:icon="@drawable/ic_account_24dp"
-            android:title="@string/menu_hires" />
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/ic_exit_24dp"
+            android:title="@string/menu_exit" />
 
     </group>
-
-    <item android:title="" />
-
-    <item
-        android:id="@+id/nav_exit"
-        android:icon="@drawable/ic_exit_24dp"
-        android:title="@string/menu_exit" />
 </menu>

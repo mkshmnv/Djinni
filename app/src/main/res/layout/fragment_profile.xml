@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_profile"
     android:layout_width="match_parent"
@@ -12,20 +12,10 @@
         android:orientation="vertical"
         android:padding="25dp">
 
-        <TextView
-            android:id="@+id/tv_my_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/my_account"
-            android:textSize="40sp"
-            android:textStyle="bold" />
-
         <RadioGroup
             android:id="@+id/rg_search_status"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/rb_search_active"
@@ -703,6 +693,6 @@
         </LinearLayout>
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
 
 
