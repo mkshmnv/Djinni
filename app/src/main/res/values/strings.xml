@@ -417,8 +417,8 @@
 
     <!-- Account - start -->
     <string name="account_description">Job search on Djinni is anonymous. \nOnly those to whom you open contacts will see your personal data.</string>
-    <string name="account_full_name">First and last name</string>
-    <string name="account_full_name_tip">Full name, please. There is no need to write Slava S.</string>
+    <string name="account_full_name">First name and Last name</string>
+    <string name="account_full_name_hint">Full name, please. There is no need to write Slava S.</string>
     <string name="account_email">Email</string>
     <string name="account_skype">Skype</string>
     <string name="account_phone">Phone</string>
@@ -427,9 +427,9 @@
     <string name="account_linkedin">LinkedIn profile</string>
     <string name="account_github">GitHub</string>
     <string name="account_portfolio">Portfolio</string>
-    <string name="account_portfolio_tip">Any link can be specified: Behance, Dropbox, Google Docs, etc.</string>
+    <string name="account_portfolio_hint">Any link can be specified: Behance, Dropbox, Google Docs, etc.</string>
     <string name="account_cv">CV</string>
-    <string name="account_cv_tip">Employers are more comfortable working with PDF and the file name CV_Imya_Pryzvysche.pdf</string>
+    <string name="account_cv_hint">Employers are more comfortable working with PDF and the file name CV_Imya_Pryzvysche.pdf</string>
     <string name="account_save">Save</string>
     <!-- Account - end -->
 
@@ -464,5 +464,14 @@
 
     <!-- Exit -->
     <string name="menu_exit">Exit</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 
 </resources>

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    android:theme="@style/Theme.Djinni.Account"
     tools:context=".ui.profile.screens.AccountFragment">
 
     <!--    Contacts and CV -->
@@ -18,175 +17,107 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/account_description"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_account_full_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/account_full_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_description" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_account_full_name"
+        <com.mkshmnv.djinni.EditTextWithTitle
+            android:id="@+id/etwt_account_full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/account_full_name_tip"
+            android:layout="@layout/edit_text_with_title"
+            app:hint="@string/account_full_name_hint"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_full_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_account_description"
+            app:title="@string/account_full_name" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_account_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/account_email"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_account_full_name" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_account_email"
+        <com.mkshmnv.djinni.EditTextWithTitle
+            android:id="@+id/etwt_account_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout="@layout/edit_text_with_title"
+            app:inputType="0x00000021"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_email" />
+            app:layout_constraintTop_toBottomOf="@+id/etwt_account_full_name"
+            app:title="@string/account_email" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_account_skype"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/account_skype"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_account_email" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_account_skype"
+        <com.mkshmnv.djinni.EditTextWithTitle
+            android:id="@+id/etwt_account_skype"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout="@layout/edit_text_with_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_skype" />
+            app:layout_constraintTop_toBottomOf="@+id/etwt_account_email"
+            app:title="@string/account_skype" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_account_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/account_phone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_account_skype" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_account_phone"
+        <com.mkshmnv.djinni.EditTextWithTitle
+            android:id="@+id/etwt_account_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout="@layout/edit_text_with_title"
+            app:inputType="0x00000002"
+            app:title="@string/account_phone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_phone" />
+            app:layout_constraintTop_toBottomOf="@+id/etwt_account_skype" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_account_telegram"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/account_telegram"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_account_phone" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_account_telegram"
+        <com.mkshmnv.djinni.EditTextWithTitle
+            android:id="@+id/etwt_account_telegram"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout="@layout/edit_text_with_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_telegram" />
+            app:layout_constraintTop_toBottomOf="@+id/etwt_account_phone"
+            app:title="@string/account_telegram" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_account_whatsapp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/account_whatsapp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_account_telegram" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_account_whatsapp"
+        <com.mkshmnv.djinni.EditTextWithTitle
+            android:id="@+id/etwt_account_whatsapp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout="@layout/edit_text_with_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_whatsapp" />
+            app:layout_constraintTop_toBottomOf="@+id/etwt_account_telegram"
+            app:title="@string/account_whatsapp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_account_linkedin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/account_linkedin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_account_whatsapp" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_account_linkedin"
+        <com.mkshmnv.djinni.EditTextWithTitle
+            android:id="@+id/etwt_account_linkedin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout="@layout/edit_text_with_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_linkedin" />
+            app:layout_constraintTop_toBottomOf="@+id/etwt_account_whatsapp"
+            app:title="@string/account_linkedin" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_account_github"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/account_github"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_account_linkedin" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_account_github"
+        <com.mkshmnv.djinni.EditTextWithTitle
+            android:id="@+id/etwt_account_github"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout="@layout/edit_text_with_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_github" />
+            app:layout_constraintTop_toBottomOf="@+id/etwt_account_linkedin"
+            app:title="@string/account_github" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_account_portfolio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/account_portfolio"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_account_github" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_account_portfolio"
+        <com.mkshmnv.djinni.EditTextWithTitle
+            android:id="@+id/etwt_account_portfolio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/account_portfolio_tip"
+            android:layout="@layout/edit_text_with_title"
+            app:hint="@string/account_portfolio_hint"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_portfolio" />
+            app:layout_constraintTop_toBottomOf="@+id/etwt_account_github"
+            app:title="@string/account_portfolio" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_account_cv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/account_cv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_account_portfolio" />
-
-        <!--        TODO download files  -->
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_account_cv"
+        <com.mkshmnv.djinni.EditTextWithTitle
+            android:id="@+id/etwt_account_cv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/account_cv_tip"
+            android:layout="@layout/edit_text_with_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_cv" />
+            app:layout_constraintTop_toBottomOf="@+id/etwt_account_portfolio"
+            app:title="@string/account_cv"
+            app:hint="@string/account_cv_hint" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_account_save"
@@ -198,7 +129,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_account_cv" />
+            app:layout_constraintTop_toBottomOf="@+id/etwt_account_cv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

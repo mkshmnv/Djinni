@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "961705628491",
+    "project_id": "djinni-90ca8",
+    "storage_bucket": "djinni-90ca8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961705628491:android:a8b127bf19780b853b0ece",
+        "android_client_info": {
+          "package_name": "com.mkshmnv.djinni"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLe6cwZWJLz4clmjJXOpVlQ8csbxt11Ds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

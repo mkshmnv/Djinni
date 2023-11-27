@@ -201,4 +201,6 @@
 
     <style name="Theme.Djinni.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="EditTextWithTitleStyle">
+    </style>
 </resources>
