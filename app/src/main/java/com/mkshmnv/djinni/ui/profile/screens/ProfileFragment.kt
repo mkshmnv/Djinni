@@ -21,30 +21,30 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         Logger.logcat("onViewCreated", this::class.simpleName)
 
         binding.apply {
-
-            sbExperience.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            sbProfileExperience.setOnSeekBarChangeListener(object :
+                SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(
                     seekBar: SeekBar?,
                     progress: Int,
                     fromUser: Boolean
                 ) {
-                    tvExperienceYear.text = when (seekBar?.progress) {
-                        0 -> getString(R.string.experience_without)
-                        1 -> getString(R.string.experience_6_months)
-                        2 -> getString(R.string.experience_1_year)
-                        3 -> getString(R.string.experience_1_5_years)
-                        4 -> getString(R.string.experience_2_years)
-                        5 -> getString(R.string.experience_2_5_years)
-                        6 -> getString(R.string.experience_3_years)
-                        7 -> getString(R.string.experience_4_years)
-                        8 -> getString(R.string.experience_5_years)
-                        9 -> getString(R.string.experience_6_years)
-                        10 -> getString(R.string.experience_7_years)
-                        11 -> getString(R.string.experience_8_years)
-                        12 -> getString(R.string.experience_9_years)
-                        13 -> getString(R.string.experience_10_years)
-                        14 -> getString(R.string.experience_more_10_years)
-                        else -> getString(R.string.error)
+                    tvProfileExperienceTerm.text = when (seekBar?.progress) {
+                        0 -> getString(R.string.profile_experience_without)
+                        1 -> getString(R.string.profile_experience_6_months)
+                        2 -> getString(R.string.profile_experience_1_year)
+                        3 -> getString(R.string.profile_experience_1_5_years)
+                        4 -> getString(R.string.profile_experience_2_years)
+                        5 -> getString(R.string.profile_experience_2_5_years)
+                        6 -> getString(R.string.profile_experience_3_years)
+                        7 -> getString(R.string.profile_experience_4_years)
+                        8 -> getString(R.string.profile_experience_5_years)
+                        9 -> getString(R.string.profile_experience_6_years)
+                        10 -> getString(R.string.profile_experience_7_years)
+                        11 -> getString(R.string.profile_experience_8_years)
+                        12 -> getString(R.string.profile_experience_9_years)
+                        13 -> getString(R.string.profile_experience_10_years)
+                        14 -> getString(R.string.profile_experience_more_10_years)
+                        else -> getString(R.string.profile_error)
                     }
                 }
 
@@ -57,20 +57,20 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
             ArrayAdapter.createFromResource(
                 requireActivity(),
-                R.array.categories,
+                R.array.profile_categories,
                 android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spCategory.adapter = adapter
+                spProfileCategory.adapter = adapter
             }
 
             ArrayAdapter.createFromResource(
                 requireActivity(),
-                R.array.countries,
+                R.array.profile_countries,
                 android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spCountry.adapter = adapter
+                spProfileCountry.adapter = adapter
             }
 
 //        Preferred method of communication

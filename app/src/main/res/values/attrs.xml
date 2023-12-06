@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="EditTextWithTitle">
-        <attr name="title" format="string" />
+        <attr name="title2" format="string" />
         <attr name="hint" format="string" />
         <attr name="inputType" format="integer" />
+        <attr name="scrollbars" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomViewWithTitle">
+        <attr name="title" format="string" />
     </declare-styleable>
 </resources>

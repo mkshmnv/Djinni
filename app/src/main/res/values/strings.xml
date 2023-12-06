@@ -39,57 +39,57 @@
     <!-- TabLayout Profile - end -->
 
     <!-- Profile - start -->
-    <string name="menu_profile">Profile</string>
+    <string name="profile_menu">Profile</string>
 
-    <string name="search_active">Active search</string>
-    <string name="search_active_tip">Djinni shows you as an active candidate to all recruiters and sends you a message to every contact</string>
-    <string name="search_passive">Passive search</string>
-    <string name="search_passive_tip">Passive search is currently only available to candidates with 2+ years of experience</string>
-    <string name="search_off">Not looking</string>
-    <string name="search_off_tip">Djinni doesn\'t show you as an active candidate, recruiters can\'t write to you</string>
+    <string name="profile_search_active">Active search</string>
+    <string name="profile_search_active_tip">Djinni shows you as an active candidate to all recruiters and sends you a message to every contact</string>
+    <string name="profile_search_passive">Passive search</string>
+    <string name="profile_search_passive_tip">Passive search is currently only available to candidates with 2+ years of experience</string>
+    <string name="profile_search_off">Not looking</string>
+    <string name="profile_search_off_tip">Djinni doesn\'t show you as an active candidate, recruiters can\'t write to you</string>
 
-    <string name="view_your_profile">View your public profile</string>
+    <string name="profile_view_your_profile">View your public profile</string>
 
-    <string name="raise_your_profile">Raise your profile in the search</string>
+    <string name="profile_raise_your_profile">Raise your profile in the search</string>
     <!-- TODO raise_your_profile tip -->
 
-    <string name="position">Position</string>
+    <string name="profile_position">Position</string>
 
-    <string name="category">Category</string>
-    <string-array name="categories">
+    <string name="profile_category">Category</string>
+    <string-array name="profile_categories">
         <item>Android</item>
         <item>Recruiter</item>
         <item>iOS</item>
         <!-- TODO Add all categories -->
     </string-array>
 
-    <string name="skills">Skills</string>
-    <string name="skills_tip">Additional keywords that will help recruiters find you when searching for candidates</string>
+    <string name="profile_skills">Skills</string>
+    <string name="profile_skills_hint">Additional keywords that will help recruiters find you when searching for candidates</string>
 
-    <string name="experience_seekbar">Experience</string>
-    <string name="experience_without">without experience</string>
-    <string name="experience_6_months">6 months</string>
-    <string name="experience_1_year">1 year</string>
-    <string name="experience_1_5_years">1.5 years</string>
-    <string name="experience_2_years">2 years</string>
-    <string name="experience_2_5_years">2.5 years</string>
-    <string name="experience_3_years">3 years</string>
-    <string name="experience_4_years">4 years</string>
-    <string name="experience_5_years">5 years</string>
-    <string name="experience_6_years">6 years</string>
-    <string name="experience_7_years">7 years</string>
-    <string name="experience_8_years">8 years</string>
-    <string name="experience_9_years">9 years</string>
-    <string name="experience_10_years">10 years</string>
-    <string name="experience_more_10_years">more than 10 years</string>
-    <string name="error">error</string>
+    <string name="profile_experience_seekbar">Experience</string>
+    <string name="profile_experience_without">without experience</string>
+    <string name="profile_experience_6_months">6 months</string>
+    <string name="profile_experience_1_year">1 year</string>
+    <string name="profile_experience_1_5_years">1.5 years</string>
+    <string name="profile_experience_2_years">2 years</string>
+    <string name="profile_experience_2_5_years">2.5 years</string>
+    <string name="profile_experience_3_years">3 years</string>
+    <string name="profile_experience_4_years">4 years</string>
+    <string name="profile_experience_5_years">5 years</string>
+    <string name="profile_experience_6_years">6 years</string>
+    <string name="profile_experience_7_years">7 years</string>
+    <string name="profile_experience_8_years">8 years</string>
+    <string name="profile_experience_9_years">9 years</string>
+    <string name="profile_experience_10_years">10 years</string>
+    <string name="profile_experience_more_10_years">more than 10 years</string>
+    <string name="profile_error">error</string>
 
-    <string name="salary_expectations">Salary expectations</string>
-    <string name="salary_expectations_tip">Amount after tax</string>
+    <string name="profile_salary_expectations">Salary expectations</string>
+    <string name="profile_salary_expectations_hint">Amount after tax</string>
     <!-- TODO similar candidates according to statistics -->
 
-    <string name="country">Country of residence</string>
-    <string-array name="countries">
+    <string name="profile_country">Country of residence</string>
+    <string-array name="profile_countries">
         <item>Ukraine</item>
         <item>Australia</item>
         <item>Austria</item>
@@ -342,41 +342,41 @@
         <item>Jamaica</item>
         <item>Japan</item>
     </string-array>
-    <string name="always_online">I can work and be in touch</string>
-    <string name="leave_country">I can leave if necessary</string>
-    <string name="country_moving">Considering moving to another country</string>
+    <string name="profile_always_online">I can work and be in touch</string>
+    <string name="profile_leave_country">I can leave if necessary</string>
+    <string name="profile_country_moving">Considering moving to another country</string>
 
-    <string name="city">City</string>
-    <string name="city_tip">City where you are now</string>
-    <string name="city_moving">Considering moving to another city</string>
+    <string name="profile_city">City</string>
+    <string name="profile_city_hint">City where you are now</string>
+    <string name="profile_city_moving">Considering moving to another city</string>
 
-    <string name="english_level">English level</string>
-    <string name="no_english">No English</string>
-    <string name="beginner_elementary">Beginner/Elementary</string>
-    <string name="pre_intermediate">Pre-Intermediate</string>
-    <string name="intermediate">Intermediate</string>
-    <string name="upper_intermediate">Upper-Intermediate</string>
-    <string name="advanced_fluent">Advanced/Fluent</string>
+    <string name="profile_english_level">English level</string>
+    <string name="profile_no_english">No English</string>
+    <string name="profile_beginner_elementary">Beginner/Elementary</string>
+    <string name="profile_pre_intermediate">Pre-Intermediate</string>
+    <string name="profile_intermediate">Intermediate</string>
+    <string name="profile_upper_intermediate">Upper-Intermediate</string>
+    <string name="profile_advanced_fluent">Advanced/Fluent</string>
 
-    <string name="experience">Experience</string>
-    <string name="experience_tip">Tell us what projects and tasks you\'ve done, what technologies you\'ve used, your current role in the team, and where you want to grow.</string>
+    <string name="profile_experience">Experience</string>
+    <string name="profile_experience_hint">Tell us what projects and tasks you\'ve done, what technologies you\'ve used, your current role in the team, and where you want to grow.</string>
 
-    <string name="achievement">Achievement</string>
-    <string name="achievement_tip">The more specific, the better. For interesting must have offers.</string>
+    <string name="profile_achievement">Achievement</string>
+    <string name="profile_achievement_hint">The more specific, the better. For interesting must have offers.</string>
 
-    <string name="expectation">Expectation</string>
-    <string name="expectation_tip">Write what you want from work. And write what you don not want too.</string>
-    <string name="combatant">I am a combatant in the Defense Forces of Ukraine</string>
+    <string name="profile_expectation">Expectation</string>
+    <string name="profile_expectation_tip">Write what you want from work. And write what you don not want too.</string>
+    <string name="profile_combatant">I am a combatant in the Defense Forces of Ukraine</string>
 
-    <string name="employ_options">Employment options</string>
-    <string name="remote">Remote work</string>
-    <string name="office">Office</string>
-    <string name="part_time">Part-time</string>
-    <string name="freelance">Freelance (one-off projects)</string>
+    <string name="profile_employ_options">Employment options</string>
+    <string name="profile_remote">Remote work</string>
+    <string name="profile_office">Office</string>
+    <string name="profile_part_time">Part-time</string>
+    <string name="profile_freelance">Freelance (one-off projects)</string>
 
-    <string name="hourly_rate">Hourly rate</string>
+    <string name="profile_hourly_rate">Hourly rate</string>
 
-    <string name="not_considering">Not considering</string>
+    <string name="profile_not_considering">Not considering</string>
     <string name="domains">Domains</string>
     <string name="adult">Adult</string>
     <string name="gambling">Gambling</string>
@@ -390,13 +390,13 @@
     <string name="outsource">Outsource</string>
     <string name="agency">Agency</string>
 
-    <string name="question_employer">Question for the employer</string>
-    <string name="question_employer_tip">What exactly would you like to know first of all?</string>
+    <string name="profile_question_employer">Question for the employer</string>
+    <string name="profile_question_employer_hint">What exactly would you like to know first of all?</string>
 
-    <string name="pref_lang">Preferred language of communication</string>
-    <string name="pref_lang_tip">We will inform the employer in which language you are most comfortable communicating.</string>
-    <string name="lang_english">English</string>
-    <string name="lang_ukrainian">Ukrainian</string>
+    <string name="profile_pref_lang">Preferred language of communication</string>
+    <string name="profile_pref_lang_hint">We will inform the employer in which language you are most comfortable communicating.</string>
+    <string name="profile_lang_english">English</string>
+    <string name="profile_lang_ukrainian">Ukrainian</string>
 
     <string name="method_comm">Preferred method of communication</string>
     <string-array name="methods">
@@ -424,7 +424,7 @@
     <string name="account_phone">Phone</string>
     <string name="account_telegram">Telegram</string>
     <string name="account_whatsapp">WhatsApp</string>
-    <string name="account_linkedin">LinkedIn profile</string>
+    <string name="account_linkedin">LinkedIn</string>
     <string name="account_github">GitHub</string>
     <string name="account_portfolio">Portfolio</string>
     <string name="account_portfolio_hint">Any link can be specified: Behance, Dropbox, Google Docs, etc.</string>
@@ -451,13 +451,13 @@
     <!-- Stoplist - start -->
     <string name="stoplist_hide">Hide your profile from selected employers</string>
     <string name="stoplist_search">Search</string>
-    <string name="stoplist_search_tip">For example: Weyland-Yutani Corporation or Carter Burke</string>
+    <string name="stoplist_search_hint">For example: Weyland-Yutani Corporation or Carter Burke</string>
     <string name="stoplist_blocked_companies">Blocked companies</string>
-    <string name="stoplist_blocked_companies_tip">You have not blocked any companies</string>
+    <string name="stoplist_blocked_companies_hint">You have not blocked any companies</string>
     <string name="stoplist_blocked_recruiters">Blocked recruiters</string>
-    <string name="stoplist_blocked_recruiters_tip">You have not blocked any of the recruiters</string>
+    <string name="stoplist_blocked_recruiters_hint">You have not blocked any of the recruiters</string>
     <string name="stoplist_hidden_vacancies">Hidden vacancies</string>
-    <string name="stoplist_hidden_vacancies_tip">There are no hidden vacancies</string>
+    <string name="stoplist_hidden_vacancies_hint">There are no hidden vacancies</string>
     <string name="stoplist_how_work">How does it work?</string>
     <string name="stoplist_how_work_description">Every time your profile comes up in the search results of an employer, Djinni checks whether that employer is on your stop list. If so, your profile disappears for him. Even if such an employer goes to your profile on Djinni, he will only see \"profile inactive\". Magic. \n\nWe cannot give a 100% guarantee that an employer will not find your profile on Djinni if they set such a goal. The purpose of the stop letter is to avoid awkward situations when you are accidentally found by an employer with whom you would not like to communicate.</string>
     <!-- Stoplist - end -->

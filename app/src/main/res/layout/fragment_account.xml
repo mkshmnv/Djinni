@@ -7,130 +7,167 @@
     android:padding="20dp"
     tools:context=".ui.profile.screens.AccountFragment">
 
-    <!--    Contacts and CV -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_account_description"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/account_description"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold" />
 
-        <com.mkshmnv.djinni.EditTextWithTitle
-            android:id="@+id/etwt_account_full_name"
+        <com.mkshmnv.djinni.CustomViewWithTitle
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout="@layout/edit_text_with_title"
-            app:hint="@string/account_full_name_hint"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_description"
-            app:title="@string/account_full_name" />
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/account_full_name">
 
-        <com.mkshmnv.djinni.EditTextWithTitle
-            android:id="@+id/etwt_account_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout="@layout/edit_text_with_title"
-            app:inputType="0x00000021"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etwt_account_full_name"
-            app:title="@string/account_email" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_profile_position"
+                style="@style/DefaultDjinniEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <!--            TODO android:hint="@string/account_full_name_hint"-->
 
-        <com.mkshmnv.djinni.EditTextWithTitle
-            android:id="@+id/etwt_account_skype"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout="@layout/edit_text_with_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etwt_account_email"
-            app:title="@string/account_skype" />
+        </com.mkshmnv.djinni.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.EditTextWithTitle
-            android:id="@+id/etwt_account_phone"
+        <com.mkshmnv.djinni.CustomViewWithTitle
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout="@layout/edit_text_with_title"
-            app:inputType="0x00000002"
-            app:title="@string/account_phone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etwt_account_skype" />
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/account_email">
 
-        <com.mkshmnv.djinni.EditTextWithTitle
-            android:id="@+id/etwt_account_telegram"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout="@layout/edit_text_with_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etwt_account_phone"
-            app:title="@string/account_telegram" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_account_email"
+                style="@style/DefaultDjinniEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress" />
 
-        <com.mkshmnv.djinni.EditTextWithTitle
-            android:id="@+id/etwt_account_whatsapp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout="@layout/edit_text_with_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etwt_account_telegram"
-            app:title="@string/account_whatsapp" />
+        </com.mkshmnv.djinni.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.EditTextWithTitle
-            android:id="@+id/etwt_account_linkedin"
+        <com.mkshmnv.djinni.CustomViewWithTitle
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout="@layout/edit_text_with_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etwt_account_whatsapp"
-            app:title="@string/account_linkedin" />
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/account_skype">
 
-        <com.mkshmnv.djinni.EditTextWithTitle
-            android:id="@+id/etwt_account_github"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout="@layout/edit_text_with_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etwt_account_linkedin"
-            app:title="@string/account_github" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_account_skype"
+                style="@style/DefaultDjinniEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-        <com.mkshmnv.djinni.EditTextWithTitle
-            android:id="@+id/etwt_account_portfolio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout="@layout/edit_text_with_title"
-            app:hint="@string/account_portfolio_hint"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etwt_account_github"
-            app:title="@string/account_portfolio" />
+        </com.mkshmnv.djinni.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.EditTextWithTitle
-            android:id="@+id/etwt_account_cv"
+        <com.mkshmnv.djinni.CustomViewWithTitle
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout="@layout/edit_text_with_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etwt_account_portfolio"
-            app:title="@string/account_cv"
-            app:hint="@string/account_cv_hint" />
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/account_phone">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_account_phone"
+                style="@style/DefaultDjinniEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="phone" />
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/account_telegram">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_account_telegram"
+                style="@style/DefaultDjinniEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/account_whatsapp">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_account_whatsapp"
+                style="@style/DefaultDjinniEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/account_linkedin">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_account_linkedin"
+                style="@style/DefaultDjinniEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/account_github">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_account_github"
+                style="@style/DefaultDjinniEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/account_portfolio">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_account_portfolio"
+                style="@style/DefaultDjinniEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <!--           TODO app:hint="@string/account_portfolio_hint"-->
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/account_cv">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_account_cv"
+                style="@style/DefaultDjinniEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <!--           TODO DOWNLOAD CV -->
+            <!--           TODO app:hint="@string/account_cv_hint"-->
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_account_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="30dp"
-            android:text="@string/account_save"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etwt_account_cv" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="@string/account_save" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+    <!--    TODO RESET pass -->
+    <!--    TODO change AVATAR -->
 
 </androidx.core.widget.NestedScrollView>

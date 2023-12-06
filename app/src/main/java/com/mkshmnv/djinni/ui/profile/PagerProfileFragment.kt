@@ -25,7 +25,7 @@ class PagerProfileFragment : Fragment(R.layout.fragment_pager) {
                     2 -> getString(R.string.tab_subs)
                     3 -> getString(R.string.tab_stoplist)
                     4 -> getString(R.string.tab_hires)
-                    else -> getString(R.string.error)
+                    else -> getString(R.string.profile_error)
                 }
             }.attach()
         }

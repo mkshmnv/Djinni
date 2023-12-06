@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_profile"
     android:layout_width="match_parent"
@@ -14,7 +15,6 @@
         android:padding="25dp">
 
         <RadioGroup
-            android:id="@+id/rg_search_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -22,27 +22,26 @@
                 android:id="@+id/rb_search_active"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/search_active"
-                android:tooltipText="@string/search_active_tip" />
+                android:text="@string/profile_search_active"
+                android:tooltipText="@string/profile_search_active_tip" />
 
             <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/rb_search_passive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/search_passive"
-                android:tooltipText="@string/search_passive_tip" />
+                android:text="@string/profile_search_passive"
+                android:tooltipText="@string/profile_search_passive_tip" />
 
             <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/rb_search_off"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/search_off"
-                android:tooltipText="@string/search_off_tip" />
+                android:text="@string/profile_search_off"
+                android:tooltipText="@string/profile_search_off_tip" />
 
         </RadioGroup>
 
         <LinearLayout
-            android:id="@+id/ll_buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -54,7 +53,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
                 android:layout_weight="1"
-                android:text="@string/view_your_profile" />
+                android:text="@string/profile_view_your_profile" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_raise_profile"
@@ -62,431 +61,386 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
                 android:layout_weight="1"
-                android:text="@string/raise_your_profile"
+                android:text="@string/profile_raise_your_profile"
                 android:tooltipText="" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_position"
+        <com.mkshmnv.djinni.CustomViewWithTitle
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_position"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/position" />
-
-            <EditText
-                android:id="@+id/et_position"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                tools:ignore="LabelFor" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/category" />
-
-            <Spinner
-                android:id="@+id/sp_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_skills"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_skills"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/skills" />
-
-            <EditText
-                android:id="@+id/et_skills"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:hint="@string/skills_tip"
-                android:importantForAutofill="no"
-                android:inputType="textMultiLine"
-                android:scrollbars="vertical" />
-            <!--            TODO implement skills like website -->
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_experience"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_experience"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/experience_seekbar" />
-
-            <SeekBar
-                android:id="@+id/sb_experience"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="14"
-                android:progress="0"
-                android:progressTint="@color/gray_djinni"
-                android:stepSize="1"
-                android:thumb="@drawable/style_profile_year_seekbar_thumb" />
-
-            <TextView
-                android:id="@+id/tv_experience_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/experience_without"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_salary_expectations"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_salary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/salary_expectations" />
-
-            <EditText
-                android:id="@+id/et_salary"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:drawableStart="@drawable/ic_dollar_24dp"
-                android:hint="@string/salary_expectations_tip"
-                android:importantForAutofill="no"
-                android:inputType="numberDecimal" />
-            <!--            TODO implement salaries of similar candidates according to statistics -->
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_country"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_country"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/country"
-                android:textSize="24sp" />
-
-            <Spinner
-                android:id="@+id/sp_country"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <CheckBox
-                android:id="@+id/chb_online"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/always_online" />
-
-            <CheckBox
-                android:id="@+id/chb_out_country"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/leave_country" />
-
-            <CheckBox
-                android:id="@+id/chb_country_moving"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/country_moving" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_city"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/city" />
-
-            <EditText
-                android:id="@+id/et_city"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="@string/city_tip"
-                android:importantForAutofill="no"
-                android:inputType="text" />
-
-            <CheckBox
-                android:id="@+id/chb_city_moving"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/city_moving" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_english"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_english"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/english_level" />
-
-            <RadioGroup
-                android:id="@+id/rg_english"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/rb_no_english"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/no_english"
-                    android:tooltipText="No English knowledge" />
-
-                <RadioButton
-                    android:id="@+id/rb_beginner_english"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/beginner_elementary"
-                    android:tooltipText="Basic English" />
-
-                <RadioButton
-                    android:id="@+id/rb_pre_intermediate_english"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pre_intermediate"
-                    android:tooltipText="Can read technical documentation and keep working correspondence" />
-
-                <RadioButton
-                    android:id="@+id/rb_intermediate_english"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/intermediate"
-                    android:tooltipText="Can read and speak, but in simple phrases and with mistakes" />
-
-                <RadioButton
-                    android:id="@+id/rb_upper_intermediate_english"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/upper_intermediate"
-                    android:tooltipText="Can participate in rallies or conduct an interview in English" />
-
-                <RadioButton
-                    android:id="@+id/rb_advanced_english"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/advanced_fluent"
-                    android:tooltipText="Fluent English" />
-
-            </RadioGroup>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_experience_work"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_experience_work"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/experience" />
-
-            <EditText
-                android:id="@+id/et_experience_work"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:hint="@string/experience_tip"
-                android:importantForAutofill="no"
-                android:inputType="textMultiLine"
-                android:scrollbars="vertical" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_achievements"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_achievements"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/achievement" />
-
-            <EditText
-                android:id="@+id/et_achievements"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:hint="@string/achievement_tip"
-                android:importantForAutofill="no"
-                android:inputType="textMultiLine"
-                android:scrollbars="vertical" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_expectation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_expectation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/expectation" />
-
-            <EditText
-                android:id="@+id/et_expectation"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:hint="@string/expectation_tip"
-                android:importantForAutofill="no"
-                android:inputType="textMultiLine"
-                android:scrollbars="vertical" />
-
-            <CheckBox
-                android:id="@+id/chb_combatant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/combatant" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_employment_options"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical"
-            android:tooltipText="@string/pref_lang_tip">
-
-            <TextView
-                android:id="@+id/tv_employment_options"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/employ_options" />
-
-            <CheckBox
-                android:id="@+id/chb_remote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/remote" />
-
-            <CheckBox
-                android:id="@+id/chb_office"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/office" />
-
-            <CheckBox
-                android:id="@+id/chb_part_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/part_time" />
-
-            <CheckBox
-                android:id="@+id/chb_freelance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/freelance" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_hourly_rate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_hourly_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hourly_rate" />
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/profile_position">
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_hourly_rate"
+                android:id="@+id/et_profile_position"
+                style="@style/DefaultDjinniEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/profile_category">
+
+            <Spinner
+                android:id="@+id/sp_profile_category"
+                style="@style/DefaultDjinniSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_field"
+            app:title="@string/profile_skills">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_profile_skills"
+                style="@style/ProfileEditTextField"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableStart="@drawable/ic_dollar_24dp"
-                android:importantForAutofill="no"
-                android:inputType="numberDecimal" />
+                android:hint="@string/profile_skills_hint" />
 
-        </LinearLayout>
+        </com.mkshmnv.djinni.CustomViewWithTitle>
 
-        <LinearLayout
-            android:id="@+id/ll_not_considering"
+        <com.mkshmnv.djinni.CustomViewWithTitle
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_not_considering"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/not_considering" />
+            android:layout_height="90dp"
+            app:title="@string/profile_experience">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <SeekBar
+                    android:id="@+id/sb_profile_experience"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="35dp"
+                    android:max="14"
+                    android:progress="0"
+                    android:progressTint="@color/gray_djinni"
+                    android:stepSize="1"
+                    android:text="@string/method_comm"
+                    android:thumb="@drawable/style_profile_year_seekbar_thumb" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_profile_experience_term"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/profile_experience_without" />
+
+            </LinearLayout>
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            app:title="@string/profile_salary_expectations">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_profile_salary"
+                    style="@style/DefaultDjinniEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="5dp"
+                    android:drawableStart="@drawable/ic_dollar_24dp"
+                    android:hint="@string/profile_salary_expectations"
+                    android:inputType="numberDecimal" />
+                <!--            TODO implement salaries of similar candidates according to statistics -->
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/profile_salary_expectations_hint" />
+
+            </LinearLayout>
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            app:title="@string/profile_country">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/sp_profile_country"
+                    style="@style/DefaultDjinniSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/chb_profile_online"
+                    style="@style/ProfileСheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_always_online" />
+
+                <CheckBox
+                    android:id="@+id/chb_profile_out_country"
+                    style="@style/ProfileСheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_leave_country" />
+
+                <CheckBox
+                    android:id="@+id/chb_profile_country_moving"
+                    style="@style/ProfileСheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_country_moving" />
+
+            </LinearLayout>
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            app:title="@string/profile_city">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_profile_city"
+                    style="@style/DefaultDjinniEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/profile_city_hint"
+                    android:inputType="text" />
+
+                <CheckBox
+                    android:id="@+id/chb_profile_city_moving"
+                    style="@style/ProfileСheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_city_moving" />
+
+            </LinearLayout>
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            app:title="@string/profile_english_level">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="30dp">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rb_profile_no_english"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_no_english"
+                    android:tooltipText="No English knowledge" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rb_beginner_english"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_beginner_elementary"
+                    android:tooltipText="Basic English" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rb_pre_intermediate_english"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_pre_intermediate"
+                    android:tooltipText="Can read technical documentation and keep working correspondence" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rb_intermediate_english"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_intermediate"
+                    android:tooltipText="Can read and speak, but in simple phrases and with mistakes" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rb_upper_intermediate_english"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_upper_intermediate"
+                    android:tooltipText="Can participate in rallies or conduct an interview in English" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rb_advanced_english"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_advanced_fluent"
+                    android:tooltipText="Fluent English" />
+            </RadioGroup>
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_field"
+            app:title="@string/profile_experience">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_experience_work"
+                style="@style/ProfileEditTextField"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/profile_experience_hint" />
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_field"
+            app:title="@string/profile_achievement">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_achievements"
+                style="@style/ProfileEditTextField"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/profile_achievement_hint" />
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="285dp"
+            app:title="@string/profile_expectation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_expectation"
+                    style="@style/DefaultDjinniEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_edit_field"
+                    android:hint="@string/profile_achievement_hint" />
+
+                <CheckBox
+                    android:id="@+id/chb_combatant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/profile_combatant" />
+
+            </LinearLayout>
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:title="@string/profile_employ_options">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
                 android:baselineAligned="false"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/chb_remote"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile_remote" />
+
+                    <CheckBox
+                        android:id="@+id/chb_office"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile_office" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/chb_part_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile_part_time" />
+
+                    <CheckBox
+                        android:id="@+id/chb_freelance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile_freelance" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/profile_hourly_rate">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_hourly_rate"
+                style="@style/DefaultDjinniEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/ic_dollar_24dp"
+                android:inputType="numberDecimal" />
+
+        </com.mkshmnv.djinni.CustomViewWithTitle>
+
+        <com.mkshmnv.djinni.CustomViewWithTitle
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            app:title="@string/profile_not_considering">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
@@ -500,38 +454,38 @@
 
                     <CheckBox
                         android:id="@+id/chb_adult"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/adult" />
 
                     <CheckBox
                         android:id="@+id/chb_gambling"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/gambling" />
 
                     <CheckBox
                         android:id="@+id/chb_dating"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/dating" />
 
                     <CheckBox
                         android:id="@+id/chb_gamedev"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/gamedev" />
 
                     <CheckBox
                         android:id="@+id/chb_crypto"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/blockchain_crypto" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
@@ -545,31 +499,31 @@
 
                     <CheckBox
                         android:id="@+id/chb_agency"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/agency" />
 
                     <CheckBox
                         android:id="@+id/chb_outsource"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/outsource" />
 
                     <CheckBox
                         android:id="@+id/chb_outstaff"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/outstaff" />
 
                     <CheckBox
                         android:id="@+id/chb_product"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/product" />
 
                     <CheckBox
                         android:id="@+id/chb_startup"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/startup" />
 
@@ -577,88 +531,65 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+        </com.mkshmnv.djinni.CustomViewWithTitle>
 
-        <LinearLayout
-            android:id="@+id/ll_questions_employer"
+        <com.mkshmnv.djinni.CustomViewWithTitle
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
+            android:layout_height="@dimen/height_edit_field"
+            app:title="@string/profile_question_employer">
 
-            <TextView
-                android:id="@+id/tv_questions_employer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/question_employer" />
-
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_questions_employer"
+                style="@style/ProfileEditTextField"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:hint="@string/question_employer_tip"
-                android:importantForAutofill="no"
-                android:inputType="textMultiLine"
-                android:scrollbars="vertical" />
+                android:layout_height="match_parent"
+                android:hint="@string/profile_question_employer_hint" />
 
-        </LinearLayout>
+        </com.mkshmnv.djinni.CustomViewWithTitle>
 
-        <LinearLayout
-            android:id="@+id/ll_pref_lang"
+        <com.mkshmnv.djinni.CustomViewWithTitle
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_pref_lang"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/pref_lang"
-                android:tooltipText="@string/pref_lang_tip" />
+            android:layout_height="@dimen/height_edit_text"
+            android:tooltipText="@string/profile_pref_lang_hint"
+            app:title="@string/profile_pref_lang">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp">
 
                 <CheckBox
                     android:id="@+id/chb_ukrainian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/lang_ukrainian" />
+                    android:text="@string/profile_lang_ukrainian" />
 
                 <CheckBox
                     android:id="@+id/chb_english"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/lang_english" />
+                    android:text="@string/profile_lang_english" />
 
             </LinearLayout>
 
-        </LinearLayout>
+        </com.mkshmnv.djinni.CustomViewWithTitle>
 
-        <LinearLayout
-            android:id="@+id/ll_pref_method_comm"
+        <com.mkshmnv.djinni.CustomViewWithTitle
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
+            android:layout_height="@dimen/height_edit_text"
+            app:title="@string/method_comm">
 
-            <TextView
-                android:id="@+id/tv_pref_method_comm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/method_comm" />
-
-            <Spinner
+            <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/sp_pref_method_comm"
+                style="@style/DefaultDjinniSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent" />
 
-        </LinearLayout>
+        </com.mkshmnv.djinni.CustomViewWithTitle>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_update_profile"
@@ -694,6 +625,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.core.widget.NestedScrollView>
 
 
