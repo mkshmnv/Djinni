@@ -12,7 +12,7 @@ import com.mkshmnv.djinni.ui.profile.screens.SubscriptionsFragment
 
 class PagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
-    override fun getItemCount(): Int = 5
+    override fun getItemCount(): Int = 4 // TODO implement hires
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
@@ -20,7 +20,7 @@ class PagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) 
             1 -> AccountFragment()
             2 -> SubscriptionsFragment()
             3 -> StoplistFragment()
-            4 -> HiresFragment()
+            4 -> HiresFragment() // TODO implement hires
             else -> WebViewDashboardFragment()
         }
     }

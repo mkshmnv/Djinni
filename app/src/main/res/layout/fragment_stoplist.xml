@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="15dp"
-    android:theme="@style/Theme.Djinni.Stoplist"
     tools:context=".ui.profile.screens.StoplistFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -14,103 +14,78 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/stoplist_hide"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <com.mkshmnv.djinni.CustomViewWithTitle
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_edit_text"
+        app:title="@string/stoplist_search">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_stoplist_search"
+            style="@style/DefaultDjinniEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--       TODO app:hint="@string/stoplist_search_hint"-->
+
+    </com.mkshmnv.djinni.CustomViewWithTitle>
+
+    <com.mkshmnv.djinni.CustomViewWithTitle
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_edit_text"
+        app:title="@string/stoplist_blocked_companies">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_stoplist_block_companies"
+            style="@style/DefaultDjinniEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--       TODO app:hint="@string/stoplist_blocked_companies_hint"-->
+
+    </com.mkshmnv.djinni.CustomViewWithTitle>
+
+    <com.mkshmnv.djinni.CustomViewWithTitle
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_edit_text"
+        app:title="@string/stoplist_blocked_recruiters">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_stoplist_block_recruiters"
+            style="@style/DefaultDjinniEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--       TODO app:hint="@string/stoplist_blocked_recruiters_hint"-->
+
+    </com.mkshmnv.djinni.CustomViewWithTitle>
+
+    <com.mkshmnv.djinni.CustomViewWithTitle
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_edit_text"
+        app:title="@string/stoplist_hidden_vacancies">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_stoplist_block_vacancies"
+            style="@style/DefaultDjinniEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--       TODO app:hint="@string/stoplist_hidden_vacancies_hint"-->
+
+    </com.mkshmnv.djinni.CustomViewWithTitle>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_stoplist_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/stoplist_search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_stoplist_vacancies" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/et_stoplist_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/stoplist_search_tip"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_stoplist_search" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_stoplist_block"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/stoplist_blocked_companies"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_stoplist_search" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/et_stoplist_block_companies"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/stoplist_blocked_companies_tip"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_stoplist_block" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_stoplist_block_recruiters"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/stoplist_blocked_recruiters"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_stoplist_block_companies" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/et_stoplist_block_recruiters"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/stoplist_blocked_recruiters_tip"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_stoplist_block_recruiters" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_stoplist_hidden_vacancies"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/stoplist_hidden_vacancies"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_stoplist_block_recruiters" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/et_stoplist_hidden_vacancies"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/stoplist_hidden_vacancies_tip"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_stoplist_hidden_vacancies" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_stoplist_how_work"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/stoplist_how_work"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_stoplist_hidden_vacancies" />
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_stoplist_how_work_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/stoplist_how_work_description"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_stoplist_how_work" />
+        android:textSize="12sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

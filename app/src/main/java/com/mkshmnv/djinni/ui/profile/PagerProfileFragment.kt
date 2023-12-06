@@ -24,7 +24,7 @@ class PagerProfileFragment : Fragment(R.layout.fragment_pager) {
                     1 -> getString(R.string.tab_cv)
                     2 -> getString(R.string.tab_subs)
                     3 -> getString(R.string.tab_stoplist)
-                    4 -> getString(R.string.tab_hires)
+                    4 -> getString(R.string.tab_hires) // TODO implement hires
                     else -> getString(R.string.profile_error)
                 }
             }.attach()
