@@ -9,12 +9,12 @@ import androidx.fragment.app.viewModels
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentProfileBinding
-import com.mkshmnv.djinni.ui.profile.PagerViewModel
+import com.mkshmnv.djinni.ui.profile.ProfilePagerViewModel
 import com.mkshmnv.djinni.ui.viewBinding
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding: FragmentProfileBinding by viewBinding()
-    private val viewModel: PagerViewModel by viewModels()
+    private val viewModel: ProfilePagerViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,7 +44,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                         12 -> getString(R.string.profile_experience_9_years)
                         13 -> getString(R.string.profile_experience_10_years)
                         14 -> getString(R.string.profile_experience_more_10_years)
-                        else -> getString(R.string.profile_error)
+                        else -> getString(R.string.error)
                     }
                 }
 

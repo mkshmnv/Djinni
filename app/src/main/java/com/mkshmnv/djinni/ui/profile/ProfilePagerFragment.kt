@@ -9,7 +9,7 @@ import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentPagerBinding
 import com.mkshmnv.djinni.ui.viewBinding
 
-class PagerProfileFragment : Fragment(R.layout.fragment_pager) {
+class ProfilePagerFragment : Fragment(R.layout.fragment_pager) {
     private val binding: FragmentPagerBinding by viewBinding()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -17,7 +17,7 @@ class PagerProfileFragment : Fragment(R.layout.fragment_pager) {
         Logger.logcat("onViewCreated", this::class.simpleName)
 
         binding.apply {
-            viewpager.adapter = PagerAdapter(requireActivity())
+            viewpager.adapter = ProfilePagerAdapter(requireActivity())
             TabLayoutMediator(tabs, viewpager) { tab, position ->
                 tab.text = when (position) {
                     0 -> getString(R.string.tab_profile)
@@ -25,7 +25,7 @@ class PagerProfileFragment : Fragment(R.layout.fragment_pager) {
                     2 -> getString(R.string.tab_subs)
                     3 -> getString(R.string.tab_stoplist)
                     4 -> getString(R.string.tab_hires) // TODO implement hires
-                    else -> getString(R.string.profile_error)
+                    else -> getString(R.string.error)
                 }
             }.attach()
         }

@@ -1,7 +1,7 @@
-package com.mkshmnv.djinni.ui.profile
+package com.mkshmnv.djinni.ui.auth
 
 import androidx.lifecycle.ViewModel
 
-class PagerViewModel : ViewModel() {
+class AuthPagerViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

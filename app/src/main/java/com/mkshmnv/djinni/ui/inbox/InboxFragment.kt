@@ -1,16 +1,12 @@
 package com.mkshmnv.djinni.ui.inbox
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentInboxBinding
-import com.mkshmnv.djinni.ui.viewBinding
 
 class InboxFragment : Fragment(R.layout.fragment_inbox) {
     private lateinit var binding: FragmentInboxBinding// by viewBinding()
@@ -21,6 +17,7 @@ class InboxFragment : Fragment(R.layout.fragment_inbox) {
         binding = FragmentInboxBinding.bind(view)
         // Ініціалізація TabLayout
         binding.tabLayout.apply {
+            // TODO impl filters!
             addTab(newTab().setText(getString(R.string.inbox_filter_all)))
             addTab(newTab().setText(getString(R.string.inbox_filter_new)))
             addTab(newTab().setText(getString(R.string.inbox_filter_active)))

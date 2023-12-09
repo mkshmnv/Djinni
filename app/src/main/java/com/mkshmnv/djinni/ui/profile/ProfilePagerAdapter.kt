@@ -10,7 +10,7 @@ import com.mkshmnv.djinni.ui.profile.screens.ProfileFragment
 import com.mkshmnv.djinni.ui.profile.screens.StoplistFragment
 import com.mkshmnv.djinni.ui.profile.screens.SubscriptionsFragment
 
-class PagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
+class ProfilePagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
     override fun getItemCount(): Int = 4 // TODO implement hires
 

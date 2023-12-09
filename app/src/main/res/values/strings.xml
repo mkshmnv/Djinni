@@ -82,7 +82,6 @@
     <string name="profile_experience_9_years">9 years</string>
     <string name="profile_experience_10_years">10 years</string>
     <string name="profile_experience_more_10_years">more than 10 years</string>
-    <string name="profile_error">error</string>
 
     <string name="profile_salary_expectations">Salary expectations</string>
     <string name="profile_salary_expectations_hint">Amount after tax</string>
@@ -473,5 +472,19 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+
+    <!-- Authentication - start -->
+    <string name="authentication">Authentication</string>
+    <string name="auth_login">Login</string>
+    <string name="auth_email">Email</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_sign_in">Sign In</string>
+    <string name="auth_sign_up">Sign Up</string>
+    <string name="auth_or">or</string>
+    <!-- Authentication - end -->
+
+
+    <string name="error">error</string>
 
 </resources>
