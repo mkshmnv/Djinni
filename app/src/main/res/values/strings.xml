@@ -484,7 +484,7 @@
     <string name="auth_or">or</string>
     <!-- Authentication - end -->
 
-
     <string name="error">error</string>
+    <string name="please_fill_all_fields">Please fill all fields.</string>
 
 </resources>
