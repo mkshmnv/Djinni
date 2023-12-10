@@ -21,7 +21,7 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/account_full_name">
@@ -33,9 +33,9 @@
                 android:layout_height="match_parent" />
             <!--            TODO android:hint="@string/account_full_name_hint"-->
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/account_email">
@@ -47,9 +47,9 @@
                 android:layout_height="match_parent"
                 android:inputType="textEmailAddress" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/account_skype">
@@ -60,9 +60,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/account_phone">
@@ -74,9 +74,9 @@
                 android:layout_height="match_parent"
                 android:inputType="phone" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/account_telegram">
@@ -87,9 +87,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/account_whatsapp">
@@ -100,9 +100,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/account_linkedin">
@@ -113,9 +113,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/account_github">
@@ -126,9 +126,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/account_portfolio">
@@ -140,9 +140,9 @@
                 android:layout_height="match_parent" />
             <!--           TODO app:hint="@string/account_portfolio_hint"-->
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/account_cv">
@@ -155,7 +155,7 @@
             <!--           TODO DOWNLOAD CV -->
             <!--           TODO app:hint="@string/account_cv_hint"-->
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_account_save"

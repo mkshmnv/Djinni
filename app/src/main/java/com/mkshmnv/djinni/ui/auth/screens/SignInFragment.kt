@@ -7,13 +7,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentSignInBinding
+import com.mkshmnv.djinni.ui.viewBinding
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
-    private lateinit var binding: FragmentSignInBinding
+    private val binding: FragmentSignInBinding by viewBinding()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentSignInBinding.bind(view)
         (activity as? AppCompatActivity)?.supportActionBar?.hide()
         binding.apply {
             btnSignIn.setOnClickListener {

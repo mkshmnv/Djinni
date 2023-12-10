@@ -10,7 +10,7 @@
     tools:context=".ui.auth.screens.SignUpFragment">
 
 
-    <com.mkshmnv.djinni.CustomViewWithTitle
+    <com.mkshmnv.djinni.ui.CustomViewWithTitle
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_edit_text"
         app:title="@string/auth_email">
@@ -22,9 +22,9 @@
             android:layout_height="match_parent"
             android:inputType="textEmailAddress" />
 
-    </com.mkshmnv.djinni.CustomViewWithTitle>
+    </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-    <com.mkshmnv.djinni.CustomViewWithTitle
+    <com.mkshmnv.djinni.ui.CustomViewWithTitle
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_edit_text"
         android:layout_marginTop="15dp"
@@ -37,7 +37,7 @@
             android:layout_height="match_parent"
             android:inputType="textEmailAddress" />
 
-    </com.mkshmnv.djinni.CustomViewWithTitle>
+    </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_sign_in"

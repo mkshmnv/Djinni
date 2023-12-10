@@ -18,7 +18,7 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <com.mkshmnv.djinni.CustomViewWithTitle
+    <com.mkshmnv.djinni.ui.CustomViewWithTitle
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_edit_text"
         app:title="@string/stoplist_search">
@@ -30,9 +30,9 @@
             android:layout_height="match_parent" />
         <!--       TODO app:hint="@string/stoplist_search_hint"-->
 
-    </com.mkshmnv.djinni.CustomViewWithTitle>
+    </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-    <com.mkshmnv.djinni.CustomViewWithTitle
+    <com.mkshmnv.djinni.ui.CustomViewWithTitle
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_edit_text"
         app:title="@string/stoplist_blocked_companies">
@@ -44,9 +44,9 @@
             android:layout_height="match_parent" />
         <!--       TODO app:hint="@string/stoplist_blocked_companies_hint"-->
 
-    </com.mkshmnv.djinni.CustomViewWithTitle>
+    </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-    <com.mkshmnv.djinni.CustomViewWithTitle
+    <com.mkshmnv.djinni.ui.CustomViewWithTitle
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_edit_text"
         app:title="@string/stoplist_blocked_recruiters">
@@ -58,9 +58,9 @@
             android:layout_height="match_parent" />
         <!--       TODO app:hint="@string/stoplist_blocked_recruiters_hint"-->
 
-    </com.mkshmnv.djinni.CustomViewWithTitle>
+    </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-    <com.mkshmnv.djinni.CustomViewWithTitle
+    <com.mkshmnv.djinni.ui.CustomViewWithTitle
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_edit_text"
         app:title="@string/stoplist_hidden_vacancies">
@@ -72,7 +72,7 @@
             android:layout_height="match_parent" />
         <!--       TODO app:hint="@string/stoplist_hidden_vacancies_hint"-->
 
-    </com.mkshmnv.djinni.CustomViewWithTitle>
+    </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"

@@ -66,7 +66,7 @@
 
         </LinearLayout>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/profile_position">
@@ -77,9 +77,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/profile_category">
@@ -90,9 +90,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_field"
             app:title="@string/profile_skills">
@@ -104,9 +104,9 @@
                 android:layout_height="match_parent"
                 android:hint="@string/profile_skills_hint" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="90dp"
             app:title="@string/profile_experience">
@@ -138,9 +138,9 @@
 
             </LinearLayout>
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="90dp"
             app:title="@string/profile_salary_expectations">
@@ -170,9 +170,9 @@
 
             </LinearLayout>
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="180dp"
             app:title="@string/profile_country">
@@ -211,9 +211,9 @@
 
             </LinearLayout>
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="110dp"
             app:title="@string/profile_city">
@@ -240,9 +240,9 @@
 
             </LinearLayout>
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="230dp"
             app:title="@string/profile_english_level">
@@ -296,9 +296,9 @@
                     android:tooltipText="Fluent English" />
             </RadioGroup>
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_field"
             app:title="@string/profile_experience">
@@ -310,9 +310,9 @@
                 android:layout_height="match_parent"
                 android:hint="@string/profile_experience_hint" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_field"
             app:title="@string/profile_achievement">
@@ -324,9 +324,9 @@
                 android:layout_height="match_parent"
                 android:hint="@string/profile_achievement_hint" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="285dp"
             app:title="@string/profile_expectation">
@@ -352,9 +352,9 @@
 
             </LinearLayout>
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="100dp"
             app:title="@string/profile_employ_options">
@@ -409,9 +409,9 @@
 
             </LinearLayout>
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/profile_hourly_rate">
@@ -424,9 +424,9 @@
                 android:drawableStart="@drawable/ic_dollar_24dp"
                 android:inputType="numberDecimal" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="210dp"
             app:title="@string/profile_not_considering">
@@ -531,9 +531,9 @@
 
             </LinearLayout>
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_field"
             app:title="@string/profile_question_employer">
@@ -545,9 +545,9 @@
                 android:layout_height="match_parent"
                 android:hint="@string/profile_question_employer_hint" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             android:tooltipText="@string/profile_pref_lang_hint"
@@ -576,9 +576,9 @@
 
             </LinearLayout>
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <com.mkshmnv.djinni.CustomViewWithTitle
+        <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
             app:title="@string/method_comm">
@@ -589,7 +589,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        </com.mkshmnv.djinni.CustomViewWithTitle>
+        </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_update_profile"

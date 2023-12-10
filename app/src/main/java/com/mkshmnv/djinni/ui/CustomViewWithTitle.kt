@@ -1,9 +1,10 @@
-package com.mkshmnv.djinni
+package com.mkshmnv.djinni.ui
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.CustomViewWithTitleBinding
 
 class CustomViewWithTitle @JvmOverloads constructor(
