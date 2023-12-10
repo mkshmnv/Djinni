@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.mkshmnv.djinni.App
+import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.Toast
 
@@ -32,10 +33,14 @@ class AuthPagerViewModel : ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
-                    Toast.showWithLogger(context, "Welcome, ${user?.email}", tag)
+                    Toast.showWithLogger(context, "Welcome, ${user?.email}", "signIn $tag")
                     _authSignInSuccess.value = true
                 } else {
-                    Toast.showWithLogger(context, "Authentication failed.", tag)
+                    Toast.showWithLogger(
+                        context,
+                        task.exception!!.message.toString(),
+                        "signIn $tag"
+                    )
                 }
             }
     }
@@ -51,11 +56,16 @@ class AuthPagerViewModel : ViewModel() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     // Sign in success, update UI with the signed-in user's information
-                    Toast.showWithLogger(context, "Welcome, ${user?.email}", tag)
+                    Toast.showWithLogger(context, "Welcome, ${user?.email}", "signUp $tag")
+                    _authSignUpSuccess.value = true
                 } else {
                     // If sign in fails, display a message to the user.
-                    Toast.showWithLogger(context, "Authentication failed.", tag)
-                    _authSignUpSuccess.value = true // TODO: impl authSignUpSuccess
+                    Toast.showWithLogger(
+                        context,
+                        task.exception!!.message.toString(),
+                        "signUp $tag"
+                    )
+                    Logger.logcat(task.exception.toString(), tag)
                 }
             }
     }

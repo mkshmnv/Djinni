@@ -12,7 +12,12 @@
           "package_name": "com.mkshmnv.djinni"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "961705628491-lhat1rtahktm46b1t0hnp4u0dnq07nal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBLe6cwZWJLz4clmjJXOpVlQ8csbxt11Ds"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961705628491-lhat1rtahktm46b1t0hnp4u0dnq07nal.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

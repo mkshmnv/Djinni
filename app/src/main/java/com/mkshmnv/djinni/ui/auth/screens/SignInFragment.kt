@@ -24,7 +24,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                 viewModel.apply {
                     signIn(etSignInEmail.text.toString(), etSignInPassword.text.toString())
                     authSignInSuccess.observe(viewLifecycleOwner) {
-                        findNavController().navigate(R.id.action_nav_auth_pager_fragment_to_nav_dashboard_web_view)
+                        findNavController().navigate(R.id.nav_dashboard_web_view) // TODO: change to nav_dashboard
                         onDestroyView()
                     }
                 }

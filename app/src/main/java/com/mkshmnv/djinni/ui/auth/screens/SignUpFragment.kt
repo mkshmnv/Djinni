@@ -22,7 +22,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                 viewModel.apply {
                     signUp(etSignUpEmail.text.toString(), etSignUpPassword.text.toString())
                     authSignUpSuccess.observe(viewLifecycleOwner) {
-                        findNavController().navigate(R.id.action_nav_auth_pager_fragment_to_nav_dashboard_web_view)
+                        findNavController().navigate(R.id.nav_dashboard_web_view) // TODO: change to nav_dashboard
                         onDestroyView()
                     }
                 }
