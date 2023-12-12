@@ -8,22 +8,24 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentSignUpBinding
-import com.mkshmnv.djinni.ui.auth.AuthPagerViewModel
+import com.mkshmnv.djinni.ui.profile.repository.UserViewModel
 import com.mkshmnv.djinni.ui.viewBinding
 
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     private val binding: FragmentSignUpBinding by viewBinding()
-    private val viewModel: AuthPagerViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             btnSignUp.setOnClickListener {
-                viewModel.apply {
-                    signUp(etSignUpEmail.text.toString(), etSignUpPassword.text.toString())
-                    authSignUpSuccess.observe(viewLifecycleOwner) {
-                        findNavController().navigate(R.id.nav_dashboard_web_view) // TODO: change to nav_dashboard
-                        onDestroyView()
+                val email = etSignUpEmail.text.toString()
+                val pass = etSignUpPassword.text.toString() // TODO: add confirm password
+                userViewModel.apply {
+                    signUpUser(email = email, password = pass)
+                    authorizedUser.observe(viewLifecycleOwner) {
+                        findNavController().navigate(R.id.nav_dashboard_web_view) // TODO: change to action nav_dashboard
+                        (activity as? AppCompatActivity)?.supportActionBar?.show()
                     }
                 }
             }

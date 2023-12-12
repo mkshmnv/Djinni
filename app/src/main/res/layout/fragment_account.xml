@@ -27,11 +27,12 @@
             app:title="@string/account_full_name">
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_profile_position"
+                android:id="@+id/et_account_full_name"
                 style="@style/DefaultDjinniEditText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-            <!--            TODO android:hint="@string/account_full_name_hint"-->
+                android:layout_height="match_parent"
+                android:hint="@string/account_full_name_hint"
+                android:textColorHint="@color/gray_djinni" />
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 

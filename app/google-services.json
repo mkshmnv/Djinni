@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "961705628491",
+    "firebase_url": "https://djinni-90ca8-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "djinni-90ca8",
     "storage_bucket": "djinni-90ca8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:961705628491:android:a8b127bf19780b853b0ece",
+        "mobilesdk_app_id": "1:961705628491:android:ed2c9b1123ea79d33b0ece",
         "android_client_info": {
           "package_name": "com.mkshmnv.djinni"
         }

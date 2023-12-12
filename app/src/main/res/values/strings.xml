@@ -486,5 +486,7 @@
 
     <string name="error">error</string>
     <string name="please_fill_all_fields">Please fill all fields.</string>
+    <string name="welcome_to_djinni">Welcome to Djinni!</string>
+    <string name="registration_success">Registration success!</string>
 
 </resources>

@@ -8,29 +8,37 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentSignInBinding
-import com.mkshmnv.djinni.ui.auth.AuthPagerViewModel
+import com.mkshmnv.djinni.ui.profile.repository.UserViewModel
 import com.mkshmnv.djinni.ui.viewBinding
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     private val binding: FragmentSignInBinding by viewBinding()
-    private val viewModel: AuthPagerViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Hide action bar for this fragment
         (activity as? AppCompatActivity)?.supportActionBar?.hide()
         binding.apply {
+            // TODO: TESTs remove
+//            etSignInEmail.setText("asd@asd.com")
+            etSignInEmail.setText("12@12.com")
+//            etSignInPassword.setText("asdasd")
+            etSignInPassword.setText("121212")
+
             btnSignIn.setOnClickListener {
-                viewModel.apply {
-                    signIn(etSignInEmail.text.toString(), etSignInPassword.text.toString())
-                    authSignInSuccess.observe(viewLifecycleOwner) {
-                        findNavController().navigate(R.id.nav_dashboard_web_view) // TODO: change to nav_dashboard
-                        onDestroyView()
+                val email = etSignInEmail.text.toString()
+                val pass = etSignInPassword.text.toString() // TODO: add confirm password
+                userViewModel.apply {
+                    signInUser(email = email, password = pass)
+                    authorizedUser.observe(viewLifecycleOwner) {
+                        findNavController().navigate(R.id.nav_dashboard_web_view) // TODO: change to action nav_dashboard
+                        (activity as? AppCompatActivity)?.supportActionBar?.show()
                     }
                 }
             }
             btnSignInWithGoogle.setOnClickListener {
-                viewModel.signInWithGoogle()
+                userViewModel.signInWithGoogle()
             }
         }
     }
