@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentSignUpBinding
+import com.mkshmnv.djinni.isEmail
 import com.mkshmnv.djinni.ui.profile.repository.UserViewModel
 import com.mkshmnv.djinni.ui.viewBinding
 
@@ -20,12 +21,54 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         binding.apply {
             btnSignUp.setOnClickListener {
                 val email = etSignUpEmail.text.toString()
-                val pass = etSignUpPassword.text.toString() // TODO: add confirm password
-                userViewModel.apply {
-                    signUpUser(email = email, password = pass)
-                    authorizedUser.observe(viewLifecycleOwner) {
-                        findNavController().navigate(R.id.nav_dashboard_web_view) // TODO: change to action nav_dashboard
-                        (activity as? AppCompatActivity)?.supportActionBar?.show()
+                val pass = etSignUpPassword.text.toString()
+                val confPass = etSignUpConfirmPassword.text.toString()
+                when {
+                    email.isEmpty() -> {
+                        etSignUpEmail.error =
+                            getString(R.string.auth_field_email_is_empty)
+                    }
+
+                    email.isEmail() -> {
+                        etSignUpEmail.error =
+                            getString(R.string.auth_email_is_not_valid)
+                    }
+
+                    pass.isEmpty() -> {
+                        etSignUpPassword.error =
+                            getString(R.string.auth_field_password_is_empty)
+                    }
+
+                    pass.length < 6 -> {
+                        etSignUpPassword.error =
+                            getString(R.string.auth_password_is_too_short)
+                    }
+
+                    confPass.isEmpty() -> {
+                        etSignUpConfirmPassword.error =
+                            getString(R.string.auth_field_confirm_password_is_empty)
+                    }
+
+                    confPass.length < 6 -> {
+                        etSignUpConfirmPassword.error =
+                            getString(R.string.auth_password_is_too_short)
+                    }
+
+                    pass != confPass -> {
+                        etSignUpPassword.error =
+                            getString(R.string.auth_passwords_do_not_match)
+                        etSignUpConfirmPassword.error =
+                            getString(R.string.auth_passwords_do_not_match)
+                    }
+
+                    else -> {
+                        userViewModel.apply {
+                            signUpUser(email = email, password = pass)
+                            authorizedUser.observe(viewLifecycleOwner) {
+                                findNavController().navigate(R.id.nav_dashboard_web_view) // TODO: change to action nav_dashboard
+                                (activity as? AppCompatActivity)?.supportActionBar?.show()
+                            }
+                        }
                     }
                 }
             }

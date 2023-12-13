@@ -4,6 +4,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.mkshmnv.djinni.Resource
+import com.mkshmnv.djinni.Toast
 import kotlinx.coroutines.tasks.await
 
 class UserRepository {
@@ -13,10 +14,12 @@ class UserRepository {
     suspend fun createUser(email: String, password: String): Resource<User> {
         return try {
             val authResult = auth.createUserWithEmailAndPassword(email, password).await()
-            val user = User(uid = authResult.user?.uid ?: "null", email = email)
+            val user =
+                User(uid = authResult.user?.uid ?: "error - wrong uid createUser", email = email)
             database.child(user.uid).setValue(user)
             Resource.Success(user)
         } catch (e: Exception) {
+            Toast.showWithLogger(text = e.message ?: "Registration failed", tag = "createUser")
             Resource.Error(e.message ?: "Registration failed")
         }
     }
@@ -24,15 +27,23 @@ class UserRepository {
     suspend fun signInUser(email: String, password: String): Resource<User> {
         return try {
             val authResult = auth.signInWithEmailAndPassword(email, password).await()
-            val user = User(uid = authResult.user?.uid ?: "null", email = email)
+            val user =
+                User(uid = authResult.user?.uid ?: "error - wrong uid signInUser", email = email)
             Resource.Success(user)
         } catch (e: Exception) {
+            Toast.showWithLogger(text = e.message ?: "Login failed", tag = "createUser")
             Resource.Error(e.message ?: "Login failed")
         }
     }
 
-    private fun getCurrentUser(): FirebaseUser {
-        return auth.currentUser!! // TODO: remove !! operator
+    suspend fun updateUserProfile(user: User): Resource<User> {
+        return try {
+            val userID = getCurrentUser().uid
+            database.child(userID).setValue(user).await()
+            Resource.Success(user)
+        } catch (e: Exception) {
+            Resource.Error(e.message ?: "Error getting user data")
+        }
     }
 
     suspend fun getCurrentUserData(): Resource<User> {
@@ -46,17 +57,11 @@ class UserRepository {
         }
     }
 
-    fun signOut() {
-        auth.signOut()
+    private fun getCurrentUser(): FirebaseUser {
+        return auth.currentUser!! // TODO: remove !! operator
     }
 
-    suspend fun updateUserProfile(user: User): Resource<User> {
-        return try {
-            val userID = getCurrentUser().uid
-            database.child(userID).setValue(user).await()
-            Resource.Success(user)
-        } catch (e: Exception) {
-            Resource.Error(e.message ?: "Error getting user data")
-        }
+    fun signOut() {
+        auth.signOut()
     }
 }

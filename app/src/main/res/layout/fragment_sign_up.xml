@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="50dp"
     tools:context=".ui.auth.screens.SignUpFragment">
@@ -34,7 +34,22 @@
             style="@style/DefaultDjinniEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textEmailAddress" />
+            android:inputType="textPassword" />
+
+    </com.mkshmnv.djinni.ui.CustomViewWithTitle>
+
+    <com.mkshmnv.djinni.ui.CustomViewWithTitle
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_edit_text"
+        android:layout_marginTop="15dp"
+        app:title="@string/auth_confirm_password">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_sign_up_confirm_password"
+            style="@style/DefaultDjinniEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword" />
 
     </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 

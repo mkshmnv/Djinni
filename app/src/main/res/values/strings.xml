@@ -479,14 +479,21 @@
     <string name="auth_login">Login</string>
     <string name="auth_email">Email</string>
     <string name="auth_password">Password</string>
+    <string name="auth_confirm_password">Confirm password</string>
     <string name="auth_sign_in">Sign In</string>
     <string name="auth_sign_up">Sign Up</string>
     <string name="auth_or">or</string>
+    <string name="auth_field_email_is_empty">Field email is empty</string>
+    <string name="auth_field_password_is_empty">Field password is empty</string>
+    <string name="auth_field_confirm_password_is_empty">Field confirm password is empty</string>
+    <string name="auth_passwords_do_not_match">Passwords do not match</string>
+    <string name="auth_password_is_too_short">Required password at least 6 characters</string>
+    <string name="auth_email_is_not_valid">Enter a valid email</string>
+    <string name="auth_welcome_to_djinni">Welcome to Djinni!</string>
+    <string name="auth_registration_success">Registration success!</string>
     <!-- Authentication - end -->
 
     <string name="error">error</string>
-    <string name="please_fill_all_fields">Please fill all fields.</string>
-    <string name="welcome_to_djinni">Welcome to Djinni!</string>
-    <string name="registration_success">Registration success!</string>
+    <string name="email_regex">^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$</string>
 
 </resources>

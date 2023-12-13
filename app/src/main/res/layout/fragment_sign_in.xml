@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,7 +28,9 @@
                 style="@style/DefaultDjinniEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                tools:layout_editor_absoluteX="15dp"
+                tools:layout_editor_absoluteY="30dp" />
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
@@ -61,9 +62,9 @@
         android:id="@+id/tv_auth_or"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/auth_or"
         android:textSize="24sp"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_auth_email" />
@@ -72,21 +73,21 @@
         android:id="@+id/btn_sign_in_with_google"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
         android:layout_marginTop="20dp"
+        android:paddingHorizontal="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_auth_or"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_auth_or" />
 
-<!--    TODO: impl FB button-->
-<!--    <com.facebook.login.widget.LoginButton-->
-<!--        android:id="@+id/buttonFacebookLogin"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/btn_sign_in_google" />-->
+    <!--    TODO: impl FB button-->
+    <!--    <com.facebook.login.widget.LoginButton-->
+    <!--        android:id="@+id/buttonFacebookLogin"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/btn_sign_in_google" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

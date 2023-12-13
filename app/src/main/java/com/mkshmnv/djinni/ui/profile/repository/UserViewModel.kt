@@ -29,23 +29,17 @@ class UserViewModel : ViewModel() {
                 is Resource.Success -> {
                     signInUser(email = email, password = password)
                     Toast.showWithLogger(
-                        context = context,
-                        text = context.getString(R.string.welcome_to_djinni),
+                        text = context.getString(R.string.auth_welcome_to_djinni),
                         tag = "signUp $tag"
                     )
                 }
 
                 is Resource.Error -> {
-                    Toast.showWithLogger(
-                        context = context,
-                        text = result.message,
-                        tag = "signUp $tag"
-                    )
+                    Toast.showWithLogger(text = result.message, tag = "signUp $tag")
                 }
 
                 else -> {
                     Toast.showWithLogger(
-                        context = context,
                         text = context.getString(R.string.error),
                         tag = "signIn $tag"
                     )
@@ -61,23 +55,17 @@ class UserViewModel : ViewModel() {
                 is Resource.Success -> {
                     getUserData()
                     Toast.showWithLogger(
-                        context = context,
-                        text = context.getString(R.string.welcome_to_djinni),
+                        text = context.getString(R.string.auth_welcome_to_djinni),
                         tag = "signUp $tag"
                     )
                 }
 
                 is Resource.Error -> {
-                    Toast.showWithLogger(
-                        context = context,
-                        text = result.message,
-                        tag = "signUp $tag"
-                    )
+                    Toast.showWithLogger(text = result.message, tag = "signUp $tag")
                 }
 
                 else -> {
                     Toast.showWithLogger(
-                        context = context,
                         text = context.getString(R.string.error),
                         tag = "signIn $tag"
                     )
@@ -87,11 +75,7 @@ class UserViewModel : ViewModel() {
     }
 
     fun signInWithGoogle() {
-        Toast.showWithLogger(
-            context = context,
-            text = "Google sign in not implemented yet",
-            tag = tag
-        )
+        Toast.showWithLogger(text = "Google sign in not implemented yet", tag = tag)
     }
 
     fun getUserData() {
@@ -101,23 +85,17 @@ class UserViewModel : ViewModel() {
                 is Resource.Success -> {
                     _authorizedUser.postValue(result.data)
                     Toast.showWithLogger(
-                        context = context,
-                        text = context.getString(R.string.welcome_to_djinni),
+                        text = context.getString(R.string.auth_welcome_to_djinni),
                         tag = "signUp $tag"
                     )
                 }
 
                 is Resource.Error -> {
-                    Toast.showWithLogger(
-                        context = context,
-                        text = result.message,
-                        tag = "signUp $tag"
-                    )
+                    Toast.showWithLogger(text = result.message, tag = "signUp $tag")
                 }
 
                 else -> {
                     Toast.showWithLogger(
-                        context = context,
                         text = context.getString(R.string.error),
                         tag = "signIn $tag"
                     )
@@ -139,27 +117,20 @@ class UserViewModel : ViewModel() {
                 is Resource.Success -> {
                     _authorizedUser.postValue(result.data)
                     Toast.showWithLogger(
-                        context = context,
-                        text = context.getString(R.string.welcome_to_djinni),
+                        text = context.getString(R.string.auth_welcome_to_djinni),
                         tag = "signUp $tag"
                     )
                 }
 
                 is Resource.Error -> {
-                    Toast.showWithLogger(
-                        context = context,
-                        text = result.message,
-                        tag = "signUp $tag"
-                    )
+                    Toast.showWithLogger(text = result.message, tag = "signUp $tag")
                 }
 
-                else -> {
-                    Toast.showWithLogger(
-                        context = context,
-                        text = context.getString(R.string.error),
-                        tag = "signIn $tag"
-                    )
-                }
+                else -> Toast.showWithLogger(
+                    text = context.getString(R.string.error),
+                    tag = "signIn $tag"
+                )
+
             }
         }
         _authorizedUser.postValue(updatedUser)
