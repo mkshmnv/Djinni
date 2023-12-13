@@ -37,7 +37,7 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                     portfolio = etAccountPortfolio.text.toString(),
                     cv = etAccountCv.text.toString()
                 )
-                userViewModel.updateUserProfile(user)
+                userViewModel.authorizedUser.value?.updateUserFromUI(user, "contacts")
             }
         }
 

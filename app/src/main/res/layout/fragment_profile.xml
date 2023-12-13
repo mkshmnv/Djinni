@@ -15,13 +15,16 @@
         android:padding="25dp">
 
         <RadioGroup
+            android:id="@+id/rbgStatusSearch"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:checkedButton="@id/rb_search_off">
 
             <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/rb_search_active"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checked="false"
                 android:text="@string/profile_search_active"
                 android:tooltipText="@string/profile_search_active_tip" />
 
@@ -126,7 +129,7 @@
                     android:progress="0"
                     android:progressTint="@color/gray_djinni"
                     android:stepSize="1"
-                    android:text="@string/method_comm"
+                    android:text="@string/profile_method_comm"
                     android:thumb="@drawable/style_profile_year_seekbar_thumb" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -196,14 +199,14 @@
                     android:text="@string/profile_always_online" />
 
                 <CheckBox
-                    android:id="@+id/chb_profile_out_country"
+                    android:id="@+id/chb_profile_leave_country"
                     style="@style/ProfileСheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/profile_leave_country" />
 
                 <CheckBox
-                    android:id="@+id/chb_profile_country_moving"
+                    android:id="@+id/chb_profile_relocation"
                     style="@style/ProfileСheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -248,6 +251,7 @@
             app:title="@string/profile_english_level">
 
             <RadioGroup
+                android:id="@+id/rbg_profile_english_level"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="15dp"
@@ -304,7 +308,7 @@
             app:title="@string/profile_experience">
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_experience_work"
+                android:id="@+id/et_profile_experience_description"
                 style="@style/ProfileEditTextField"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -318,7 +322,7 @@
             app:title="@string/profile_achievement">
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_achievements"
+                android:id="@+id/et_profile_achievements"
                 style="@style/ProfileEditTextField"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -337,14 +341,14 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_expectation"
+                    android:id="@+id/et_profile_expectation"
                     style="@style/DefaultDjinniEditText"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height_edit_field"
                     android:hint="@string/profile_achievement_hint" />
 
                 <CheckBox
-                    android:id="@+id/chb_combatant"
+                    android:id="@+id/chb_profile_expectation_combatant"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -374,13 +378,13 @@
                     android:orientation="vertical">
 
                     <CheckBox
-                        android:id="@+id/chb_remote"
+                        android:id="@+id/chb_profile_employment_options_remote"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/profile_remote" />
 
                     <CheckBox
-                        android:id="@+id/chb_office"
+                        android:id="@+id/chb_profile_employment_options_office"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/profile_office" />
@@ -394,13 +398,13 @@
                     android:orientation="vertical">
 
                     <CheckBox
-                        android:id="@+id/chb_part_time"
+                        android:id="@+id/chb_profile_employment_options_part_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/profile_part_time" />
 
                     <CheckBox
-                        android:id="@+id/chb_freelance"
+                        android:id="@+id/chb_profile_employment_options_freelance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/profile_freelance" />
@@ -417,7 +421,7 @@
             app:title="@string/profile_hourly_rate">
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_hourly_rate"
+                android:id="@+id/et_profile_hourly_rate"
                 style="@style/DefaultDjinniEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -453,31 +457,31 @@
                         android:textSize="12sp" />
 
                     <CheckBox
-                        android:id="@+id/chb_adult"
+                        android:id="@+id/chb_profile_not_considering_domains_adult"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/adult" />
 
                     <CheckBox
-                        android:id="@+id/chb_gambling"
+                        android:id="@+id/chb_profile_not_considering_domains_gambling"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/gambling" />
 
                     <CheckBox
-                        android:id="@+id/chb_dating"
+                        android:id="@+id/chb_profile_not_considering_domains_dating"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/dating" />
 
                     <CheckBox
-                        android:id="@+id/chb_gamedev"
+                        android:id="@+id/chb_profile_not_considering_domains_game_dev"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/gamedev" />
 
                     <CheckBox
-                        android:id="@+id/chb_crypto"
+                        android:id="@+id/chb_profile_not_considering_domains_crypto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/blockchain_crypto" />
@@ -498,31 +502,31 @@
                         android:textSize="12sp" />
 
                     <CheckBox
-                        android:id="@+id/chb_agency"
+                        android:id="@+id/chb_profile_not_considering_type_company_agency"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/agency" />
 
                     <CheckBox
-                        android:id="@+id/chb_outsource"
+                        android:id="@+id/chb_profile_not_considering_type_company_outsource"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/outsource" />
 
                     <CheckBox
-                        android:id="@+id/chb_outstaff"
+                        android:id="@+id/chb_profile_not_considering_type_company_out_staff"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/outstaff" />
 
                     <CheckBox
-                        android:id="@+id/chb_product"
+                        android:id="@+id/chb_profile_not_considering_type_company_product"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/product" />
 
                     <CheckBox
-                        android:id="@+id/chb_startup"
+                        android:id="@+id/chb_profile_not_considering_type_company_start_up"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/startup" />
@@ -533,13 +537,14 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
+<!--        Question for the employer-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_field"
             app:title="@string/profile_question_employer">
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_questions_employer"
+                android:id="@+id/et_profile_question_for_employer"
                 style="@style/ProfileEditTextField"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -547,6 +552,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
+<!--        Preferred language of communication-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
@@ -561,14 +567,14 @@
                 android:paddingHorizontal="10dp">
 
                 <CheckBox
-                    android:id="@+id/chb_ukrainian"
+                    android:id="@+id/chb_profile_preferred_language_ukrainian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/profile_lang_ukrainian" />
 
                 <CheckBox
-                    android:id="@+id/chb_english"
+                    android:id="@+id/chb_profile_preferred_language_english"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -578,19 +584,21 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
+<!--        Preferred method of communication-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
-            app:title="@string/method_comm">
+            app:title="@string/profile_method_comm">
 
             <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/sp_pref_method_comm"
+                android:id="@+id/sp_profile_preferred_communication"
                 style="@style/DefaultDjinniSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
+<!--        Update profile-->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_update_profile"
             android:layout_width="wrap_content"
@@ -599,6 +607,7 @@
             android:layout_marginTop="15dp"
             android:text="@string/update_profile" />
 
+<!--        Delete account-->
         <LinearLayout
             android:id="@+id/ll_delete_account"
             android:layout_width="match_parent"

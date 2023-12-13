@@ -22,9 +22,9 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         binding.apply {
             // TODO: TESTs remove
 //            etSignInEmail.setText("asd@asd.com")
-            etSignInEmail.setText("12@12.com")
+            etSignInEmail.setText("555@55.com")
 //            etSignInPassword.setText("asdasd")
-            etSignInPassword.setText("121212")
+            etSignInPassword.setText("555555")
 
             btnSignIn.setOnClickListener {
                 val email = etSignInEmail.text.toString()

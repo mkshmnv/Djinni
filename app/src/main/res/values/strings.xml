@@ -397,8 +397,8 @@
     <string name="profile_lang_english">English</string>
     <string name="profile_lang_ukrainian">Ukrainian</string>
 
-    <string name="method_comm">Preferred method of communication</string>
-    <string-array name="methods">
+    <string name="profile_method_comm">Preferred method of communication</string>
+    <string-array name="profile_methods">
         <item>Does not matter</item>
         <item>Djinni</item>
         <item>Email</item>

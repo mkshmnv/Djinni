@@ -22,6 +22,10 @@ class UserViewModel : ViewModel() {
     private val _authorizedUser = MutableLiveData<User?>()
     val authorizedUser: MutableLiveData<User?> = _authorizedUser
 
+    private val _profileStatus = MutableLiveData<String>()
+    fun setProfileStatus(status: String) {
+        _profileStatus.value = status
+    }
     fun signUpUser(email: String, password: String) {
         viewModelScope.launch {
             val result = userRepository.createUser(email, password)
@@ -30,18 +34,18 @@ class UserViewModel : ViewModel() {
                     signInUser(email = email, password = password)
                     Toast.showWithLogger(
                         text = context.getString(R.string.auth_welcome_to_djinni),
-                        tag = "signUp $tag"
+                        tag = "signUpUser $tag"
                     )
                 }
 
                 is Resource.Error -> {
-                    Toast.showWithLogger(text = result.message, tag = "signUp $tag")
+                    Toast.showWithLogger(text = result.message, tag = "signUpUser $tag")
                 }
 
                 else -> {
                     Toast.showWithLogger(
                         text = context.getString(R.string.error),
-                        tag = "signIn $tag"
+                        tag = "signUpUser $tag"
                     )
                 }
             }
@@ -56,18 +60,18 @@ class UserViewModel : ViewModel() {
                     getUserData()
                     Toast.showWithLogger(
                         text = context.getString(R.string.auth_welcome_to_djinni),
-                        tag = "signUp $tag"
+                        tag = "signInUser $tag"
                     )
                 }
 
                 is Resource.Error -> {
-                    Toast.showWithLogger(text = result.message, tag = "signUp $tag")
+                    Toast.showWithLogger(text = result.message, tag = "signInUser $tag")
                 }
 
                 else -> {
                     Toast.showWithLogger(
                         text = context.getString(R.string.error),
-                        tag = "signIn $tag"
+                        tag = "signInUser $tag"
                     )
                 }
             }
@@ -75,6 +79,7 @@ class UserViewModel : ViewModel() {
     }
 
     fun signInWithGoogle() {
+        // TODO: impl signInWithGoogle
         Toast.showWithLogger(text = "Google sign in not implemented yet", tag = tag)
     }
 
@@ -85,19 +90,19 @@ class UserViewModel : ViewModel() {
                 is Resource.Success -> {
                     _authorizedUser.postValue(result.data)
                     Toast.showWithLogger(
-                        text = context.getString(R.string.auth_welcome_to_djinni),
-                        tag = "signUp $tag"
+                        text = "_authorizedUser - ${_authorizedUser.value.toString()}",
+                        tag = "getUserData $tag"
                     )
                 }
 
                 is Resource.Error -> {
-                    Toast.showWithLogger(text = result.message, tag = "signUp $tag")
+                    Toast.showWithLogger(text = result.message, tag = "getUserData $tag")
                 }
 
                 else -> {
                     Toast.showWithLogger(
                         text = context.getString(R.string.error),
-                        tag = "signIn $tag"
+                        tag = "getUserData $tag"
                     )
                 }
             }
@@ -107,59 +112,5 @@ class UserViewModel : ViewModel() {
     fun signOut() {
         userRepository.signOut()
         _authorizedUser.postValue(null)
-    }
-
-    fun updateUserProfile(uiUser: User) {
-        val updatedUser = verifyUser(uiUser)
-        viewModelScope.launch {
-            val result = userRepository.updateUserProfile(updatedUser)
-            when (result) {
-                is Resource.Success -> {
-                    _authorizedUser.postValue(result.data)
-                    Toast.showWithLogger(
-                        text = context.getString(R.string.auth_welcome_to_djinni),
-                        tag = "signUp $tag"
-                    )
-                }
-
-                is Resource.Error -> {
-                    Toast.showWithLogger(text = result.message, tag = "signUp $tag")
-                }
-
-                else -> Toast.showWithLogger(
-                    text = context.getString(R.string.error),
-                    tag = "signIn $tag"
-                )
-
-            }
-        }
-        _authorizedUser.postValue(updatedUser)
-    }
-
-    private fun verifyUser(uiUser: User): User {
-        val uiUserMap = uiUser::class.members
-            .filterIsInstance<KProperty1<User, *>>()
-            .associateBy({ it.name }, { it.get(uiUser) })
-
-        val authorizedUser = authorizedUser.value!!
-        val currentUserMap = authorizedUser::class.members
-            .filterIsInstance<KProperty1<User, *>>()
-            .associateBy({ it.name }, { it.get(authorizedUser) }).toMutableMap()
-
-        uiUserMap.forEach { (property, newValue) ->
-            if (newValue != "" && newValue != currentUserMap[property]) {
-                currentUserMap[property] = newValue
-            }
-        }
-
-        val userClassType = User::class.java
-        val tempUser = userClassType.getDeclaredConstructor().newInstance()
-        currentUserMap.forEach { (property, value) ->
-            val property = userClassType.getDeclaredField(property)
-            property.isAccessible = true
-            property.set(tempUser, value)
-        }
-
-        return tempUser
     }
 }

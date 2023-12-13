@@ -3,6 +3,7 @@ package com.mkshmnv.djinni.ui.profile.repository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
+import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.Resource
 import com.mkshmnv.djinni.Toast
 import kotlinx.coroutines.tasks.await
@@ -29,6 +30,7 @@ class UserRepository {
             val authResult = auth.signInWithEmailAndPassword(email, password).await()
             val user =
                 User(uid = authResult.user?.uid ?: "error - wrong uid signInUser", email = email)
+            Toast.showWithLogger("Login with - $user ", tag = "createUser")
             Resource.Success(user)
         } catch (e: Exception) {
             Toast.showWithLogger(text = e.message ?: "Login failed", tag = "createUser")
@@ -48,9 +50,11 @@ class UserRepository {
 
     suspend fun getCurrentUserData(): Resource<User> {
         val user = getCurrentUser()
+        Logger.logcat("getCurrentUserData - $user", "UserRepository")
         return try {
             val snapshot = database.child(user.uid).get().await()
             val userData = snapshot.getValue(User::class.java)
+            Logger.logcat("getCurrentUserData - $userData", "UserRepository")
             Resource.Success(userData!!)
         } catch (e: Exception) {
             Resource.Error(e.message ?: "Error getting user data")
@@ -58,6 +62,7 @@ class UserRepository {
     }
 
     private fun getCurrentUser(): FirebaseUser {
+        Logger.logcat("getCurrentUser - ${auth.currentUser!!}", "UserRepository")
         return auth.currentUser!! // TODO: remove !! operator
     }
 
