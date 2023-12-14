@@ -1,9 +1,9 @@
 package com.mkshmnv.djinni.ui.profile.repository
 
-class User(
-    var uid: String = "",
+data class User(
+    val uid: String = "",
     // Profile
-    var profileStatus: Int = 0, // TODO: impl enum ProfileStatus
+    var profileStatus: String = "", //ProfileStatus = ProfileStatus.NOT_LOOKED,
     var position: String = "",
     var category: String = "",
     var skills: String = "",
@@ -61,74 +61,81 @@ class User(
     // Hires
     // TODO: impl Hires
 ) {
-    fun updateUserFromUI(uiUser: User, from: String) {
-        when(from) {
-            "profile" -> {
-                this.profileStatus = uiUser.profileStatus
-                this.position = uiUser.position
-                this.category = uiUser.category
-                this.skills = uiUser.skills
-                this.experienceProgress = uiUser.experienceProgress
-                this.salary = uiUser.salary
-                this.country = uiUser.country
-                this.online = uiUser.online
-                this.leave = uiUser.leave
-                this.relocation = uiUser.relocation
-                this.city = uiUser.city
-                this.cityMoving = uiUser.cityMoving
-                this.englishLevel = uiUser.englishLevel
-                this.experienceDescription = uiUser.experienceDescription
-                this.achievements = uiUser.achievements
-                this.expectation = uiUser.expectation
-                this.expectationCombatant = uiUser.expectationCombatant
-                this.employmentOptionsRemote = uiUser.employmentOptionsRemote
-                this.employmentOptionsOffice = uiUser.employmentOptionsOffice
-                this.employmentOptionsPartTime = uiUser.employmentOptionsPartTime
-                this.employmentOptionsFreelance = uiUser.employmentOptionsFreelance
-                this.hourlyRate = uiUser.hourlyRate
-                this.notConsideringDomainsAdult = uiUser.notConsideringDomainsAdult
-                this.notConsideringDomainsGambling = uiUser.notConsideringDomainsGambling
-                this.notConsideringDomainsDating = uiUser.notConsideringDomainsDating
-                this.notConsideringDomainsGameDev = uiUser.notConsideringDomainsGameDev
-                this.notConsideringDomainsCrypto = uiUser.notConsideringDomainsCrypto
-                this.notConsideringTypeCompanyAgency = uiUser.notConsideringTypeCompanyAgency
-                this.notConsideringTypeCompanyOutsource = uiUser.notConsideringTypeCompanyOutsource
-                this.notConsideringTypeCompanyOutStaff = uiUser.notConsideringTypeCompanyOutStaff
-                this.notConsideringTypeCompanyProduct = uiUser.notConsideringTypeCompanyProduct
-                this.notConsideringTypeCompanyStartUp = uiUser.notConsideringTypeCompanyStartUp
-                this.questionForEmployer = uiUser.questionForEmployer
-                this.preferredLanguageUkrainian = uiUser.preferredLanguageUkrainian
-                this.preferredLanguageEnglish = uiUser.preferredLanguageEnglish
-                this.preferredCommunication = uiUser.preferredCommunication
-            }
-            "contacts" -> {
-                this.fullName = uiUser.fullName
-                this.email = uiUser.email
-                this.skype = uiUser.skype
-                this.phone = uiUser.phone
-                this.telegram = uiUser.telegram
-                this.whatsApp = uiUser.whatsApp
-                this.linkedIn = uiUser.linkedIn
-                this.gitHub = uiUser.gitHub
-                this.portfolio = uiUser.portfolio
-                this.cv = uiUser.cv
-            }
-            "subscriptions" -> {
-                this.accordingVacancies = uiUser.accordingVacancies
-                this.notificationsFromEmployers = uiUser.notificationsFromEmployers
-                this.automaticOffers = uiUser.automaticOffers
-            }
-            "stopList" -> {
-                this.search = uiUser.search
-                this.blockedRecruiters = uiUser.blockedRecruiters
-                this.hiddenVacancies = uiUser.hiddenVacancies
-            }
-        }
-    }
+//    fun updateUserFromUI(uiUser: User, from: TypeUI) {
+//        when(from) {
+//            TypeUI.PROFILE -> {
+//                this.profileStatus = uiUser.profileStatus
+//                this.position = uiUser.position
+//                this.category = uiUser.category
+//                this.skills = uiUser.skills
+//                this.experienceProgress = uiUser.experienceProgress
+//                this.salary = uiUser.salary
+//                this.country = uiUser.country
+//                this.online = uiUser.online
+//                this.leave = uiUser.leave
+//                this.relocation = uiUser.relocation
+//                this.city = uiUser.city
+//                this.cityMoving = uiUser.cityMoving
+//                this.englishLevel = uiUser.englishLevel
+//                this.experienceDescription = uiUser.experienceDescription
+//                this.achievements = uiUser.achievements
+//                this.expectation = uiUser.expectation
+//                this.expectationCombatant = uiUser.expectationCombatant
+//                this.employmentOptionsRemote = uiUser.employmentOptionsRemote
+//                this.employmentOptionsOffice = uiUser.employmentOptionsOffice
+//                this.employmentOptionsPartTime = uiUser.employmentOptionsPartTime
+//                this.employmentOptionsFreelance = uiUser.employmentOptionsFreelance
+//                this.hourlyRate = uiUser.hourlyRate
+//                this.notConsideringDomainsAdult = uiUser.notConsideringDomainsAdult
+//                this.notConsideringDomainsGambling = uiUser.notConsideringDomainsGambling
+//                this.notConsideringDomainsDating = uiUser.notConsideringDomainsDating
+//                this.notConsideringDomainsGameDev = uiUser.notConsideringDomainsGameDev
+//                this.notConsideringDomainsCrypto = uiUser.notConsideringDomainsCrypto
+//                this.notConsideringTypeCompanyAgency = uiUser.notConsideringTypeCompanyAgency
+//                this.notConsideringTypeCompanyOutsource = uiUser.notConsideringTypeCompanyOutsource
+//                this.notConsideringTypeCompanyOutStaff = uiUser.notConsideringTypeCompanyOutStaff
+//                this.notConsideringTypeCompanyProduct = uiUser.notConsideringTypeCompanyProduct
+//                this.notConsideringTypeCompanyStartUp = uiUser.notConsideringTypeCompanyStartUp
+//                this.questionForEmployer = uiUser.questionForEmployer
+//                this.preferredLanguageUkrainian = uiUser.preferredLanguageUkrainian
+//                this.preferredLanguageEnglish = uiUser.preferredLanguageEnglish
+//                this.preferredCommunication = uiUser.preferredCommunication
+//            }
+//            TypeUI.CONTACTS -> {
+//                this.fullName = uiUser.fullName
+//                this.email = uiUser.email
+//                this.skype = uiUser.skype
+//                this.phone = uiUser.phone
+//                this.telegram = uiUser.telegram
+//                this.whatsApp = uiUser.whatsApp
+//                this.linkedIn = uiUser.linkedIn
+//                this.gitHub = uiUser.gitHub
+//                this.portfolio = uiUser.portfolio
+//                this.cv = uiUser.cv
+//            }
+//            TypeUI.SUBSCRIPTIONS -> {
+//                this.accordingVacancies = uiUser.accordingVacancies
+//                this.notificationsFromEmployers = uiUser.notificationsFromEmployers
+//                this.automaticOffers = uiUser.automaticOffers
+//            }
+//            TypeUI.STOP_LIST -> {
+//                this.search = uiUser.search
+//                this.blockedRecruiters = uiUser.blockedRecruiters
+//                this.hiddenVacancies = uiUser.hiddenVacancies
+//            }
+//        }
+//    }
+}
+
+enum class TypeUI {
+    PROFILE,
+    CONTACTS,
+    SUBSCRIPTIONS,
+    STOP_LIST
 }
 
 
-enum class ProfileStatus { // TODO: impl ProfileStatus
+enum class ProfileStatus {
     ACTIVE,
     PASSIVE,
     NOT_LOOKED

@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.activityViewModels
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentSignUpBinding
 import com.mkshmnv.djinni.isEmail
@@ -14,7 +13,7 @@ import com.mkshmnv.djinni.ui.viewBinding
 
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     private val binding: FragmentSignUpBinding by viewBinding()
-    private val userViewModel: UserViewModel by viewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,16 +59,8 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                         etSignUpConfirmPassword.error =
                             getString(R.string.auth_passwords_do_not_match)
                     }
-
-                    else -> {
-                        userViewModel.apply {
-                            signUpUser(email = email, password = pass)
-                            authorizedUser.observe(viewLifecycleOwner) {
-                                findNavController().navigate(R.id.nav_dashboard_web_view) // TODO: change to action nav_dashboard
-                                (activity as? AppCompatActivity)?.supportActionBar?.show()
-                            }
-                        }
-                    }
+                    // TODO: fix navigation
+                    else -> userViewModel.signUpUser(email = email, password = pass)
                 }
             }
         }

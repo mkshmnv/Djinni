@@ -3,7 +3,7 @@ package com.mkshmnv.djinni.ui.profile.screens
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentAccountBinding
@@ -17,11 +17,14 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
     private val tag = this::class.simpleName!!
 
     private val binding: FragmentAccountBinding by viewBinding()
-    private val userViewModel: UserViewModel by viewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Logger.logcat("onViewCreated", tag)
+        val currentUser = userViewModel.authorizedUser.value
+        Logger.logcat("currentUser value: $currentUser", tag)
+        if (currentUser != null) updateUI(currentUser)
         binding.apply {
             btnAccountSave.setOnClickListener {
                 Logger.logcat("btnAccountSave", tag)
@@ -37,17 +40,16 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                     portfolio = etAccountPortfolio.text.toString(),
                     cv = etAccountCv.text.toString()
                 )
-                userViewModel.authorizedUser.value?.updateUserFromUI(user, "contacts")
+//                userViewModel.authorizedUser.value?.updateUserFromUI(user, TypeUI.CONTACTS)
             }
         }
 
-        userViewModel.apply {
-            getUserData()
-            authorizedUser.observe(viewLifecycleOwner) { user ->
-                Logger.logcat("user: $user", tag)
-                if (user != null) updateUI(user)
-            }
-        }
+//        userViewModel.apply {
+//            authorizedUser.observe(viewLifecycleOwner) { user ->
+//                Logger.logcat("authorizedUser.observe user: $user", tag)
+//                if (user != null) updateUI(user)
+//            }
+//        }
     }
 
     private fun updateUI(user: User) {
