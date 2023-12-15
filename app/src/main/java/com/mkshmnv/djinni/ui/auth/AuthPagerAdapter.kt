@@ -8,9 +8,7 @@ import com.mkshmnv.djinni.ui.auth.screens.SignUpFragment
 import com.mkshmnv.djinni.ui.dashboard.WebViewDashboardFragment
 
 class AuthPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
-
     override fun getItemCount(): Int = 2
-
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> SignInFragment()

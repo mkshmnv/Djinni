@@ -9,8 +9,9 @@ import androidx.fragment.app.activityViewModels
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentProfileBinding
-import com.mkshmnv.djinni.ui.profile.repository.User
-import com.mkshmnv.djinni.ui.profile.repository.UserViewModel
+import com.mkshmnv.djinni.model.FragmentScreen
+import com.mkshmnv.djinni.model.User
+import com.mkshmnv.djinni.repository.UserViewModel
 import com.mkshmnv.djinni.ui.viewBinding
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -22,15 +23,18 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Logger.logcat("onViewCreated", tag)
-        Logger.logcat("userViewModel - ${userViewModel}", tag)
-
-        val user = userViewModel.authorizedUser.value // TODO: check null
-        Logger.logcat("userViewModel.authorizedUser.value: $user", tag)
-//        if (user != null) updateUI(user)
-
-
+        val currentUser = userViewModel.authorizedUser.value ?: throw Exception("User is null")
+        Logger.logcat("onViewCreated with user - $currentUser", tag)
         binding.apply {
+            etProfilePosition.setText(currentUser.position)
+            ArrayAdapter.createFromResource(
+                requireActivity(), R.array.profile_categories, android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spProfileCategory.adapter = adapter
+            }
+
+
             sbProfileExperience.setOnSeekBarChangeListener(object :
                 SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(
@@ -48,115 +52,73 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 }
             })
 
-            ArrayAdapter.createFromResource(
-                requireActivity(),
-                R.array.profile_categories,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spProfileCategory.adapter = adapter
-            }
+
 
             ArrayAdapter.createFromResource(
-                requireActivity(),
-                R.array.profile_countries,
-                android.R.layout.simple_spinner_item
+                requireActivity(), R.array.profile_countries, android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 spProfileCountry.adapter = adapter
             }
 
-//        Preferred method of communication
+//          Preferred method of communication
             // TODO Implement method communication fun
             ArrayAdapter.createFromResource(
-                requireActivity(),
-                R.array.profile_methods,
-                android.R.layout.simple_spinner_item
+                requireActivity(), R.array.profile_methods, android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 spProfilePreferredCommunication.adapter = adapter
             }
 
-//            UpdateProfile
             btnUpdateProfile.setOnClickListener {
-                Logger.logcat("Update Profile does not implement!", tag)
-                // TODO Implement Update Profile fun
+                Logger.logcat("Button Update Profile is clicked", tag)
+                userViewModel.updateUserFromUI(
+                    screen = FragmentScreen.PROFILE,
+                    uiUser = User(
+                        profileStatus = rbgStatusSearch.checkedRadioButtonId.toString(),
+                        position = etProfilePosition.text.toString(),
+                        category = spProfileCategory.selectedItem.toString(),
+                        skills = etProfileSkills.text.toString(),
+                        experienceProgress = sbProfileExperience.progress,
+                        salary = etProfileSalary.text.toString(),
+                        country = spProfileCountry.selectedItem.toString(),
+                        online = chbProfileOnline.isChecked,
+                        leave = chbProfileLeaveCountry.isChecked,
+                        relocation = chbProfileRelocation.isChecked,
+                        city = etProfileCity.text.toString(),
+                        cityMoving = chbProfileCityMoving.isChecked,
+                        englishLevel = rbgProfileEnglishLevel.checkedRadioButtonId.toString(),
+                        experienceDescription = etProfileExperienceDescription.text.toString(),
+                        achievements = etProfileAchievements.text.toString(),
+                        expectation = etProfileExpectation.text.toString(),
+                        expectationCombatant = chbProfileExpectationCombatant.isChecked,
+                        employmentOptionsRemote = chbProfileEmploymentOptionsRemote.isChecked,
+                        employmentOptionsOffice = chbProfileEmploymentOptionsOffice.isChecked,
+                        employmentOptionsPartTime = chbProfileEmploymentOptionsPartTime.isChecked,
+                        employmentOptionsFreelance = chbProfileEmploymentOptionsFreelance.isChecked,
+                        hourlyRate = etProfileHourlyRate.text.toString(),
+                        notConsideringDomainsAdult = chbProfileNotConsideringDomainsAdult.isChecked,
+                        notConsideringDomainsGambling = chbProfileNotConsideringDomainsGambling.isChecked,
+                        notConsideringDomainsDating = chbProfileNotConsideringDomainsDating.isChecked,
+                        notConsideringDomainsGameDev = chbProfileNotConsideringDomainsGameDev.isChecked,
+                        notConsideringDomainsCrypto = chbProfileNotConsideringDomainsCrypto.isChecked,
+                        notConsideringTypeCompanyAgency = chbProfileNotConsideringTypeCompanyAgency.isChecked,
+                        notConsideringTypeCompanyOutsource = chbProfileNotConsideringTypeCompanyOutsource.isChecked,
+                        notConsideringTypeCompanyOutStaff = chbProfileNotConsideringTypeCompanyOutStaff.isChecked,
+                        notConsideringTypeCompanyProduct = chbProfileNotConsideringTypeCompanyProduct.isChecked,
+                        notConsideringTypeCompanyStartUp = chbProfileNotConsideringTypeCompanyStartUp.isChecked,
+                        questionForEmployer = etProfileQuestionForEmployer.text.toString(),
+                        preferredLanguageUkrainian = chbProfilePreferredLanguageUkrainian.isChecked,
+                        preferredLanguageEnglish = chbProfilePreferredLanguageEnglish.isChecked,
+                        preferredCommunication = spProfilePreferredCommunication.selectedItem.toString()
+                    )
+                )
             }
 
-//            DeleteAccount
             tvDeleteAccount.setOnClickListener {
                 Logger.logcat("Delete Account does not implement!", tag)
                 // TODO Implement Delete Account fun
             }
-        }
-    }
-
-    private fun updateUI(user: User) {
-        binding.apply {
-            rbgStatusSearch.check(
-                when (user.profileStatus) {
-                    "ACTIVE" /* ProfileStatus.ACTIVE */ -> rbSearchActive.id
-                    "PASSIVE" /* ProfileStatus.PASSIVE */ -> rbSearchPassive.id
-                    else /*ProfileStatus.NOT_LOOKED */ -> rbSearchOff.id
-                }
-            )
-            etProfilePosition.setText(user.position)
-            spProfileCategory.setSelection(
-                resources.getStringArray(R.array.profile_categories).indexOf(user.category)
-            )
-            etProfileSkills.setText(user.skills)
-            sbProfileExperience.progress = user.experienceProgress
-            tvProfileExperienceTerm.text = setExperienceTerm(user.experienceProgress)
-            etProfileSalary.setText(user.salary)
-            spProfileCountry.setSelection(
-                resources.getStringArray(R.array.profile_countries).indexOf(user.city)
-            )
-            chbProfileOnline.isChecked = user.online
-            chbProfileLeaveCountry.isChecked = user.leave
-            chbProfileRelocation.isChecked = user.relocation
-            etProfileCity.setText(user.city)
-            chbProfileCityMoving.isChecked = user.cityMoving
-            rbgProfileEnglishLevel.check(
-                when (user.englishLevel) {
-                    1 -> rbBeginnerEnglish.id
-                    2 -> rbPreIntermediateEnglish.id
-                    3 -> rbIntermediateEnglish.id
-                    4 -> rbUpperIntermediateEnglish.id
-                    5 -> rbAdvancedEnglish.id
-                    else -> rbProfileNoEnglish.id
-                }
-            )
-            etProfileExperienceDescription.setText(user.experienceDescription)
-            etProfileAchievements.setText(user.achievements)
-            etProfileExpectation.setText(user.expectation)
-            chbProfileExpectationCombatant.isChecked = user.expectationCombatant
-            chbProfileEmploymentOptionsRemote.isChecked = user.employmentOptionsRemote
-            chbProfileEmploymentOptionsOffice.isChecked = user.employmentOptionsOffice
-            chbProfileEmploymentOptionsPartTime.isChecked = user.employmentOptionsPartTime
-            chbProfileEmploymentOptionsFreelance.isChecked = user.employmentOptionsFreelance
-            etProfileHourlyRate.setText(user.hourlyRate)
-            chbProfileNotConsideringDomainsAdult.isChecked = user.notConsideringDomainsAdult
-            chbProfileNotConsideringDomainsGambling.isChecked = user.notConsideringDomainsGambling
-            chbProfileNotConsideringDomainsDating.isChecked = user.notConsideringDomainsDating
-            chbProfileNotConsideringDomainsGameDev.isChecked = user.notConsideringDomainsGameDev
-            chbProfileNotConsideringDomainsCrypto.isChecked = user.notConsideringDomainsCrypto
-            chbProfileNotConsideringTypeCompanyAgency.isChecked =
-                user.notConsideringTypeCompanyAgency
-            chbProfileNotConsideringTypeCompanyOutsource.isChecked =
-                user.notConsideringTypeCompanyOutsource
-            chbProfileNotConsideringTypeCompanyOutStaff.isChecked =
-                user.notConsideringTypeCompanyOutStaff
-            chbProfileNotConsideringTypeCompanyProduct.isChecked =
-                user.notConsideringTypeCompanyProduct
-            chbProfileNotConsideringTypeCompanyStartUp.isChecked =
-                user.notConsideringTypeCompanyStartUp
-            etProfileQuestionForEmployer.setText(user.questionForEmployer)
-            chbProfilePreferredLanguageUkrainian.isChecked = user.preferredLanguageUkrainian
-            chbProfilePreferredLanguageEnglish.isChecked = user.preferredLanguageEnglish
-            spProfilePreferredCommunication.setSelection(
-                resources.getStringArray(R.array.profile_methods)
-                    .indexOf(user.preferredCommunication)
-            )
         }
     }
 

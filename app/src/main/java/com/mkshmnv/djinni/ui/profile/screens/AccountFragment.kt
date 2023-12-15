@@ -7,63 +7,53 @@ import androidx.fragment.app.activityViewModels
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentAccountBinding
-import com.mkshmnv.djinni.ui.profile.repository.User
-import com.mkshmnv.djinni.ui.profile.repository.UserViewModel
+import com.mkshmnv.djinni.model.FragmentScreen
+import com.mkshmnv.djinni.model.User
+import com.mkshmnv.djinni.repository.UserViewModel
 import com.mkshmnv.djinni.ui.viewBinding
 
 // Contacts and CV
 class AccountFragment : Fragment(R.layout.fragment_account) {
-    // For logger
-    private val tag = this::class.simpleName!!
-
     private val binding: FragmentAccountBinding by viewBinding()
     private val userViewModel: UserViewModel by activityViewModels()
 
+    // For logger
+    private val tag = this::class.simpleName!!
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Logger.logcat("onViewCreated", tag)
-        val currentUser = userViewModel.authorizedUser.value
-        Logger.logcat("currentUser value: $currentUser", tag)
-        if (currentUser != null) updateUI(currentUser)
+        val currentUser = userViewModel.authorizedUser.value ?: throw Exception("User is null")
+        Logger.logcat("onViewCreated with user: $currentUser", tag)
         binding.apply {
+            etAccountFullName.setText(currentUser.fullName)
+            etAccountEmail.setText(currentUser.email)
+            etAccountSkype.setText(currentUser.skype)
+            etAccountPhone.setText(currentUser.phone)
+            etAccountTelegram.setText(currentUser.telegram)
+            etAccountWhatsapp.setText(currentUser.whatsApp)
+            etAccountLinkedin.setText(currentUser.linkedIn)
+            etAccountGithub.setText(currentUser.gitHub)
+            etAccountPortfolio.setText(currentUser.portfolio)
+            etAccountCv.setText(currentUser.cv)
+
             btnAccountSave.setOnClickListener {
-                Logger.logcat("btnAccountSave", tag)
-                val user = User(
-                    fullName = etAccountFullName.text.toString(),
-                    email = etAccountEmail.text.toString(),
-                    skype = etAccountSkype.text.toString(),
-                    phone = etAccountPhone.text.toString(),
-                    telegram = etAccountTelegram.text.toString(),
-                    whatsApp = etAccountWhatsapp.text.toString(),
-                    linkedIn = etAccountLinkedin.text.toString(),
-                    gitHub = etAccountGithub.text.toString(),
-                    portfolio = etAccountPortfolio.text.toString(),
-                    cv = etAccountCv.text.toString()
+                Logger.logcat("Button Save clicked", tag)
+                userViewModel.updateUserFromUI(
+                    screen = FragmentScreen.CONTACTS,
+                    uiUser = User(
+                        fullName = etAccountFullName.text.toString(),
+                        email = etAccountEmail.text.toString(),
+                        skype = etAccountSkype.text.toString(),
+                        phone = etAccountPhone.text.toString(),
+                        telegram = etAccountTelegram.text.toString(),
+                        whatsApp = etAccountWhatsapp.text.toString(),
+                        linkedIn = etAccountLinkedin.text.toString(),
+                        gitHub = etAccountGithub.text.toString(),
+                        portfolio = etAccountPortfolio.text.toString(),
+                        cv = etAccountCv.text.toString()
+                    )
                 )
-//                userViewModel.authorizedUser.value?.updateUserFromUI(user, TypeUI.CONTACTS)
             }
-        }
-
-//        userViewModel.apply {
-//            authorizedUser.observe(viewLifecycleOwner) { user ->
-//                Logger.logcat("authorizedUser.observe user: $user", tag)
-//                if (user != null) updateUI(user)
-//            }
-//        }
-    }
-
-    private fun updateUI(user: User) {
-        binding.apply {
-            etAccountFullName.setText(user.fullName)
-            etAccountEmail.setText(user.email)
-            etAccountSkype.setText(user.skype)
-            etAccountPhone.setText(user.phone)
-            etAccountTelegram.setText(user.telegram)
-            etAccountWhatsapp.setText(user.whatsApp)
-            etAccountLinkedin.setText(user.linkedIn)
-            etAccountGithub.setText(user.gitHub)
-            etAccountPortfolio.setText(user.portfolio)
-            etAccountCv.setText(user.cv)
         }
     }
 }
