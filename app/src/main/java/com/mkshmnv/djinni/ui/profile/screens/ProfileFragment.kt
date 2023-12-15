@@ -2,8 +2,6 @@ package com.mkshmnv.djinni.ui.profile.screens
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mkshmnv.djinni.Logger
@@ -12,12 +10,13 @@ import com.mkshmnv.djinni.databinding.FragmentProfileBinding
 import com.mkshmnv.djinni.model.FragmentScreen
 import com.mkshmnv.djinni.model.User
 import com.mkshmnv.djinni.repository.UserViewModel
+import com.mkshmnv.djinni.ui.profile.ProfileViewModel
 import com.mkshmnv.djinni.ui.viewBinding
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding: FragmentProfileBinding by viewBinding()
+    private val profileViewModel: ProfileViewModel by activityViewModels()
     private val userViewModel: UserViewModel by activityViewModels()
-
     // For logger
     private val tag = this::class.simpleName!!
 
@@ -26,50 +25,93 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val currentUser = userViewModel.authorizedUser.value ?: throw Exception("User is null")
         Logger.logcat("onViewCreated with user - $currentUser", tag)
         binding.apply {
+            // Status search
+            rbgStatusSearch.check(currentUser.profileStatus.toInt())
+
+            // Position
             etProfilePosition.setText(currentUser.position)
-            ArrayAdapter.createFromResource(
-                requireActivity(), R.array.profile_categories, android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spProfileCategory.adapter = adapter
-            }
 
+            // Spinner Category
+            // TODO: impl setDropDownSpinner for Country
+            profileViewModel.setDropDownSpinner(spProfileCategory, R.array.profile_categories)
 
-            sbProfileExperience.setOnSeekBarChangeListener(object :
-                SeekBar.OnSeekBarChangeListener {
-                override fun onProgressChanged(
-                    seekBar: SeekBar?,
-                    progress: Int,
-                    fromUser: Boolean
-                ) {
-                    tvProfileExperienceTerm.text = setExperienceTerm(seekBar?.progress!!)
-                }
+            // Skills
+            etProfileSkills.setText(currentUser.skills)
 
-                override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                }
+            // Experience // TODO: impl Experience
+            profileViewModel.setSeekBarExperienceTerm(sbProfileExperience, tvProfileExperienceTerm)
 
-                override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                }
-            })
+            // Salary expectation
+            etProfileSalary.setText(currentUser.salary)
 
+            // Spinner Country of residence
+            // TODO: impl setDropDownSpinner for Country
+            profileViewModel.setDropDownSpinner(spProfileCountry, R.array.profile_countries)
+            chbProfileOnline.isChecked = currentUser.online
+            chbProfileLeaveCountry.isChecked = currentUser.leave
+            chbProfileRelocation.isChecked = currentUser.relocation
 
+            // City
+            etProfileCity.setText(currentUser.city)
+            chbProfileCityMoving.isChecked = currentUser.cityMoving
 
-            ArrayAdapter.createFromResource(
-                requireActivity(), R.array.profile_countries, android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spProfileCountry.adapter = adapter
-            }
+            // English level
+            rbgProfileEnglishLevel.check(currentUser.englishLevel.toInt())
 
-//          Preferred method of communication
-            // TODO Implement method communication fun
-            ArrayAdapter.createFromResource(
-                requireActivity(), R.array.profile_methods, android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spProfilePreferredCommunication.adapter = adapter
-            }
+            // Experience description
+            etProfileExperienceDescription.setText(currentUser.experienceDescription)
 
+            // Achievements
+            etProfileAchievements.setText(currentUser.achievements)
+
+            // Expectation
+            etProfileExpectation.setText(currentUser.expectation)
+            chbProfileExpectationCombatant.isChecked = currentUser.expectationCombatant
+
+            // Employment options
+            chbProfileEmploymentOptionsRemote.isChecked = currentUser.employmentOptionsRemote
+            chbProfileEmploymentOptionsOffice.isChecked = currentUser.employmentOptionsOffice
+            chbProfileEmploymentOptionsPartTime.isChecked = currentUser.employmentOptionsPartTime
+            chbProfileEmploymentOptionsFreelance.isChecked = currentUser.employmentOptionsFreelance
+
+            // Hourly rate
+            etProfileHourlyRate.setText(currentUser.hourlyRate)
+
+            // Not considering
+            // Domains
+            chbProfileNotConsideringDomainsAdult.isChecked = currentUser.notConsideringDomainsAdult
+            chbProfileNotConsideringDomainsGambling.isChecked =
+                currentUser.notConsideringDomainsGambling
+            chbProfileNotConsideringDomainsDating.isChecked =
+                currentUser.notConsideringDomainsDating
+            chbProfileNotConsideringDomainsGameDev.isChecked =
+                currentUser.notConsideringDomainsGameDev
+            chbProfileNotConsideringDomainsCrypto.isChecked =
+                currentUser.notConsideringDomainsCrypto
+            // Type of company
+            chbProfileNotConsideringTypeCompanyAgency.isChecked =
+                currentUser.notConsideringTypeCompanyAgency
+            chbProfileNotConsideringTypeCompanyOutsource.isChecked =
+                currentUser.notConsideringTypeCompanyOutsource
+            chbProfileNotConsideringTypeCompanyOutStaff.isChecked =
+                currentUser.notConsideringTypeCompanyOutStaff
+            chbProfileNotConsideringTypeCompanyProduct.isChecked =
+                currentUser.notConsideringTypeCompanyProduct
+            chbProfileNotConsideringTypeCompanyStartUp.isChecked =
+                currentUser.notConsideringTypeCompanyStartUp
+
+            // Question for employer
+            etProfileQuestionForEmployer.setText(currentUser.questionForEmployer)
+
+            // Preferred language
+            chbProfilePreferredLanguageUkrainian.isChecked = currentUser.preferredLanguageUkrainian
+            chbProfilePreferredLanguageEnglish.isChecked = currentUser.preferredLanguageEnglish
+
+            // Spinner Preferred method of communication
+            // TODO: impl setDropDownSpinner for Country
+            profileViewModel.setDropDownSpinner(spProfilePreferredCommunication, R.array.profile_methods)
+
+            // Button update profile
             btnUpdateProfile.setOnClickListener {
                 Logger.logcat("Button Update Profile is clicked", tag)
                 userViewModel.updateUserFromUI(
@@ -115,31 +157,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 )
             }
 
+            // Button delete account
             tvDeleteAccount.setOnClickListener {
                 Logger.logcat("Delete Account does not implement!", tag)
                 // TODO Implement Delete Account fun
             }
-        }
-    }
-
-    private fun setExperienceTerm(progress: Int): String {
-        return when (progress) {
-            0 -> getString(R.string.profile_experience_without)
-            1 -> getString(R.string.profile_experience_6_months)
-            2 -> getString(R.string.profile_experience_1_year)
-            3 -> getString(R.string.profile_experience_1_5_years)
-            4 -> getString(R.string.profile_experience_2_years)
-            5 -> getString(R.string.profile_experience_2_5_years)
-            6 -> getString(R.string.profile_experience_3_years)
-            7 -> getString(R.string.profile_experience_4_years)
-            8 -> getString(R.string.profile_experience_5_years)
-            9 -> getString(R.string.profile_experience_6_years)
-            10 -> getString(R.string.profile_experience_7_years)
-            11 -> getString(R.string.profile_experience_8_years)
-            12 -> getString(R.string.profile_experience_9_years)
-            13 -> getString(R.string.profile_experience_10_years)
-            14 -> getString(R.string.profile_experience_more_10_years)
-            else -> getString(R.string.profile_experience_without)
         }
     }
 }
