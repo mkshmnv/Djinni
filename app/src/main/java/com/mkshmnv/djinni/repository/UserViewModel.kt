@@ -383,6 +383,11 @@ class UserViewModel : ViewModel() {
         navController.navigate(R.id.nav_dashboard_web_view) // TODO: change to action nav_dashboard
     }
 
+    fun navigateToProfile(navControllerProvider: NavControllerProvider) {
+        val navController = navControllerProvider.getNavController()
+        navController.navigate(R.id.nav_profile_pager_fragment) // TODO: change to action nav_dashboard
+    }
+
     fun signOut() {
         userRepository.signOut()
         _authorizedUser.postValue(null)

@@ -51,7 +51,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in), NavControllerProvide
             }
             authorizedUser.observe(viewLifecycleOwner) {
                 Logger.logcat("authorizedUser observe : $it", tag)
-                navigateToDashboard(this@SignInFragment)
+                navigateToProfile(this@SignInFragment)
                 onDestroy()
             }
         }

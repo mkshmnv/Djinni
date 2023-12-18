@@ -21,7 +21,7 @@ class WebViewDashboardFragment : Fragment(R.layout.fragment_dashboard_web_view) 
             webViewClient = WebViewClient()
             val webSettings = settings
             webSettings.javaScriptEnabled = true
-            loadUrl("https://djinni.co/my/dashboard/")
+            loadUrl("https://djinni.co/")
         }
     }
 }
