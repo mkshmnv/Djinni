@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -14,12 +13,13 @@ import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentSignInBinding
 import com.mkshmnv.djinni.repository.NavControllerProvider
 import com.mkshmnv.djinni.repository.UserViewModel
-import com.mkshmnv.djinni.ui.MainActivity
+import com.mkshmnv.djinni.ui.auth.MenuAndActionBarListener
 import com.mkshmnv.djinni.ui.viewBinding
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in), NavControllerProvider {
     private val binding: FragmentSignInBinding by viewBinding()
     private val userViewModel: UserViewModel by activityViewModels()
+    private var menuAndActionBarListener: MenuAndActionBarListener? = null
     // For logger
     private val tag = this::class.simpleName!!
 
@@ -29,6 +29,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in), NavControllerProvide
         savedInstanceState: Bundle?
     ): View? {
         // Hide action bar and bottom menu for this fragment
+        menuAndActionBarListener = requireActivity() as MenuAndActionBarListener
         showMenuAndActionBar(false)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
@@ -71,7 +72,6 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in), NavControllerProvide
     }
 
     private fun showMenuAndActionBar(show: Boolean) {
-        val mainActivity = activity as? MainActivity
-        mainActivity?.showMenuAndActionBar(show)
+        menuAndActionBarListener?.showMenuAndActionBar(show)
     }
 }

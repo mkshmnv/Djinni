@@ -10,8 +10,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.ActivityMainBinding
+import com.mkshmnv.djinni.ui.auth.MenuAndActionBarListener
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MenuAndActionBarListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -32,24 +33,14 @@ class MainActivity : AppCompatActivity() {
                 )
             )
             setupActionBarWithNavController(navController, appBarConfiguration)
-            navView.setupWithNavController(navController)
+            bottomNavMenu.setupWithNavController(navController)
         }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
-    // Show/Hide action bar and bottom menu for fragments
-    fun showMenuAndActionBar(show: Boolean) {
-        if (show) {
-            binding.navView.visibility = View.VISIBLE
-            this.supportActionBar?.show()
-        } else {
-            this.supportActionBar?.hide()
-            binding.navView.visibility = View.GONE
-        }
     }
 
     // Show/Hide logo/button save for fragments
@@ -60,6 +51,17 @@ class MainActivity : AppCompatActivity() {
         } else {
             binding.appBarMain.ivLogo.visibility = View.VISIBLE
             binding.appBarMain.btnSave.visibility = View.GONE
+        }
+    }
+
+    // Show/Hide action bar and bottom menu for fragments
+    override fun showMenuAndActionBar(show: Boolean) {
+        if (show) {
+            binding.bottomNavMenu.visibility = View.VISIBLE
+            this.supportActionBar?.show()
+        } else {
+            this.supportActionBar?.hide()
+            binding.bottomNavMenu.visibility = View.GONE
         }
     }
 }

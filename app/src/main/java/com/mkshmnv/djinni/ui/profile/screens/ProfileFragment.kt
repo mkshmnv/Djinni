@@ -27,17 +27,21 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         Logger.logcat("onViewCreated with user - $currentUser", tag)
         binding.apply {
             // Status search
-            rbgStatusSearch.check(currentUser.profileStatus.toInt())
+            rbgStatusSearch.apply {
+                check(currentUser.profileStatus.toInt())
+                setOnCheckedChangeListener { _, currentPosition ->
+                    Logger.logcat("Status search is changed", this@ProfileFragment.tag)
+                    checkState(currentPosition, currentUser.profileStatus.toInt())
+                }
+            }
 
             // Buttons ViewProfile and RaiseProfile
             btnViewProfile.setOnClickListener {
                 Logger.logcat("Button View Profile is clicked", tag)
-                showButtonSave(true)
             }
 
             btnRaiseProfile.setOnClickListener {
                 Logger.logcat("Button View Profile is clicked", tag)
-                showButtonSave(false)
             }
 
             // Position
@@ -181,5 +185,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun showButtonSave(show: Boolean) {
         val mainActivity = activity as? MainActivity
         mainActivity?.showSaveButton(show)
+    }
+
+    private fun checkState(currentPosition: Any, userPosition: Any) {
+        if (currentPosition != userPosition) {
+            showButtonSave(true)
+        } else {
+            showButtonSave(false)
+        }
     }
 }

@@ -45,9 +45,5 @@
         android:id="@+id/nav_auth_pager_fragment"
         android:name="com.mkshmnv.djinni.ui.auth.AuthPagerFragment"
         android:label="@string/authentication"
-        tools:layout="@layout/fragment_sign_in">
-        <action
-            android:id="@+id/action_nav_auth_pager_fragment_to_nav_dashboard_web_view"
-            app:destination="@id/nav_dashboard_web_view" />
-    </fragment>
+        tools:layout="@layout/fragment_sign_in" />
 </navigation>
