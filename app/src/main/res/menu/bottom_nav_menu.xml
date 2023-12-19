@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_profile_pager_fragment"
+        android:icon="@drawable/ic_profile_24dp"
+        android:title="@string/profile_menu" />
+    <item
+        android:id="@+id/nav_inbox"
+        android:icon="@drawable/ic_inbox_24dp"
+        android:title="@string/menu_inbox" />
+    <item
+        android:id="@+id/nav_dashboard_web_view"
+        android:icon="@drawable/ic_dashboard_24dp"
+        android:title="@string/menu_dashboard"/>
+    <item
+        android:id="@+id/nav_jobs"
+        android:icon="@drawable/ic_jobs_24dp"
+        android:title="@string/menu_jobs" />
+<!--    <item-->
+<!--        android:id="@+id/nav_salaries"-->
+<!--        android:icon="@drawable/ic_salaries_24dp"-->
+<!--        android:title="@string/menu_salaries" />-->
+</menu>

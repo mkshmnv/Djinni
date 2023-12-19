@@ -39,7 +39,7 @@
     <!-- TabLayout Profile - end -->
 
     <!-- Profile - start -->
-    <string name="profile_menu">Profile</string>
+    <string name="profile_menu">Account</string>
 
     <string name="profile_search_active">Active search</string>
     <string name="profile_search_active_tip">Djinni shows you as an active candidate to all recruiters and sends you a message to every contact</string>

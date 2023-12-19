@@ -10,27 +10,33 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.Djinni.AppBarOverlay"
-        app:layout_constraintTop_toTopOf="parent">
+        android:theme="@style/Theme.Djinni.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/blue_djinni"
-            app:popupTheme="@style/Theme.Djinni.PopupOverlay" >
+            app:popupTheme="@style/Theme.Djinni.PopupOverlay">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLogo"
                 android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginEnd="20dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:src="@drawable/logo_djinni"
-                app:layout_constraintBottom_toBottomOf="@+id/appBarLayout"
-                app:layout_constraintEnd_toEndOf="@+id/appBarLayout"
-                app:layout_constraintTop_toTopOf="@+id/appBarLayout"
+                android:layout_marginEnd="20dp"
                 android:elevation="10dp"
+                android:src="@drawable/logo_djinni"
                 tools:ignore="ContentDescription" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/ic_save_24dp"
+                android:visibility="gone" />
 
         </androidx.appcompat.widget.Toolbar>
 

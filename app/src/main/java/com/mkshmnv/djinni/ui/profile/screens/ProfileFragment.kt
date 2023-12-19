@@ -10,6 +10,7 @@ import com.mkshmnv.djinni.databinding.FragmentProfileBinding
 import com.mkshmnv.djinni.model.FragmentScreen
 import com.mkshmnv.djinni.model.User
 import com.mkshmnv.djinni.repository.UserViewModel
+import com.mkshmnv.djinni.ui.MainActivity
 import com.mkshmnv.djinni.ui.profile.ProfileViewModel
 import com.mkshmnv.djinni.ui.viewBinding
 
@@ -27,6 +28,17 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.apply {
             // Status search
             rbgStatusSearch.check(currentUser.profileStatus.toInt())
+
+            // Buttons ViewProfile and RaiseProfile
+            btnViewProfile.setOnClickListener {
+                Logger.logcat("Button View Profile is clicked", tag)
+                showButtonSave(true)
+            }
+
+            btnRaiseProfile.setOnClickListener {
+                Logger.logcat("Button View Profile is clicked", tag)
+                showButtonSave(false)
+            }
 
             // Position
             etProfilePosition.setText(currentUser.position)
@@ -163,5 +175,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 // TODO Implement Delete Account fun
             }
         }
+    }
+
+    // Hide action bar and bottom menu for this fragment
+    private fun showButtonSave(show: Boolean) {
+        val mainActivity = activity as? MainActivity
+        mainActivity?.showSaveButton(show)
     }
 }

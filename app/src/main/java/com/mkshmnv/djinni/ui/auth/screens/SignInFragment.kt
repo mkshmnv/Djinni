@@ -14,6 +14,7 @@ import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentSignInBinding
 import com.mkshmnv.djinni.repository.NavControllerProvider
 import com.mkshmnv.djinni.repository.UserViewModel
+import com.mkshmnv.djinni.ui.MainActivity
 import com.mkshmnv.djinni.ui.viewBinding
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in), NavControllerProvider {
@@ -27,8 +28,8 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in), NavControllerProvide
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Hide action bar for this fragment
-        (activity as? AppCompatActivity)?.supportActionBar?.hide()
+        // Hide action bar and bottom menu for this fragment
+        showMenuAndActionBar(false)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -61,10 +62,16 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in), NavControllerProvide
         super.onDestroy()
         Logger.logcat("onDestroy and removeObservers", tag)
         userViewModel.authorizedUser.removeObservers(viewLifecycleOwner)
-        (activity as? AppCompatActivity)?.supportActionBar?.show()
+        // Show action bar and bottom menu for this fragment
+        showMenuAndActionBar(true)
     }
 
     override fun getNavController(): NavController {
         return findNavController()
+    }
+
+    private fun showMenuAndActionBar(show: Boolean) {
+        val mainActivity = activity as? MainActivity
+        mainActivity?.showMenuAndActionBar(show)
     }
 }
