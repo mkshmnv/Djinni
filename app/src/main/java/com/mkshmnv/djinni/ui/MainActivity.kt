@@ -3,6 +3,7 @@ package com.mkshmnv.djinni.ui
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -14,6 +15,7 @@ import com.mkshmnv.djinni.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             setContentView(root)
             setSupportActionBar(appBarMain.toolbar)
-            val navController = findNavController(R.id.nav_host_fragment_content_main)
+            navController = findNavController(R.id.nav_host_fragment_content_main)
             appBarConfiguration = AppBarConfiguration(
                 setOf(
                     R.id.nav_profile_pager_fragment,
@@ -43,10 +45,18 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        // Show/Hide bottom menu and app bar for auth fragments
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id in appBarConfiguration.topLevelDestinations) {
+                showAppBarWithBottomMenu(true)
+            } else {
+                showAppBarWithBottomMenu(false)
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
