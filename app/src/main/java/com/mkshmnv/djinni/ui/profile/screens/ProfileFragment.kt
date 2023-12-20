@@ -33,6 +33,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        @Suppress("DEPRECATION")
         setHasOptionsMenu(true)
         currentUser = userViewModel.authorizedUser.value ?: throw Exception("User is null")
         Logger.logcat("onViewCreated with user - $currentUser", tag)
@@ -232,11 +233,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
     }
 
+
     @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.app_bar_menu, menu)
         this.item = menu.findItem(R.id.save)
         this.item?.setVisible(false)
+        @Suppress("DEPRECATION")
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -290,6 +293,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
             this.item?.setVisible(false)
         }
+        @Suppress("DEPRECATION")
         return super.onOptionsItemSelected(item)
     }
 
