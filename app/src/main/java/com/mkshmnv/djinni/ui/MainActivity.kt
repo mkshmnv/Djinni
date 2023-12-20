@@ -10,9 +10,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.ActivityMainBinding
-import com.mkshmnv.djinni.ui.auth.MenuAndActionBarListener
 
-class MainActivity : AppCompatActivity(), MenuAndActionBarListener {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -34,8 +33,16 @@ class MainActivity : AppCompatActivity(), MenuAndActionBarListener {
             )
             setupActionBarWithNavController(navController, appBarConfiguration)
             bottomNavMenu.setupWithNavController(navController)
-        }
 
+            // Show/Hide bottom menu and app bar for auth fragments
+            navController.addOnDestinationChangedListener { _, destination, _ ->
+                if (destination.id in appBarConfiguration.topLevelDestinations) {
+                    showAppBarWithBottomMenu(true)
+                } else {
+                    showAppBarWithBottomMenu(false)
+                }
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -54,8 +61,8 @@ class MainActivity : AppCompatActivity(), MenuAndActionBarListener {
         }
     }
 
-    // Show/Hide action bar and bottom menu for fragments
-    override fun showMenuAndActionBar(show: Boolean) {
+    // Show/Hide bottom menu and app bar
+    private fun showAppBarWithBottomMenu(show: Boolean) {
         if (show) {
             binding.bottomNavMenu.visibility = View.VISIBLE
             this.supportActionBar?.show()
