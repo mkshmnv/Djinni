@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,26 +16,17 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/blue_djinni"
-            app:popupTheme="@style/Theme.Djinni.PopupOverlay">
+            android:paddingEnd="15dp"
+            tools:ignore="RtlSymmetry">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:layout_marginEnd="20dp"
                 android:elevation="10dp"
                 android:src="@drawable/logo_djinni"
                 tools:ignore="ContentDescription" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btnSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/ic_save_24dp"
-                android:visibility="gone" />
 
         </androidx.appcompat.widget.Toolbar>
 

@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.ActivityMainBinding
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -35,15 +36,6 @@ class MainActivity : AppCompatActivity() {
             )
             setupActionBarWithNavController(navController, appBarConfiguration)
             bottomNavMenu.setupWithNavController(navController)
-
-            // Show/Hide bottom menu and app bar for auth fragments
-            navController.addOnDestinationChangedListener { _, destination, _ ->
-                if (destination.id in appBarConfiguration.topLevelDestinations) {
-                    showAppBarWithBottomMenu(true)
-                } else {
-                    showAppBarWithBottomMenu(false)
-                }
-            }
         }
 
         // Show/Hide bottom menu and app bar for auth fragments
@@ -60,17 +52,6 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    // Show/Hide logo/button save for fragments
-    fun showSaveButton(show: Boolean) {
-        if (show) {
-            binding.appBarMain.ivLogo.visibility = View.GONE
-            binding.appBarMain.btnSave.visibility = View.VISIBLE
-        } else {
-            binding.appBarMain.ivLogo.visibility = View.VISIBLE
-            binding.appBarMain.btnSave.visibility = View.GONE
-        }
-    }
-
     // Show/Hide bottom menu and app bar
     private fun showAppBarWithBottomMenu(show: Boolean) {
         if (show) {
@@ -80,5 +61,20 @@ class MainActivity : AppCompatActivity() {
             this.supportActionBar?.hide()
             binding.bottomNavMenu.visibility = View.GONE
         }
+    }
+
+    // Show/Hide logo/button save for fragments TODO: change this
+    fun showSaveButton(show: Boolean) {
+        if (show) {
+            binding.appBarMain.ivLogo.visibility = View.GONE
+        } else {
+            binding.appBarMain.ivLogo.visibility = View.VISIBLE
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        exitProcess(0)
     }
 }
