@@ -9,11 +9,9 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatSpinner
 import java.util.regex.Pattern
 
-private val context = App.instance
-
 // String extensions
 fun String.isEmail(): Boolean {
-    val emailRegex = context.getString(R.string.email_regex)
+    val emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]{2,}\$"
     val pattern = Pattern.compile(emailRegex)
     val matcher = pattern.matcher(this)
     return !matcher.matches()

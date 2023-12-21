@@ -494,7 +494,6 @@
     <!-- Authentication - end -->
 
     <string name="error">error</string>
-    <string name="email_regex">^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$</string>
     <string name="made_in_ukraine">Made with pride in Ukraine</string>
     <string name="not_original_app">Not an original Djinni application</string>
     <string name="app_is_made">This app is made for educational purposes</string>
