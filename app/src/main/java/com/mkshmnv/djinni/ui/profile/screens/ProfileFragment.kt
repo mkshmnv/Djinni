@@ -20,10 +20,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding: FragmentProfileBinding by viewBinding()
     private val userViewModel: UserViewModel by activityViewModels()
     private lateinit var currentUser: User
-
-    // For menu
-    private var item: MenuItem? = null
-
     // For logger
     private val tag = this::class.simpleName!!
 
