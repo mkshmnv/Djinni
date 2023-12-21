@@ -63,15 +63,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Show/Hide logo/button save for fragments TODO: change this
-    fun showSaveButton(show: Boolean) {
-        if (show) {
-            binding.appBarMain.ivLogo.visibility = View.GONE
-        } else {
-            binding.appBarMain.ivLogo.visibility = View.VISIBLE
-        }
-    }
-
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         @Suppress("DEPRECATION")

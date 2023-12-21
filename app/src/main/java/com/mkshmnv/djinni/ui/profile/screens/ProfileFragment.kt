@@ -1,12 +1,9 @@
 package com.mkshmnv.djinni.ui.profile.screens
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mkshmnv.djinni.Logger
@@ -15,13 +12,12 @@ import com.mkshmnv.djinni.databinding.FragmentProfileBinding
 import com.mkshmnv.djinni.model.FragmentScreen
 import com.mkshmnv.djinni.model.User
 import com.mkshmnv.djinni.repository.UserViewModel
-import com.mkshmnv.djinni.ui.MainActivity
-import com.mkshmnv.djinni.ui.profile.ProfileViewModel
+import com.mkshmnv.djinni.setDropDownValuesExt
+import com.mkshmnv.djinni.setOnCheckedChangeListenerExtSaveData
 import com.mkshmnv.djinni.ui.viewBinding
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding: FragmentProfileBinding by viewBinding()
-    private val profileViewModel: ProfileViewModel by activityViewModels()
     private val userViewModel: UserViewModel by activityViewModels()
     private lateinit var currentUser: User
 
@@ -33,85 +29,86 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        @Suppress("DEPRECATION")
-        setHasOptionsMenu(true)
         currentUser = userViewModel.authorizedUser.value ?: throw Exception("User is null")
         Logger.logcat("onViewCreated with user - $currentUser", tag)
+        setUserDataToUI()
+    }
+
+    private fun setUserDataToUI() {
         binding.apply {
-            // Status search
+            // Status search - Radio Button Group
             rbgStatusSearch.apply {
                 check(currentUser.profileStatus.toInt())
-                setOnCheckedChangeListener { _, newProfileStatus ->
-                    Logger.logcat("Status search is changed", this@ProfileFragment.tag)
-                    checkState(newProfileStatus, currentUser.profileStatus.toInt())
-                }
+                setOnCheckedChangeListener { _, _ -> saveUserData() } // TODO: impl setOnCheckedChangeListenerExtSaveData
             }
 
-            // Buttons ViewProfile and RaiseProfile
-            btnViewProfile.setOnClickListener {
-                Logger.logcat("Button View Profile is clicked", tag)
-            }
             btnRaiseProfile.setOnClickListener {
-                Logger.logcat("Button View Profile is clicked", tag)
+                Logger.logcat("Button Raise Profile is clicked", tag)
             }
 
-            // Position
+            // Position - Edit Text
             etProfilePosition.apply {
                 setText(currentUser.position)
-                addTextChangedListener(object : TextWatcher {
-                    override fun beforeTextChanged(
-                        charSequence: CharSequence?, start: Int, count: Int, after: Int
-                    ) {
-                    }
-
-                    override fun onTextChanged(
-                        charSequence: CharSequence?, start: Int, before: Int, count: Int
-                    ) {
-                    }
-
-                    override fun afterTextChanged(editable: Editable?) {
-                        val newText = editable.toString()
-                        Logger.logcat("EditText is changed", this@ProfileFragment.tag)
-                        checkState(newText, currentUser.position)
-                    }
-                })
+                setOnCheckedChangeListenerExtSaveData { saveUserData() }
             }
 
-            // Spinner Category
-            // TODO: impl setDropDownSpinner for Country
-            profileViewModel.setDropDownSpinner(spProfileCategory, R.array.profile_categories)
+            // Category - Spinner
+            spProfileCategory.apply {
+                setDropDownValuesExt(R.array.profile_categories)
+                setOnCheckedChangeListenerExtSaveData { saveUserData() }
+            }
 
-            // Skills
+            // Skills - Edit Text
             etProfileSkills.apply {
                 setText(currentUser.skills)
-                addTextChangedListener(object : TextWatcher {
-                    override fun beforeTextChanged(
-                        charSequence: CharSequence?, start: Int, count: Int, after: Int
-                    ) {
-                    }
-
-                    override fun onTextChanged(
-                        charSequence: CharSequence?, start: Int, before: Int, count: Int
-                    ) {
-                    }
-
-                    override fun afterTextChanged(editable: Editable?) {
-                        val newText = editable.toString()
-                        Logger.logcat("EditText is changed", this@ProfileFragment.tag)
-                        checkState(newText, currentUser.skills)
-                    }
-                })
+                setOnCheckedChangeListenerExtSaveData { saveUserData() }
             }
 
             // Experience // TODO: impl Experience
-            profileViewModel.setSeekBarExperienceTerm(sbProfileExperience, tvProfileExperienceTerm)
+//            setSeekBarExperienceTerm(sbProfileExperience, tvProfileExperienceTerm)
+            sbProfileExperience.apply {
+                progress = currentUser.experienceProgress
+                setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                    override fun onProgressChanged(
+                        seekBar: SeekBar?, progress: Int, fromUser: Boolean
+                    ) {
+                        tvProfileExperienceTerm.text = when (progress) {
+                            0 -> getString(R.string.profile_experience_without)
+                            1 -> getString(R.string.profile_experience_6_months)
+                            2 -> getString(R.string.profile_experience_1_year)
+                            3 -> getString(R.string.profile_experience_1_5_years)
+                            4 -> getString(R.string.profile_experience_2_years)
+                            5 -> getString(R.string.profile_experience_2_5_years)
+                            6 -> getString(R.string.profile_experience_3_years)
+                            7 -> getString(R.string.profile_experience_4_years)
+                            8 -> getString(R.string.profile_experience_5_years)
+                            9 -> getString(R.string.profile_experience_6_years)
+                            10 -> getString(R.string.profile_experience_7_years)
+                            11 -> getString(R.string.profile_experience_8_years)
+                            12 -> getString(R.string.profile_experience_9_years)
+                            13 -> getString(R.string.profile_experience_10_years)
+                            14 -> getString(R.string.profile_experience_more_10_years)
+                            else -> getString(R.string.profile_experience_without)
+                        }
+                    }
+
+                    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                    }
+
+                    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                        saveUserData()
+                    }
+                })
+            }
 
             // Salary expectation
             etProfileSalary.setText(currentUser.salary)
 
-            // Spinner Country of residence
-            // TODO: impl setDropDownSpinner for Country
-            profileViewModel.setDropDownSpinner(spProfileCountry, R.array.profile_countries)
+            // Country of residence - Spinner
+            spProfileCountry.apply {
+                setDropDownValuesExt(R.array.profile_countries)
+                setOnCheckedChangeListenerExtSaveData { saveUserData() }
+            }
             chbProfileOnline.isChecked = currentUser.online
             chbProfileLeaveCountry.isChecked = currentUser.leave
             chbProfileRelocation.isChecked = currentUser.relocation
@@ -173,59 +170,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             chbProfilePreferredLanguageEnglish.isChecked = currentUser.preferredLanguageEnglish
 
             // Spinner Preferred method of communication
-            // TODO: impl setDropDownSpinner for Country
-            profileViewModel.setDropDownSpinner(
-                spProfilePreferredCommunication,
-                R.array.profile_methods
-            )
-
-            // Button update profile
-            btnUpdateProfile.setOnClickListener {
-                Logger.logcat("Button Update Profile is clicked", tag)
-                userViewModel.updateUserFromUI(
-                    screen = FragmentScreen.PROFILE,
-                    uiUser = User(
-                        profileStatus = rbgStatusSearch.checkedRadioButtonId.toString(),
-                        position = etProfilePosition.text.toString(),
-                        category = spProfileCategory.selectedItem.toString(),
-                        skills = etProfileSkills.text.toString(),
-                        experienceProgress = sbProfileExperience.progress,
-                        salary = etProfileSalary.text.toString(),
-                        country = spProfileCountry.selectedItem.toString(),
-                        online = chbProfileOnline.isChecked,
-                        leave = chbProfileLeaveCountry.isChecked,
-                        relocation = chbProfileRelocation.isChecked,
-                        city = etProfileCity.text.toString(),
-                        cityMoving = chbProfileCityMoving.isChecked,
-                        englishLevel = rbgProfileEnglishLevel.checkedRadioButtonId.toString(),
-                        experienceDescription = etProfileExperienceDescription.text.toString(),
-                        achievements = etProfileAchievements.text.toString(),
-                        expectation = etProfileExpectation.text.toString(),
-                        expectationCombatant = chbProfileExpectationCombatant.isChecked,
-                        employmentOptionsRemote = chbProfileEmploymentOptionsRemote.isChecked,
-                        employmentOptionsOffice = chbProfileEmploymentOptionsOffice.isChecked,
-                        employmentOptionsPartTime = chbProfileEmploymentOptionsPartTime.isChecked,
-                        employmentOptionsFreelance = chbProfileEmploymentOptionsFreelance.isChecked,
-                        hourlyRate = etProfileHourlyRate.text.toString(),
-                        notConsideringDomainsAdult = chbProfileNotConsideringDomainsAdult.isChecked,
-                        notConsideringDomainsGambling = chbProfileNotConsideringDomainsGambling.isChecked,
-                        notConsideringDomainsDating = chbProfileNotConsideringDomainsDating.isChecked,
-                        notConsideringDomainsGameDev = chbProfileNotConsideringDomainsGameDev.isChecked,
-                        notConsideringDomainsCrypto = chbProfileNotConsideringDomainsCrypto.isChecked,
-                        notConsideringTypeCompanyAgency = chbProfileNotConsideringTypeCompanyAgency.isChecked,
-                        notConsideringTypeCompanyOutsource = chbProfileNotConsideringTypeCompanyOutsource.isChecked,
-                        notConsideringTypeCompanyOutStaff = chbProfileNotConsideringTypeCompanyOutStaff.isChecked,
-                        notConsideringTypeCompanyProduct = chbProfileNotConsideringTypeCompanyProduct.isChecked,
-                        notConsideringTypeCompanyStartUp = chbProfileNotConsideringTypeCompanyStartUp.isChecked,
-                        questionForEmployer = etProfileQuestionForEmployer.text.toString(),
-                        preferredLanguageUkrainian = chbProfilePreferredLanguageUkrainian.isChecked,
-                        preferredLanguageEnglish = chbProfilePreferredLanguageEnglish.isChecked,
-                        preferredCommunication = spProfilePreferredCommunication.selectedItem.toString()
-                    )
-                )
+            spProfilePreferredCommunication.apply {
+                setDropDownValuesExt(R.array.profile_methods)
+                setOnCheckedChangeListenerExtSaveData { saveUserData() }
             }
 
-            // Button delete account
+            // Delete account - Button
             tvDeleteAccount.setOnClickListener {
                 Logger.logcat("Delete Account does not implement!", tag)
                 // TODO Implement Delete Account fun
@@ -233,22 +183,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
     }
 
-
-    @Deprecated("Deprecated in Java")
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.app_bar_menu, menu)
-        this.item = menu.findItem(R.id.save)
-        this.item?.setVisible(false)
-        @Suppress("DEPRECATION")
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.save) {
-            Logger.logcat("${item.title} Clicked", tag)
-            binding.apply {
-                currentUser = User(
+    private fun saveUserData() {
+        binding.apply {
+            userViewModel.updateUserFromUI(
+                screen = FragmentScreen.PROFILE,
+                uiUser = User(
                     profileStatus = rbgStatusSearch.checkedRadioButtonId.toString(),
                     position = etProfilePosition.text.toString(),
                     category = spProfileCategory.selectedItem.toString(),
@@ -286,29 +225,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     preferredLanguageEnglish = chbProfilePreferredLanguageEnglish.isChecked,
                     preferredCommunication = spProfilePreferredCommunication.selectedItem.toString()
                 )
-                userViewModel.updateUserFromUI(
-                    screen = FragmentScreen.PROFILE,
-                    uiUser = currentUser
-                )
-            }
-            this.item?.setVisible(false)
+            )
         }
-        @Suppress("DEPRECATION")
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun checkState(newData: Any, userData: Any) {
-        if (newData != userData) {
-            item?.setVisible(true)
-            showButtonSave(true)
-        } else {
-            item?.setVisible(false)
-            showButtonSave(false)
-        }
-    }
-
-    private fun showButtonSave(show: Boolean) {
-        val mainActivity = activity as? MainActivity
-        mainActivity?.showSaveButton(show)
     }
 }
