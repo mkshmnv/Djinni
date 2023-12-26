@@ -11,7 +11,7 @@ import com.mkshmnv.djinni.databinding.FragmentProfileBinding
 import com.mkshmnv.djinni.model.FragmentScreen
 import com.mkshmnv.djinni.model.User
 import com.mkshmnv.djinni.repository.UserViewModel
-import com.mkshmnv.djinni.setDropDownValuesExt
+import com.mkshmnv.djinni.setDropDownValuesExtWithCurrentPosition
 import com.mkshmnv.djinni.setOnCheckedChangeListenerExtSaveData
 import com.mkshmnv.djinni.ui.viewBinding
 
@@ -47,9 +47,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 setOnCheckedChangeListenerExtSaveData { saveUserData() }
             }
 
-            // Category - Spinner TODO: impl correct value from database
+            // Category - Spinner
             spProfileCategory.apply {
-                setDropDownValuesExt(R.array.profile_categories)
+                setDropDownValuesExtWithCurrentPosition(R.array.profile_categories, currentUser.category)
                 setOnCheckedChangeListenerExtSaveData { saveUserData() }
             }
 
@@ -101,9 +101,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 setOnCheckedChangeListenerExtSaveData { saveUserData() }
             }
 
-            // Country of residence - Spinner TODO: impl correct value from database
+            // Country of residence - Spinner
             spProfileCountry.apply {
-                setDropDownValuesExt(R.array.profile_countries)
+                setDropDownValuesExtWithCurrentPosition(R.array.profile_countries, currentUser.country)
                 setOnCheckedChangeListenerExtSaveData { saveUserData() }
             }
             chbProfileOnline.apply {
@@ -241,9 +241,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 setOnCheckedChangeListener { _, _ -> saveUserData() }
             }
 
-            // Spinner Preferred method of communication - Spinner TODO: impl correct value from database
+            // Spinner Preferred method of communication - Spinner
             spProfilePreferredCommunication.apply {
-                setDropDownValuesExt(R.array.profile_methods)
+                setDropDownValuesExtWithCurrentPosition(R.array.profile_methods, currentUser.preferredCommunication)
                 setOnCheckedChangeListenerExtSaveData { saveUserData() }
             }
 

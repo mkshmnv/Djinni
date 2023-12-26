@@ -37,13 +37,16 @@ fun AppCompatEditText.setOnCheckedChangeListenerExtSaveData(saveUser: () -> Unit
 }
 
 // Spinner extensions
-fun AppCompatSpinner.setDropDownValuesExt(stringArray: Int) {
+fun AppCompatSpinner.setDropDownValuesExtWithCurrentPosition(resourcesStringArray: Int, positionFromDatabase: String) {
+    val tempArray = context.resources.getStringArray(resourcesStringArray)
+    val position = tempArray.indexOf(positionFromDatabase)
     ArrayAdapter.createFromResource(
-        context, stringArray, android.R.layout.simple_spinner_item
+        context, resourcesStringArray, android.R.layout.simple_spinner_item
     ).also { adapter ->
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         this.adapter = adapter
     }
+    this.setSelection(position)
 }
 
 fun AppCompatSpinner.setOnCheckedChangeListenerExtSaveData(saveUser: () -> Unit) {
