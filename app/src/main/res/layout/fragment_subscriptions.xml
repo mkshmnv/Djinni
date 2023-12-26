@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_subs_vacancies" />
 
     <RadioGroup
-        android:id="@+id/rg_subs_vacancies"
+        android:id="@+id/rbg_subs_vacancies"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rg_subs_vacancies" />
+        app:layout_constraintTop_toBottomOf="@+id/rbg_subs_vacancies" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_subs_notifications_tip"
@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_subs_notifications" />
 
     <RadioGroup
-        android:id="@+id/rg_subs_notifications"
+        android:id="@+id/rbg_subs_notifications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +101,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rg_subs_notifications" />
+        app:layout_constraintTop_toBottomOf="@+id/rbg_subs_notifications" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_subs_offers_recruiters_tip"

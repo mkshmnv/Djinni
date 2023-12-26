@@ -8,22 +8,13 @@
     android:theme="@style/Theme.Djinni.Inbox"
     tools:context=".ui.inbox.InboxFragment">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_inbox_offers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/inbox_offers"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <SearchView
         android:id="@+id/sv_inbox_offers"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_inbox_offers"
+        app:layout_constraintTop_toTopOf="parent"
         app:queryHint="@string/inbox_search" />
 
     <com.google.android.material.tabs.TabLayout

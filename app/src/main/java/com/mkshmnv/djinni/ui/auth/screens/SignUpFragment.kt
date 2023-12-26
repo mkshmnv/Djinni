@@ -18,6 +18,9 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         super.onViewCreated(view, savedInstanceState)
         Logger.logcat("onViewCreated", this::class.simpleName!!)
         binding.apply {
+            etSignUpEmail.setText("1@1.com")
+            etSignUpPassword.setText("111111")
+            etSignUpConfirmPassword.setText("111111")
             btnSignUp.setOnClickListener {
                 userViewModel.signUpUser(
                     etEmail = etSignUpEmail,
