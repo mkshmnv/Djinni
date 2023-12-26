@@ -33,7 +33,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             // Status search - Radio Button Group
             rbgStatusSearch.apply {
                 check(currentUser.profileStatus.toInt())
-                setOnCheckedChangeListener { _, _ -> saveUserData() } // TODO: impl setOnCheckedChangeListenerExtSaveData
+                setOnCheckedChangeListener { _, _ -> saveUserData() }
             }
 
             // Raise profile - Button TODO: impl

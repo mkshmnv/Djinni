@@ -3,7 +3,7 @@ package com.mkshmnv.djinni.model
 data class User(
     val uid: String = "",
     // Profile
-    val profileStatus: String = "", //ProfileStatus = ProfileStatus.NOT_LOOKED,
+    val profileStatus: String = "2131296747", //ProfileStatus = ProfileStatus.NOT_LOOKED,
     val position: String = "",
     val category: String = "",
     val skills: String = "",
@@ -15,7 +15,7 @@ data class User(
     val relocation: Boolean = false,
     val city: String = "",
     val cityMoving: Boolean = false,
-    val englishLevel: String = "",
+    val englishLevel: String = "2131296745",
     val experienceDescription: String = "",
     val achievements: String = "",
     val expectation: String = "",
@@ -51,9 +51,9 @@ data class User(
     val portfolio: String = "",
     val cv: String = "",
     // Subscriptions
-    val accordingVacancies: String = "",
-    val notificationsFromEmployers: String = "",
-    val automaticOffers: String = "",
+    var accordingVacancies: String = "2131296752",
+    val notificationsFromEmployers: String = "2131296749",
+    val automaticOffers: Boolean = true,
     // Stop list
     val search: String = "",
     val blockedRecruiters: String = "",

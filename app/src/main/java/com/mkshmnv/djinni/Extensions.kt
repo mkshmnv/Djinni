@@ -11,7 +11,7 @@ import java.util.regex.Pattern
 
 // String extensions
 fun String.isEmail(): Boolean {
-    val emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]{2,}\$"
+    val emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
     val pattern = Pattern.compile(emailRegex)
     val matcher = pattern.matcher(this)
     return !matcher.matches()
