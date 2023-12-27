@@ -3,12 +3,14 @@ package com.mkshmnv.djinni.ui
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.navigation.NavigationView
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.ActivityMainBinding
 import kotlin.system.exitProcess
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             setContentView(root)
             setSupportActionBar(appBarMain.toolbar)
+            val drawerLayout: DrawerLayout = drawerLayout
             navController = findNavController(R.id.nav_host_fragment_content_main)
             appBarConfiguration = AppBarConfiguration(
                 setOf(
@@ -32,10 +35,11 @@ class MainActivity : AppCompatActivity() {
                     R.id.nav_inbox,
                     R.id.nav_jobs,
 //                    R.id.nav_salaries TODO: impl SalaryFragment
-                )
+                ), drawerLayout
             )
             setupActionBarWithNavController(navController, appBarConfiguration)
-            bottomNavMenu.setupWithNavController(navController)
+            navView.setupWithNavController(navController)
+//            bottomNavMenu.setupWithNavController(navController)
         }
 
         // Show/Hide bottom menu and app bar for auth fragments
@@ -55,11 +59,11 @@ class MainActivity : AppCompatActivity() {
     // Show/Hide bottom menu and app bar
     private fun showAppBarWithBottomMenu(show: Boolean) {
         if (show) {
-            binding.bottomNavMenu.visibility = View.VISIBLE
+//            binding.bottomNavMenu.visibility = View.VISIBLE
             this.supportActionBar?.show()
         } else {
             this.supportActionBar?.hide()
-            binding.bottomNavMenu.visibility = View.GONE
+//            binding.bottomNavMenu.visibility = View.GONE
         }
     }
 

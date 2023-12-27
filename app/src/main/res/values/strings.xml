@@ -30,7 +30,7 @@
     <string name="menu_salaries">Salaries</string>
 
     <!-- TabLayout Profile - start -->
-    <string name="my_account">My account</string>
+    <string name="my_account">Account</string>
     <string name="tab_profile">Profile</string>
     <string name="tab_subs">Subs</string>
     <string name="tab_cv">CV</string>
