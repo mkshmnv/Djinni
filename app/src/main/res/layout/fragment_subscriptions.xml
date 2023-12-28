@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    tools:context=".ui.profile.screens.SubscriptionsFragment">
+    tools:context=".ui.account.screens.SubscriptionsFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_subs_vacancies"

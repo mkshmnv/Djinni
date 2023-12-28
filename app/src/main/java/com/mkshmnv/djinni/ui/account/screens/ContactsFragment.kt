@@ -1,4 +1,4 @@
-package com.mkshmnv.djinni.ui.profile.screens
+package com.mkshmnv.djinni.ui.account.screens
 
 import android.os.Bundle
 import android.view.View
@@ -6,15 +6,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
-import com.mkshmnv.djinni.databinding.FragmentAccountBinding
+import com.mkshmnv.djinni.databinding.FragmentContactsBinding
 import com.mkshmnv.djinni.model.FragmentScreen
 import com.mkshmnv.djinni.model.User
 import com.mkshmnv.djinni.repository.UserViewModel
 import com.mkshmnv.djinni.ui.viewBinding
 
 // Contacts and CV
-class AccountFragment : Fragment(R.layout.fragment_account) {
-    private val binding: FragmentAccountBinding by viewBinding()
+class ContactsFragment : Fragment(R.layout.fragment_contacts) {
+    private val binding: FragmentContactsBinding by viewBinding()
     private val userViewModel: UserViewModel by activityViewModels()
 
     // For logger

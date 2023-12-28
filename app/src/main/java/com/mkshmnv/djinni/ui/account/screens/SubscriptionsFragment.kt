@@ -1,4 +1,4 @@
-package com.mkshmnv.djinni.ui.profile.screens
+package com.mkshmnv.djinni.ui.account.screens
 
 import android.os.Bundle
 import android.view.View

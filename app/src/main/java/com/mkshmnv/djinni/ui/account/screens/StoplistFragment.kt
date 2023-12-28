@@ -1,15 +1,15 @@
-package com.mkshmnv.djinni.ui.profile.screens
+package com.mkshmnv.djinni.ui.account.screens
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
-import com.mkshmnv.djinni.databinding.FragmentHiresBinding
+import com.mkshmnv.djinni.databinding.FragmentStoplistBinding
 import com.mkshmnv.djinni.ui.viewBinding
 
-class HiresFragment : Fragment(R.layout.fragment_hires) {
-    private val binding: FragmentHiresBinding by viewBinding()
+class StoplistFragment : Fragment(R.layout.fragment_stoplist) {
+    private val binding: FragmentStoplistBinding by viewBinding()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
