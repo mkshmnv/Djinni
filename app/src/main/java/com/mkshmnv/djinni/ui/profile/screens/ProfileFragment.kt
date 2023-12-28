@@ -3,6 +3,7 @@ package com.mkshmnv.djinni.ui.profile.screens
 import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mkshmnv.djinni.Logger
@@ -12,13 +13,12 @@ import com.mkshmnv.djinni.model.FragmentScreen
 import com.mkshmnv.djinni.model.User
 import com.mkshmnv.djinni.repository.UserViewModel
 import com.mkshmnv.djinni.setDropDownValuesExtWithCurrentPosition
-import com.mkshmnv.djinni.setOnCheckedChangeListenerExtSaveData
 import com.mkshmnv.djinni.ui.viewBinding
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding: FragmentProfileBinding by viewBinding()
     private val userViewModel: UserViewModel by activityViewModels()
-    private lateinit var currentUser: User
+    private var currentUser: User = User(uid = "User is null")
 
     // For logger
     private val tag = this::class.simpleName!!
@@ -28,13 +28,26 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         currentUser = userViewModel.authorizedUser.value ?: throw Exception("User is null")
         Logger.logcat("onViewCreated with user - $currentUser", tag)
 
+        val drawerLayout = requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout)
+        drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+            }
+
+            override fun onDrawerOpened(drawerView: View) {
+                saveUIUserData()
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+            }
+
+            override fun onDrawerStateChanged(newState: Int) {
+            }
+        })
+
         // Set user data to UI and listeners
         binding.apply {
             // Status search - Radio Button Group
-            rbgStatusSearch.apply {
-                check(currentUser.profileStatus.toInt())
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
+            rbgStatusSearch.check(currentUser.profileStatus.toInt())
 
             // Raise profile - Button TODO: impl
             btnRaiseProfile.setOnClickListener {
@@ -42,22 +55,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
 
             // Position - Edit Text
-            etProfilePosition.apply {
-                setText(currentUser.position)
-                setOnCheckedChangeListenerExtSaveData { saveUserData() }
-            }
+            etProfilePosition.setText(currentUser.position)
 
             // Category - Spinner
-            spProfileCategory.apply {
-                setDropDownValuesExtWithCurrentPosition(R.array.profile_categories, currentUser.category)
-                setOnCheckedChangeListenerExtSaveData { saveUserData() }
-            }
+            spProfileCategory.setDropDownValuesExtWithCurrentPosition(
+                R.array.profile_categories,
+                currentUser.category
+            )
 
             // Skills - Edit Text
-            etProfileSkills.apply {
-                setText(currentUser.skills)
-                setOnCheckedChangeListenerExtSaveData { saveUserData() }
-            }
+            etProfileSkills.setText(currentUser.skills)
 
             // Experience - Seek Bar
             sbProfileExperience.apply {
@@ -90,162 +97,85 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     }
 
                     override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                        saveUserData()
                     }
                 })
             }
 
             // Salary expectation - Edit Text
-            etProfileSalary.apply {
-                setText(currentUser.salary)
-                setOnCheckedChangeListenerExtSaveData { saveUserData() }
-            }
+            etProfileSalary.setText(currentUser.salary)
 
             // Country of residence - Spinner
             spProfileCountry.apply {
-                setDropDownValuesExtWithCurrentPosition(R.array.profile_countries, currentUser.country)
-                setOnCheckedChangeListenerExtSaveData { saveUserData() }
+                setDropDownValuesExtWithCurrentPosition(
+                    R.array.profile_countries,
+                    currentUser.country
+                )
             }
-            chbProfileOnline.apply {
-                isChecked = currentUser.online
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfileLeaveCountry.apply {
-                isChecked = currentUser.leave
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfileRelocation.apply {
-                isChecked = currentUser.relocation
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
+            chbProfileOnline.isChecked = currentUser.online
+            chbProfileLeaveCountry.isChecked = currentUser.leave
+            chbProfileRelocation.isChecked = currentUser.relocation
 
             // City - Edit Text
-            etProfileCity.apply {
-                setText(currentUser.city)
-                setOnCheckedChangeListenerExtSaveData { saveUserData() }
-            }
-            chbProfileCityMoving.apply {
-                isChecked = currentUser.cityMoving
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
+            etProfileCity.setText(currentUser.city)
+            chbProfileCityMoving.isChecked = currentUser.cityMoving
 
             // English level - Radio Button Group
-            rbgProfileEnglishLevel.apply {
-                check(currentUser.englishLevel.toInt())
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
+            rbgProfileEnglishLevel.check(currentUser.englishLevel.toInt())
 
             // Experience description - Edit Text
-            etProfileExperienceDescription.apply {
-                setText(currentUser.experienceDescription)
-                setOnCheckedChangeListenerExtSaveData { saveUserData() }
-            }
+            etProfileExperienceDescription.setText(currentUser.experienceDescription)
 
             // Achievements - Edit Text
-            etProfileAchievements.apply {
-                setText(currentUser.achievements)
-                setOnCheckedChangeListenerExtSaveData { saveUserData() }
-            }
+            etProfileAchievements.setText(currentUser.achievements)
 
             // Expectation - Edit Text
-            etProfileExpectation.apply {
-                setText(currentUser.expectation)
-                setOnCheckedChangeListenerExtSaveData { saveUserData() }
-            }
-            chbProfileExpectationCombatant.apply {
-                isChecked = currentUser.expectationCombatant
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
+            etProfileExpectation.setText(currentUser.expectation)
+            chbProfileExpectationCombatant.isChecked = currentUser.expectationCombatant
 
             // Employment options - Check Boxes
-            chbProfileEmploymentOptionsRemote.apply {
-                isChecked = currentUser.employmentOptionsRemote
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfileEmploymentOptionsOffice.apply {
-                isChecked = currentUser.employmentOptionsOffice
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfileEmploymentOptionsPartTime.apply {
-                isChecked = currentUser.employmentOptionsPartTime
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfileEmploymentOptionsFreelance.apply {
-                isChecked = currentUser.employmentOptionsFreelance
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
+            chbProfileEmploymentOptionsRemote.isChecked = currentUser.employmentOptionsRemote
+            chbProfileEmploymentOptionsOffice.isChecked = currentUser.employmentOptionsOffice
+            chbProfileEmploymentOptionsPartTime.isChecked = currentUser.employmentOptionsPartTime
+            chbProfileEmploymentOptionsFreelance.isChecked = currentUser.employmentOptionsFreelance
 
             // Hourly rate
-            etProfileHourlyRate.apply {
-                setText(currentUser.hourlyRate)
-                setOnCheckedChangeListenerExtSaveData { saveUserData() }
-            }
+            etProfileHourlyRate.setText(currentUser.hourlyRate)
 
             // Not considering - Check Boxes
             // Domains
-            chbProfileNotConsideringDomainsAdult.apply {
-                isChecked = currentUser.notConsideringDomainsAdult
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfileNotConsideringDomainsGambling.apply {
-                isChecked = currentUser.notConsideringDomainsGambling
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfileNotConsideringDomainsDating.apply {
-                isChecked = currentUser.notConsideringDomainsDating
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfileNotConsideringDomainsGameDev.apply {
-                isChecked = currentUser.notConsideringDomainsGameDev
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfileNotConsideringDomainsCrypto.apply {
-                isChecked = currentUser.notConsideringDomainsCrypto
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
+            chbProfileNotConsideringDomainsAdult.isChecked = currentUser.notConsideringDomainsAdult
+            chbProfileNotConsideringDomainsGambling.isChecked =
+                currentUser.notConsideringDomainsGambling
+            chbProfileNotConsideringDomainsDating.isChecked =
+                currentUser.notConsideringDomainsDating
+            chbProfileNotConsideringDomainsGameDev.isChecked =
+                currentUser.notConsideringDomainsGameDev
+            chbProfileNotConsideringDomainsCrypto.isChecked =
+                currentUser.notConsideringDomainsCrypto
             // Type of company
-            chbProfileNotConsideringTypeCompanyAgency.apply {
-                isChecked = currentUser.notConsideringTypeCompanyAgency
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfileNotConsideringTypeCompanyOutsource.apply {
-                isChecked = currentUser.notConsideringTypeCompanyOutsource
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfileNotConsideringTypeCompanyOutStaff.apply {
-                isChecked = currentUser.notConsideringTypeCompanyOutStaff
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfileNotConsideringTypeCompanyProduct.apply {
-                isChecked = currentUser.notConsideringTypeCompanyProduct
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfileNotConsideringTypeCompanyStartUp.apply {
-                isChecked = currentUser.notConsideringTypeCompanyStartUp
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
+            chbProfileNotConsideringTypeCompanyAgency.isChecked =
+                currentUser.notConsideringTypeCompanyAgency
+            chbProfileNotConsideringTypeCompanyOutsource.isChecked =
+                currentUser.notConsideringTypeCompanyOutsource
+            chbProfileNotConsideringTypeCompanyOutStaff.isChecked =
+                currentUser.notConsideringTypeCompanyOutStaff
+            chbProfileNotConsideringTypeCompanyProduct.isChecked =
+                currentUser.notConsideringTypeCompanyProduct
+            chbProfileNotConsideringTypeCompanyStartUp.isChecked =
+                currentUser.notConsideringTypeCompanyStartUp
 
             // Question for employer
-            etProfileQuestionForEmployer.apply {
-                setText(currentUser.questionForEmployer)
-                setOnCheckedChangeListenerExtSaveData { saveUserData() }
-            }
+            etProfileQuestionForEmployer.setText(currentUser.questionForEmployer)
 
             // Preferred language - Check Boxes
-            chbProfilePreferredLanguageUkrainian.apply {
-                isChecked = currentUser.preferredLanguageUkrainian
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
-            chbProfilePreferredLanguageEnglish.apply {
-                isChecked = currentUser.preferredLanguageEnglish
-                setOnCheckedChangeListener { _, _ -> saveUserData() }
-            }
+            chbProfilePreferredLanguageUkrainian.isChecked = currentUser.preferredLanguageUkrainian
+            chbProfilePreferredLanguageEnglish.isChecked = currentUser.preferredLanguageEnglish
 
             // Spinner Preferred method of communication - Spinner
-            spProfilePreferredCommunication.apply {
-                setDropDownValuesExtWithCurrentPosition(R.array.profile_methods, currentUser.preferredCommunication)
-                setOnCheckedChangeListenerExtSaveData { saveUserData() }
-            }
+            spProfilePreferredCommunication.setDropDownValuesExtWithCurrentPosition(
+                R.array.profile_methods,
+                currentUser.preferredCommunication
+            )
 
             // Delete account - Button
             tvDeleteAccount.setOnClickListener {
@@ -255,9 +185,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
     }
 
-    private fun saveUserData() {
+    override fun onPause() {
+        saveUIUserData()
+        super.onPause()
+    }
+
+    private fun saveUIUserData() {
         binding.apply {
-            val temUIUser = User(
+            currentUser = User(
                 profileStatus = rbgStatusSearch.checkedRadioButtonId.toString(),
                 position = etProfilePosition.text.toString(),
                 category = spProfileCategory.selectedItem.toString(),
@@ -295,8 +230,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 preferredLanguageEnglish = chbProfilePreferredLanguageEnglish.isChecked,
                 preferredCommunication = spProfilePreferredCommunication.selectedItem.toString()
             )
-            currentUser = temUIUser
-            userViewModel.updateUserFromUI(screen = FragmentScreen.PROFILE, uiUser = temUIUser)
         }
+        userViewModel.updateUserFromUI(screen = FragmentScreen.PROFILE, uiUser = currentUser)
     }
 }

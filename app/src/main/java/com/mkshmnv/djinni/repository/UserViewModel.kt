@@ -27,7 +27,9 @@ class UserViewModel : ViewModel() {
     val authorizedUser: LiveData<User?> = _authorizedUser
 
     init {
-        Logger.logcat("UserViewModel init - $this", tag)
+        authorizedUser.observeForever {
+            Logger.logcat("init authorizedUser - $it", tag)
+        }
     }
 
     fun signUpUser(
@@ -116,7 +118,6 @@ class UserViewModel : ViewModel() {
 
     fun updateUserFromUI(screen: FragmentScreen, uiUser: User) {
         val currentAuthUser = _authorizedUser.value ?: User() // TODO: fix to nullable
-        Logger.logcat("fun updateUserFromUI - get User from Firebase: $currentAuthUser", tag)
         val tempUser = when (screen) {
             FragmentScreen.PROFILE -> {
                 // TODO: fix this
@@ -367,26 +368,17 @@ class UserViewModel : ViewModel() {
                 )
             }
         }
-        _authorizedUser.postValue(tempUser)
-        Logger.logcat("fun updateUserFromUI - upload user data to firebase: $tempUser", tag)
         viewModelScope.launch {
             val result = userRepository.updateUserToDatabase(tempUser)
             when (result) {
-                is Resource.Success -> _authorizedUser.postValue(result.data)
+                is Resource.Success -> {
+                    Logger.logcat("fun updateUserFromUI - upload user data to firebase: $tempUser", tag)
+                    _authorizedUser.postValue(result.data)
+                }
                 is Resource.Error -> Logger.logcat(result.message, "$tag updateUserFromUI")
                 else -> Logger.logcat(context.getString(R.string.error), "$tag updateUserFromUI")
             }
         }
-    }
-
-    fun navigateToDashboard(navControllerProvider: NavControllerProvider) {
-        val navController = navControllerProvider.getNavController()
-        navController.navigate(R.id.nav_dashboard_web_view) // TODO: change to action nav_dashboard
-    }
-
-    fun navigateToProfile(navControllerProvider: NavControllerProvider) {
-        val navController = navControllerProvider.getNavController()
-        navController.navigate(R.id.nav_profile_pager_fragment) // TODO: change to action nav_dashboard
     }
 
     fun signOut() {
