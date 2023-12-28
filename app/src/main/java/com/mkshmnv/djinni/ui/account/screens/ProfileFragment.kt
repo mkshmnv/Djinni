@@ -18,16 +18,19 @@ import com.mkshmnv.djinni.ui.viewBinding
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding: FragmentProfileBinding by viewBinding()
     private val userViewModel: UserViewModel by activityViewModels()
-    private var currentUser: User = User(uid = "User is null")
 
     // For logger
     private val tag = this::class.simpleName!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        currentUser = userViewModel.authorizedUser.value ?: throw Exception("User is null")
-        Logger.logcat("onViewCreated with user - $currentUser", tag)
+        Logger.logcat("onViewCreated", this::class.simpleName)
 
+        userViewModel.authorizedUser.observeForever {
+            loadUserDataToUI(it)
+        }
+
+        // Save UI user when Drawer open
         val drawerLayout = requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout)
         drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
@@ -43,8 +46,17 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             override fun onDrawerStateChanged(newState: Int) {
             }
         })
+    }
 
-        // Set user data to UI and listeners
+    override fun onPause() {
+        // Save UI user when screen on pause
+        saveUIUserData()
+        super.onPause()
+    }
+
+    // Set user data to UI
+    private fun loadUserDataToUI(currentUser: User) {
+        Logger.logcat("loadUserDataToUI", tag)
         binding.apply {
             // Status search - Radio Button Group
             rbgStatusSearch.check(currentUser.profileStatus.toInt())
@@ -176,23 +188,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 R.array.profile_methods,
                 currentUser.preferredCommunication
             )
-
-            // Delete account - Button
-            tvDeleteAccount.setOnClickListener {
-                Logger.logcat("Delete Account does not implement!", tag)
-                // TODO Implement Delete Account fun
-            }
         }
-    }
-
-    override fun onPause() {
-        saveUIUserData()
-        super.onPause()
     }
 
     private fun saveUIUserData() {
         binding.apply {
-            currentUser = User(
+            val tempUser = User(
                 profileStatus = rbgStatusSearch.checkedRadioButtonId.toString(),
                 position = etProfilePosition.text.toString(),
                 category = spProfileCategory.selectedItem.toString(),
@@ -230,7 +231,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 preferredLanguageEnglish = chbProfilePreferredLanguageEnglish.isChecked,
                 preferredCommunication = spProfilePreferredCommunication.selectedItem.toString()
             )
+            userViewModel.updateUserFromUI(FragmentScreen.PROFILE, uiUser = tempUser)
         }
-        userViewModel.updateUserFromUI(screen = FragmentScreen.PROFILE, uiUser = currentUser)
     }
 }

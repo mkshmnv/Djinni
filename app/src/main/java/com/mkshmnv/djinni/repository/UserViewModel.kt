@@ -23,8 +23,8 @@ class UserViewModel : ViewModel() {
     private val userRepository = UserRepository()
 
     // LiveData
-    private val _authorizedUser = MutableLiveData<User?>()
-    val authorizedUser: LiveData<User?> = _authorizedUser
+    private val _authorizedUser = MutableLiveData<User>()
+    val authorizedUser: LiveData<User> = _authorizedUser
 
     init {
         authorizedUser.observeForever {
@@ -99,7 +99,11 @@ class UserViewModel : ViewModel() {
         viewModelScope.launch {
             val result = userRepository.loginUser(email, password)
             when (result) {
-                is Resource.Success -> _authorizedUser.postValue(result.data)
+                is Resource.Success -> {
+                    val user = result.data
+                    _authorizedUser.postValue(user)
+                }
+
                 is Resource.Error -> Logger.logcat(result.message, "$tag updateUserFromUI")
                 else -> Logger.logcat(context.getString(R.string.error), "$tag updateUserFromUI")
             }
@@ -176,9 +180,10 @@ class UserViewModel : ViewModel() {
                     notificationsFromEmployers = currentAuthUser.notificationsFromEmployers,
                     automaticOffers = currentAuthUser.automaticOffers,
                     // Stop list
-                    search = currentAuthUser.search,
-                    blockedRecruiters = currentAuthUser.blockedRecruiters,
-                    hiddenVacancies = currentAuthUser.hiddenVacancies
+                    stopListSearch = currentAuthUser.stopListSearch,
+                    stopListBlockedCompanies = currentAuthUser.stopListBlockedCompanies,
+                    stopListBlockedRecruiters = currentAuthUser.stopListBlockedRecruiters,
+                    stopListBlockedVacancies = currentAuthUser.stopListBlockedVacancies
                 )
             }
 
@@ -238,9 +243,10 @@ class UserViewModel : ViewModel() {
                     notificationsFromEmployers = currentAuthUser.notificationsFromEmployers,
                     automaticOffers = currentAuthUser.automaticOffers,
                     // Stop list
-                    search = currentAuthUser.search,
-                    blockedRecruiters = currentAuthUser.blockedRecruiters,
-                    hiddenVacancies = currentAuthUser.hiddenVacancies
+                    stopListSearch = currentAuthUser.stopListSearch,
+                    stopListBlockedCompanies = currentAuthUser.stopListBlockedCompanies,
+                    stopListBlockedRecruiters = currentAuthUser.stopListBlockedRecruiters,
+                    stopListBlockedVacancies = currentAuthUser.stopListBlockedVacancies
                 )
             }
 
@@ -300,9 +306,10 @@ class UserViewModel : ViewModel() {
                     notificationsFromEmployers = uiUser.notificationsFromEmployers,
                     automaticOffers = uiUser.automaticOffers,
                     // Stop list
-                    search = currentAuthUser.search,
-                    blockedRecruiters = currentAuthUser.blockedRecruiters,
-                    hiddenVacancies = currentAuthUser.hiddenVacancies
+                    stopListSearch = currentAuthUser.stopListSearch,
+                    stopListBlockedCompanies = currentAuthUser.stopListBlockedCompanies,
+                    stopListBlockedRecruiters = currentAuthUser.stopListBlockedRecruiters,
+                    stopListBlockedVacancies = currentAuthUser.stopListBlockedVacancies
                 )
             }
 
@@ -362,9 +369,10 @@ class UserViewModel : ViewModel() {
                     notificationsFromEmployers = currentAuthUser.notificationsFromEmployers,
                     automaticOffers = currentAuthUser.automaticOffers,
                     // Stop list
-                    search = uiUser.search,
-                    blockedRecruiters = uiUser.blockedRecruiters,
-                    hiddenVacancies = uiUser.hiddenVacancies
+                    stopListSearch = uiUser.stopListSearch,
+                    stopListBlockedCompanies = uiUser.stopListBlockedCompanies,
+                    stopListBlockedRecruiters = uiUser.stopListBlockedRecruiters,
+                    stopListBlockedVacancies = uiUser.stopListBlockedVacancies
                 )
             }
         }
@@ -372,9 +380,14 @@ class UserViewModel : ViewModel() {
             val result = userRepository.updateUserToDatabase(tempUser)
             when (result) {
                 is Resource.Success -> {
-                    Logger.logcat("fun updateUserFromUI - upload user data to firebase: $tempUser", tag)
-                    _authorizedUser.postValue(result.data)
+                    val user = result.data
+                    Logger.logcat(
+                        "updateUserFromUI - upload user data to firebase Success: $user",
+                        tag
+                    )
+                    _authorizedUser.postValue(user)
                 }
+
                 is Resource.Error -> Logger.logcat(result.message, "$tag updateUserFromUI")
                 else -> Logger.logcat(context.getString(R.string.error), "$tag updateUserFromUI")
             }
@@ -383,6 +396,6 @@ class UserViewModel : ViewModel() {
 
     fun signOut() {
         userRepository.signOut()
-        _authorizedUser.postValue(null)
+        _authorizedUser.postValue(User(uid = "null"))
     }
 }

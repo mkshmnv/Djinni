@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:padding="25dp">
 
-<!--        Status search-->
+        <!--        Status search-->
         <RadioGroup
             android:id="@+id/rbgStatusSearch"
             android:layout_width="match_parent"
@@ -45,33 +45,16 @@
 
         </RadioGroup>
 
-<!--        Buttons view and raise profile-->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!--        Buttons view and raise profile-->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_raise_profile"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:visibility="visible">
+            android:layout_margin="20dp"
+            android:text="@string/profile_raise_your_profile"
+            android:tooltipText="" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_view_profile"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
-                android:layout_weight="1"
-                android:text="@string/profile_view_your_profile" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_raise_profile"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
-                android:layout_weight="1"
-                android:text="@string/profile_raise_your_profile"
-                android:tooltipText="" />
-
-        </LinearLayout>
-
-<!--        Position-->
+        <!--        Position-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
@@ -85,7 +68,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Category-->
+        <!--        Category-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
@@ -99,7 +82,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Skills-->
+        <!--        Skills-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_field"
@@ -114,7 +97,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Experience-->
+        <!--        Experience-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="90dp"
@@ -149,7 +132,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Salary expectations-->
+        <!--        Salary expectations-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="90dp"
@@ -182,7 +165,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Country of residence-->
+        <!--        Country of residence-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="180dp"
@@ -224,7 +207,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        City-->
+        <!--        City-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="110dp"
@@ -254,7 +237,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        English level-->
+        <!--        English level-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="230dp"
@@ -312,7 +295,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Experience description-->
+        <!--        Experience description-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_field"
@@ -327,7 +310,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Achievements-->
+        <!--        Achievements-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_field"
@@ -342,7 +325,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Expectations-->
+        <!--        Expectations-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="285dp"
@@ -371,7 +354,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Employment options-->
+        <!--        Employment options-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -429,7 +412,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Hourly rate-->
+        <!--        Hourly rate-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
@@ -445,7 +428,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Not considering-->
+        <!--        Not considering-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="210dp"
@@ -553,7 +536,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Question for the employer-->
+        <!--        Question for the employer-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_field"
@@ -568,7 +551,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Preferred language of communication-->
+        <!--        Preferred language of communication-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
@@ -600,7 +583,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Preferred method of communication-->
+        <!--        Preferred method of communication-->
         <com.mkshmnv.djinni.ui.CustomViewWithTitle
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
@@ -614,7 +597,7 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-<!--        Update profile-->
+        <!--        Update profile-->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_update_profile"
             android:layout_width="wrap_content"
@@ -623,7 +606,7 @@
             android:layout_marginTop="15dp"
             android:text="@string/update_profile" />
 
-<!--        Delete account-->
+        <!--        Delete account-->
         <LinearLayout
             android:id="@+id/ll_delete_account"
             android:layout_width="match_parent"
@@ -646,11 +629,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/delete_account"
                 android:textSize="12sp" />
-
         </LinearLayout>
-
     </LinearLayout>
-
 </androidx.core.widget.NestedScrollView>
 
 
