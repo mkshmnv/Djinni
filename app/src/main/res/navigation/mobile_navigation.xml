@@ -25,19 +25,19 @@
 
     <fragment
         android:id="@+id/nav_my_profile"
-        android:name="com.mkshmnv.djinni.ui.profile.screens.ProfileFragment"
+        android:name="com.mkshmnv.djinni.ui.account.screens.ProfileFragment"
         android:label="@string/profile_menu"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/nav_my_account"
-        android:name="com.mkshmnv.djinni.ui.profile.screens.AccountFragment"
+        android:name="com.mkshmnv.djinni.ui.account.screens.ContactsFragment"
         android:label="Account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_contacts" />
 
     <fragment
         android:id="@+id/nav_profile_pager_fragment"
-        android:name="com.mkshmnv.djinni.ui.profile.ProfilePagerFragment"
+        android:name="com.mkshmnv.djinni.ui.account.AccountPagerFragment"
         android:label="@string/my_account"
         tools:layout="@layout/fragment_profile" />
 

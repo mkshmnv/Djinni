@@ -7,7 +7,7 @@
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_user_avatar"
         android:layout_width="70dp"
         android:layout_height="70dp"
@@ -17,22 +17,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_profile_24dp" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="40dp"
         android:text="@string/nav_user_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/iv_user_avatar"
         app:layout_constraintTop_toTopOf="@+id/iv_user_avatar" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_user_surname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="40dp"
         android:text="@string/nav_user_surname"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16sp"
@@ -40,12 +40,12 @@
         app:layout_constraintStart_toEndOf="@+id/iv_user_avatar"
         app:layout_constraintTop_toBottomOf="@+id/tv_user_name" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_user_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nav_user_status"
-        android:textColor="#00FF89"
+        android:textColor="#2FFF00"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

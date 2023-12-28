@@ -1,4 +1,4 @@
-package com.mkshmnv.djinni.ui.profile
+package com.mkshmnv.djinni.ui.account
 
 import android.os.Bundle
 import android.view.View
@@ -9,7 +9,7 @@ import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentPagerBinding
 import com.mkshmnv.djinni.ui.viewBinding
 
-class ProfilePagerFragment : Fragment(R.layout.fragment_pager) {
+class AccountPagerFragment : Fragment(R.layout.fragment_pager) {
     private val binding: FragmentPagerBinding by viewBinding()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -17,7 +17,7 @@ class ProfilePagerFragment : Fragment(R.layout.fragment_pager) {
         Logger.logcat("onViewCreated", this::class.simpleName)
 
         binding.apply {
-            viewpager.adapter = ProfilePagerAdapter(requireActivity())
+            viewpager.adapter = AccountPagerAdapter(requireActivity())
             TabLayoutMediator(tabs, viewpager) { tab, position ->
                 tab.text = when (position) {
                     0 -> getString(R.string.tab_profile)

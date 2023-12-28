@@ -2,8 +2,8 @@
     <string name="app_name">Djinni</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_user_name">Name</string>
-    <string name="nav_user_surname">Surname</string>
+    <string name="nav_user_name">FirstName</string>
+    <string name="nav_user_surname">SecondName</string>
     <string name="nav_user_status">online</string>
     <string name="nav_user_avatar">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -30,7 +30,7 @@
     <string name="menu_salaries">Salaries</string>
 
     <!-- TabLayout Profile - start -->
-    <string name="my_account">My account</string>
+    <string name="my_account">Account</string>
     <string name="tab_profile">Profile</string>
     <string name="tab_subs">Subs</string>
     <string name="tab_cv">CV</string>
@@ -462,7 +462,7 @@
     <!-- Stoplist - end -->
 
     <!-- Exit -->
-    <string name="menu_exit">Exit</string>
+    <string name="menu_exit">Logout</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

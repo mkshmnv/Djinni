@@ -23,11 +23,13 @@ class UserViewModel : ViewModel() {
     private val userRepository = UserRepository()
 
     // LiveData
-    private val _authorizedUser = MutableLiveData<User?>()
-    val authorizedUser: LiveData<User?> = _authorizedUser
+    private val _authorizedUser = MutableLiveData<User>()
+    val authorizedUser: LiveData<User> = _authorizedUser
 
     init {
-        Logger.logcat("UserViewModel init - $this", tag)
+        authorizedUser.observeForever {
+            Logger.logcat("init authorizedUser - $it", tag)
+        }
     }
 
     fun signUpUser(
@@ -97,7 +99,11 @@ class UserViewModel : ViewModel() {
         viewModelScope.launch {
             val result = userRepository.loginUser(email, password)
             when (result) {
-                is Resource.Success -> _authorizedUser.postValue(result.data)
+                is Resource.Success -> {
+                    val user = result.data
+                    _authorizedUser.postValue(user)
+                }
+
                 is Resource.Error -> Logger.logcat(result.message, "$tag updateUserFromUI")
                 else -> Logger.logcat(context.getString(R.string.error), "$tag updateUserFromUI")
             }
@@ -116,7 +122,6 @@ class UserViewModel : ViewModel() {
 
     fun updateUserFromUI(screen: FragmentScreen, uiUser: User) {
         val currentAuthUser = _authorizedUser.value ?: User() // TODO: fix to nullable
-        Logger.logcat("fun updateUserFromUI - get User from Firebase: $currentAuthUser", tag)
         val tempUser = when (screen) {
             FragmentScreen.PROFILE -> {
                 // TODO: fix this
@@ -175,9 +180,10 @@ class UserViewModel : ViewModel() {
                     notificationsFromEmployers = currentAuthUser.notificationsFromEmployers,
                     automaticOffers = currentAuthUser.automaticOffers,
                     // Stop list
-                    search = currentAuthUser.search,
-                    blockedRecruiters = currentAuthUser.blockedRecruiters,
-                    hiddenVacancies = currentAuthUser.hiddenVacancies
+                    stopListSearch = currentAuthUser.stopListSearch,
+                    stopListBlockedCompanies = currentAuthUser.stopListBlockedCompanies,
+                    stopListBlockedRecruiters = currentAuthUser.stopListBlockedRecruiters,
+                    stopListBlockedVacancies = currentAuthUser.stopListBlockedVacancies
                 )
             }
 
@@ -237,9 +243,10 @@ class UserViewModel : ViewModel() {
                     notificationsFromEmployers = currentAuthUser.notificationsFromEmployers,
                     automaticOffers = currentAuthUser.automaticOffers,
                     // Stop list
-                    search = currentAuthUser.search,
-                    blockedRecruiters = currentAuthUser.blockedRecruiters,
-                    hiddenVacancies = currentAuthUser.hiddenVacancies
+                    stopListSearch = currentAuthUser.stopListSearch,
+                    stopListBlockedCompanies = currentAuthUser.stopListBlockedCompanies,
+                    stopListBlockedRecruiters = currentAuthUser.stopListBlockedRecruiters,
+                    stopListBlockedVacancies = currentAuthUser.stopListBlockedVacancies
                 )
             }
 
@@ -299,9 +306,10 @@ class UserViewModel : ViewModel() {
                     notificationsFromEmployers = uiUser.notificationsFromEmployers,
                     automaticOffers = uiUser.automaticOffers,
                     // Stop list
-                    search = currentAuthUser.search,
-                    blockedRecruiters = currentAuthUser.blockedRecruiters,
-                    hiddenVacancies = currentAuthUser.hiddenVacancies
+                    stopListSearch = currentAuthUser.stopListSearch,
+                    stopListBlockedCompanies = currentAuthUser.stopListBlockedCompanies,
+                    stopListBlockedRecruiters = currentAuthUser.stopListBlockedRecruiters,
+                    stopListBlockedVacancies = currentAuthUser.stopListBlockedVacancies
                 )
             }
 
@@ -361,36 +369,33 @@ class UserViewModel : ViewModel() {
                     notificationsFromEmployers = currentAuthUser.notificationsFromEmployers,
                     automaticOffers = currentAuthUser.automaticOffers,
                     // Stop list
-                    search = uiUser.search,
-                    blockedRecruiters = uiUser.blockedRecruiters,
-                    hiddenVacancies = uiUser.hiddenVacancies
+                    stopListSearch = uiUser.stopListSearch,
+                    stopListBlockedCompanies = uiUser.stopListBlockedCompanies,
+                    stopListBlockedRecruiters = uiUser.stopListBlockedRecruiters,
+                    stopListBlockedVacancies = uiUser.stopListBlockedVacancies
                 )
             }
         }
-        _authorizedUser.postValue(tempUser)
-        Logger.logcat("fun updateUserFromUI - upload user data to firebase: $tempUser", tag)
         viewModelScope.launch {
             val result = userRepository.updateUserToDatabase(tempUser)
             when (result) {
-                is Resource.Success -> _authorizedUser.postValue(result.data)
+                is Resource.Success -> {
+                    val user = result.data
+                    Logger.logcat(
+                        "updateUserFromUI - upload user data to firebase Success: $user",
+                        tag
+                    )
+                    _authorizedUser.postValue(user)
+                }
+
                 is Resource.Error -> Logger.logcat(result.message, "$tag updateUserFromUI")
                 else -> Logger.logcat(context.getString(R.string.error), "$tag updateUserFromUI")
             }
         }
     }
 
-    fun navigateToDashboard(navControllerProvider: NavControllerProvider) {
-        val navController = navControllerProvider.getNavController()
-        navController.navigate(R.id.nav_dashboard_web_view) // TODO: change to action nav_dashboard
-    }
-
-    fun navigateToProfile(navControllerProvider: NavControllerProvider) {
-        val navController = navControllerProvider.getNavController()
-        navController.navigate(R.id.nav_profile_pager_fragment) // TODO: change to action nav_dashboard
-    }
-
     fun signOut() {
         userRepository.signOut()
-        _authorizedUser.postValue(null)
+        _authorizedUser.postValue(User(uid = "null"))
     }
 }

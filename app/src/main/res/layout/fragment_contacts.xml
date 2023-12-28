@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    tools:context=".ui.profile.screens.AccountFragment">
+    tools:context=".ui.account.screens.ContactsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -157,14 +157,6 @@
             <!--           TODO app:hint="@string/account_cv_hint"-->
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_account_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:text="@string/account_save" />
 
     </LinearLayout>
 

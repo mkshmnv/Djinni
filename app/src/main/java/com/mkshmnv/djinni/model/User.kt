@@ -55,9 +55,10 @@ data class User(
     val notificationsFromEmployers: String = "2131296749",
     val automaticOffers: Boolean = true,
     // Stop list
-    val search: String = "",
-    val blockedRecruiters: String = "",
-    val hiddenVacancies: String = ""
+    val stopListSearch: String = "",
+    val stopListBlockedCompanies: String = "",
+    val stopListBlockedRecruiters: String = "",
+    val stopListBlockedVacancies: String = ""
     // Hires
     // TODO: impl Hires
 )

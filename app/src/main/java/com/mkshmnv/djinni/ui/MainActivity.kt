@@ -1,8 +1,8 @@
 package com.mkshmnv.djinni.ui
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             setContentView(root)
             setSupportActionBar(appBarMain.toolbar)
+            val drawerLayout: DrawerLayout = drawerLayout
             navController = findNavController(R.id.nav_host_fragment_content_main)
             appBarConfiguration = AppBarConfiguration(
                 setOf(
@@ -31,36 +32,32 @@ class MainActivity : AppCompatActivity() {
                     R.id.nav_dashboard_web_view,
                     R.id.nav_inbox,
                     R.id.nav_jobs,
+                    R.id.nav_exit
 //                    R.id.nav_salaries TODO: impl SalaryFragment
-                )
+                ), drawerLayout
             )
             setupActionBarWithNavController(navController, appBarConfiguration)
-            bottomNavMenu.setupWithNavController(navController)
+            navView.setupWithNavController(navController)
+
+            val header = navView.getHeaderView(0)
+            header.setOnClickListener {
+                navController.navigate(R.id.nav_profile_pager_fragment)
+                drawerLayout.closeDrawers()
+            }
         }
 
-        // Show/Hide bottom menu and app bar for auth fragments
+        // Show/Hide app bar for auth fragments
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id in appBarConfiguration.topLevelDestinations) {
-                showAppBarWithBottomMenu(true)
+                this.supportActionBar?.show()
             } else {
-                showAppBarWithBottomMenu(false)
+                this.supportActionBar?.hide()
             }
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
-    // Show/Hide bottom menu and app bar
-    private fun showAppBarWithBottomMenu(show: Boolean) {
-        if (show) {
-            binding.bottomNavMenu.visibility = View.VISIBLE
-            this.supportActionBar?.show()
-        } else {
-            this.supportActionBar?.hide()
-            binding.bottomNavMenu.visibility = View.GONE
-        }
     }
 
     @Deprecated("Deprecated in Java")
