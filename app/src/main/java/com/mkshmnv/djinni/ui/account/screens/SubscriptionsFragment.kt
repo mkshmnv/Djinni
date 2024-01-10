@@ -2,7 +2,6 @@ package com.mkshmnv.djinni.ui.account.screens
 
 import android.os.Bundle
 import android.view.View
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mkshmnv.djinni.Logger
@@ -31,22 +30,6 @@ class SubscriptionsFragment : Fragment(R.layout.fragment_subscriptions) {
         binding.llSubsDisableAll.setOnClickListener {
             // TODO: impl fun
         }
-
-        val drawerLayout = requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout)
-        drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
-            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-            }
-
-            override fun onDrawerOpened(drawerView: View) {
-                saveUIUserData()
-            }
-
-            override fun onDrawerClosed(drawerView: View) {
-            }
-
-            override fun onDrawerStateChanged(newState: Int) {
-            }
-        })
     }
 
     override fun onPause() {

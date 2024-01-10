@@ -36,7 +36,7 @@
         tools:layout="@layout/fragment_contacts" />
 
     <fragment
-        android:id="@+id/nav_profile_pager_fragment"
+        android:id="@+id/nav_account_pager_fragment"
         android:name="com.mkshmnv.djinni.ui.account.AccountPagerFragment"
         android:label="@string/my_account"
         tools:layout="@layout/fragment_profile" />
@@ -45,5 +45,9 @@
         android:id="@+id/nav_auth_pager_fragment"
         android:name="com.mkshmnv.djinni.ui.auth.AuthPagerFragment"
         android:label="@string/authentication"
-        tools:layout="@layout/fragment_sign_in" />
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_nav_auth_pager_fragment_to_nav_account_pager_fragment"
+            app:destination="@id/nav_account_pager_fragment" />
+    </fragment>
 </navigation>

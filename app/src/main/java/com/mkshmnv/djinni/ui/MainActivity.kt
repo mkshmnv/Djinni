@@ -2,7 +2,6 @@ package com.mkshmnv.djinni.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -24,11 +23,10 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             setContentView(root)
             setSupportActionBar(appBarMain.toolbar)
-            val drawerLayout: DrawerLayout = drawerLayout
             navController = findNavController(R.id.nav_host_fragment_content_main)
             appBarConfiguration = AppBarConfiguration(
                 setOf(
-                    R.id.nav_profile_pager_fragment,
+                    R.id.nav_account_pager_fragment,
                     R.id.nav_dashboard_web_view,
                     R.id.nav_inbox,
                     R.id.nav_jobs,
@@ -41,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
             val header = navView.getHeaderView(0)
             header.setOnClickListener {
-                navController.navigate(R.id.nav_profile_pager_fragment)
+                navController.navigate(R.id.nav_account_pager_fragment)
                 drawerLayout.closeDrawers()
             }
         }

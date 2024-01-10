@@ -3,7 +3,6 @@ package com.mkshmnv.djinni.ui.account.screens
 import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mkshmnv.djinni.Logger
@@ -24,39 +23,17 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Logger.logcat("onViewCreated", this::class.simpleName)
-
-        userViewModel.authorizedUser.observeForever {
-            loadUserDataToUI(it)
-        }
-
-        // Save UI user when Drawer open
-        val drawerLayout = requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout)
-        drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
-            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-            }
-
-            override fun onDrawerOpened(drawerView: View) {
-                saveUIUserData()
-            }
-
-            override fun onDrawerClosed(drawerView: View) {
-            }
-
-            override fun onDrawerStateChanged(newState: Int) {
-            }
-        })
+        Logger.logcat("onViewCreated", tag)
+        userViewModel.authorizedUser.value?.let { loadUserDataToUI(it) }
     }
 
-    override fun onPause() {
-        // Save UI user when screen on pause
+    override fun onStop() {
+        super.onStop()
+        Logger.logcat("onStop", tag)
         saveUIUserData()
-        super.onPause()
     }
 
-    // Set user data to UI
     private fun loadUserDataToUI(currentUser: User) {
-        Logger.logcat("loadUserDataToUI", tag)
         binding.apply {
             // Status search - Radio Button Group
             rbgStatusSearch.check(currentUser.profileStatus.toInt())

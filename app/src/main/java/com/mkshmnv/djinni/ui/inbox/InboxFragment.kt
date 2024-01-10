@@ -15,8 +15,7 @@ class InboxFragment : Fragment(R.layout.fragment_inbox) {
         super.onViewCreated(view, savedInstanceState)
         Logger.logcat("onViewCreated", this::class.simpleName)
         binding = FragmentInboxBinding.bind(view)
-        // Ініціалізація TabLayout
-        binding.tabLayout.apply {
+        binding.upperTabs.apply {
             // TODO impl filters!
             addTab(newTab().setText(getString(R.string.inbox_filter_all)))
             addTab(newTab().setText(getString(R.string.inbox_filter_new)))

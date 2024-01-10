@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.Toast
 import com.mkshmnv.djinni.databinding.FragmentSignInBinding
@@ -19,7 +18,6 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userViewModel.apply {
-            Logger.logcat("onViewCreated with user - $this", this::class.simpleName!!)
             binding.apply {
                 // TODO: TESTs remove
                 etSignInEmail.setText("1@1.com")
@@ -37,7 +35,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             authorizedUser.observe(viewLifecycleOwner) {
                 showLoadingAnimation(false)
                 val navController = findNavController()
-                navController.navigate(R.id.nav_profile_pager_fragment)
+                navController.navigate(R.id.action_nav_auth_pager_fragment_to_nav_account_pager_fragment)
                 onDestroy()
             }
         }
@@ -48,13 +46,8 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         userViewModel.authorizedUser.removeObservers(viewLifecycleOwner)
     }
 
-
     private fun showLoadingAnimation(show: Boolean) {
         // TODO: impl showLoadingAnimation
-        if (!show) {
-            Toast.show("Loading...")
-        } else {
-            Toast.show("Welcome!")
-        }
+        if (!show) Toast.show("Loading...") else Toast.show("Welcome!")
     }
 }
