@@ -121,6 +121,7 @@ class UserViewModel : ViewModel() {
     }
 
     fun updateUserFromUI(screen: FragmentScreen, uiUser: User) {
+        Logger.logcat("updateUserFromUI - $screen", tag)
         val currentAuthUser = _authorizedUser.value ?: User() // TODO: fix to nullable
         val tempUser = when (screen) {
             FragmentScreen.PROFILE -> {

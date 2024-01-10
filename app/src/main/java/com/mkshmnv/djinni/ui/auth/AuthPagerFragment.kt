@@ -7,6 +7,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentPagerBinding
+import com.mkshmnv.djinni.ui.PagerAdapter
+import com.mkshmnv.djinni.ui.auth.screens.SignInFragment
+import com.mkshmnv.djinni.ui.auth.screens.SignUpFragment
 import com.mkshmnv.djinni.ui.viewBinding
 
 class AuthPagerFragment : Fragment(R.layout.fragment_pager) {
@@ -16,14 +19,18 @@ class AuthPagerFragment : Fragment(R.layout.fragment_pager) {
         super.onViewCreated(view, savedInstanceState)
         Logger.logcat("onViewCreated", this::class.simpleName)
 
+        val tabFragments = arrayOf(
+            getString(R.string.auth_sign_in) to SignInFragment(),
+            getString(R.string.auth_sign_up) to SignUpFragment()
+        )
+
+        val pagerAdapter = PagerAdapter(this, tabFragments)
+
         binding.apply {
-            viewpager.adapter = AuthPagerAdapter(requireActivity())
-            TabLayoutMediator(tabs, viewpager) { tab, position ->
-                tab.text = when (position) {
-                    0 -> getString(R.string.auth_sign_in)
-                    1 -> getString(R.string.auth_sign_up)
-                    else -> getString(R.string.error)
-                }
+            viewPager.adapter = pagerAdapter
+            viewPager.offscreenPageLimit = tabFragments.size
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                tab.text = tabFragments[position].first
             }.attach()
         }
     }
