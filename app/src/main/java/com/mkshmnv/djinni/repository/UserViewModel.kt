@@ -1,11 +1,11 @@
 package com.mkshmnv.djinni.repository
 
+import android.app.Application
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mkshmnv.djinni.App
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.Toast
@@ -14,10 +14,9 @@ import com.mkshmnv.djinni.model.FragmentScreen
 import com.mkshmnv.djinni.model.User
 import kotlinx.coroutines.launch
 
-class UserViewModel : ViewModel() {
+class UserViewModel(application: Application) : AndroidViewModel(application) {
     // For logger
     private val tag = this::class.simpleName!!
-    private val context = App.instance
 
     // Get repository
     private val userRepository = UserRepository()
@@ -26,12 +25,6 @@ class UserViewModel : ViewModel() {
     private val _authorizedUser = MutableLiveData<User>()
     val authorizedUser: LiveData<User> = _authorizedUser
 
-    init {
-        authorizedUser.observeForever {
-            Logger.logcat("init authorizedUser - $it", tag)
-        }
-    }
-
     fun signUpUser(
         etEmail: AppCompatEditText, etPass: AppCompatEditText, etConfPass: AppCompatEditText
     ) {
@@ -39,33 +32,22 @@ class UserViewModel : ViewModel() {
         val pass = etPass.text.toString()
         val confPass = etConfPass.text.toString()
         when {
-            email.isEmpty() -> {
-                etEmail.error = context.getString(R.string.auth_field_email_is_empty)
-            }
+            email.isEmpty() -> etEmail.error = R.string.auth_field_email_is_empty.getRes()
 
-            email.isEmail() -> {
-                etEmail.error = context.getString(R.string.auth_email_is_not_valid)
-            }
+            email.isEmail() -> etEmail.error = R.string.auth_email_is_not_valid.getRes()
 
-            pass.isEmpty() -> {
-                etPass.error = context.getString(R.string.auth_field_password_is_empty)
-            }
+            pass.isEmpty() -> etPass.error = R.string.auth_field_password_is_empty.getRes()
 
-            pass.length < 6 -> {
-                etPass.error = context.getString(R.string.auth_password_is_too_short)
-            }
+            pass.length < 6 -> etPass.error = R.string.auth_password_is_too_short.getRes()
 
-            confPass.isEmpty() -> {
-                etConfPass.error = context.getString(R.string.auth_field_confirm_password_is_empty)
-            }
+            confPass.isEmpty() -> etConfPass.error =
+                R.string.auth_field_confirm_password_is_empty.getRes()
 
-            confPass.length < 6 -> {
-                etConfPass.error = context.getString(R.string.auth_password_is_too_short)
-            }
+            confPass.length < 6 -> etConfPass.error = R.string.auth_password_is_too_short.getRes()
 
             pass != confPass -> {
-                etPass.error = context.getString(R.string.auth_passwords_do_not_match)
-                etConfPass.error = context.getString(R.string.auth_passwords_do_not_match)
+                etPass.error = R.string.auth_passwords_do_not_match.getRes()
+                etConfPass.error = R.string.auth_passwords_do_not_match.getRes()
             }
 
             else -> {
@@ -75,20 +57,14 @@ class UserViewModel : ViewModel() {
                         is Resource.Success -> {
                             signInUser(email, pass)
                             Toast.showWithLogger(
-                                context.getString(R.string.auth_welcome_to_djinni),
+                                R.string.auth_welcome_to_djinni.getRes(),
                                 "$tag signUpUser"
                             )
                         }
 
-                        is Resource.Error -> {
-                            Toast.showWithLogger(result.message, "$tag signUpUser")
-                        }
+                        is Resource.Error -> Toast.showWithLogger(result.message, "$tag signUpUser")
 
-                        else -> {
-                            Toast.showWithLogger(
-                                context.getString(R.string.error), "$tag signUpUser"
-                            )
-                        }
+                        else -> Toast.showWithLogger(R.string.error.getRes(), "$tag signUpUser")
                     }
                 }
             }
@@ -105,7 +81,7 @@ class UserViewModel : ViewModel() {
                 }
 
                 is Resource.Error -> Logger.logcat(result.message, "$tag updateUserFromUI")
-                else -> Logger.logcat(context.getString(R.string.error), "$tag updateUserFromUI")
+                else -> Logger.logcat(R.string.error.getRes(), "$tag updateUserFromUI")
             }
         }
     }
@@ -121,7 +97,8 @@ class UserViewModel : ViewModel() {
     }
 
     fun updateUserFromUI(screen: FragmentScreen, uiUser: User) {
-        Logger.logcat("updateUserFromUI - $screen", tag)
+        Logger.logcat("updateUserFromUI screen - $screen", tag)
+        Logger.logcat("updateUserFromUI uiUser - $uiUser", tag)
         val currentAuthUser = _authorizedUser.value ?: User() // TODO: fix to nullable
         val tempUser = when (screen) {
             FragmentScreen.PROFILE -> {
@@ -130,61 +107,61 @@ class UserViewModel : ViewModel() {
                     uid = currentAuthUser.uid,
                     // Profile
                     profileStatus = uiUser.profileStatus,
-                    position = uiUser.position,
-                    category = uiUser.category,
-                    skills = uiUser.skills,
-                    experienceProgress = uiUser.experienceProgress,
-                    salary = uiUser.salary,
-                    country = uiUser.country,
-                    online = uiUser.online,
-                    leave = uiUser.leave,
-                    relocation = uiUser.relocation,
-                    city = uiUser.city,
-                    cityMoving = uiUser.cityMoving,
-                    englishLevel = uiUser.englishLevel,
-                    experienceDescription = uiUser.experienceDescription,
-                    achievements = uiUser.achievements,
-                    expectation = uiUser.expectation,
-                    expectationCombatant = uiUser.expectationCombatant,
-                    employmentOptionsRemote = uiUser.employmentOptionsRemote,
-                    employmentOptionsOffice = uiUser.employmentOptionsOffice,
-                    employmentOptionsPartTime = uiUser.employmentOptionsPartTime,
-                    employmentOptionsFreelance = uiUser.employmentOptionsFreelance,
-                    hourlyRate = uiUser.hourlyRate,
-                    notConsideringDomainsAdult = uiUser.notConsideringDomainsAdult,
-                    notConsideringDomainsGambling = uiUser.notConsideringDomainsGambling,
-                    notConsideringDomainsDating = uiUser.notConsideringDomainsDating,
-                    notConsideringDomainsGameDev = uiUser.notConsideringDomainsGameDev,
-                    notConsideringDomainsCrypto = uiUser.notConsideringDomainsCrypto,
-                    notConsideringTypeCompanyAgency = uiUser.notConsideringTypeCompanyAgency,
-                    notConsideringTypeCompanyOutsource = uiUser.notConsideringTypeCompanyOutsource,
-                    notConsideringTypeCompanyOutStaff = uiUser.notConsideringTypeCompanyOutStaff,
-                    notConsideringTypeCompanyProduct = uiUser.notConsideringTypeCompanyProduct,
-                    notConsideringTypeCompanyStartUp = uiUser.notConsideringTypeCompanyStartUp,
-                    questionForEmployer = uiUser.questionForEmployer,
-                    preferredLanguageUkrainian = uiUser.preferredLanguageUkrainian,
-                    preferredLanguageEnglish = uiUser.preferredLanguageEnglish,
-                    preferredCommunication = uiUser.preferredCommunication,
+                    profilePosition = uiUser.profilePosition,
+                    profileCategory = uiUser.profileCategory,
+                    profileSkills = uiUser.profileSkills,
+                    profileExpProgress = uiUser.profileExpProgress,
+                    profileSalary = uiUser.profileSalary,
+                    profileCountry = uiUser.profileCountry,
+                    profileOnline = uiUser.profileOnline,
+                    profileLeave = uiUser.profileLeave,
+                    profileRelocation = uiUser.profileRelocation,
+                    profileCity = uiUser.profileCity,
+                    profileCityMoving = uiUser.profileCityMoving,
+                    profileEngLevel = uiUser.profileEngLevel,
+                    profileExpDescription = uiUser.profileExpDescription,
+                    profileAchievements = uiUser.profileAchievements,
+                    profileExpectation = uiUser.profileExpectation,
+                    profileCombatant = uiUser.profileCombatant,
+                    profileOptionRemote = uiUser.profileOptionRemote,
+                    profileOptionOffice = uiUser.profileOptionOffice,
+                    profileOptionPartTime = uiUser.profileOptionPartTime,
+                    profileOptionFreelance = uiUser.profileOptionFreelance,
+                    profileHourlyRate = uiUser.profileHourlyRate,
+                    profileNotAdult = uiUser.profileNotAdult,
+                    profileNotGambling = uiUser.profileNotGambling,
+                    profileNotDating = uiUser.profileNotDating,
+                    profileNotGameDev = uiUser.profileNotGameDev,
+                    profileNotCrypto = uiUser.profileNotCrypto,
+                    profileNotAgency = uiUser.profileNotAgency,
+                    profileNotOutsource = uiUser.profileNotOutsource,
+                    profileNotOutStaff = uiUser.profileNotOutStaff,
+                    profileNotProduct = uiUser.profileNotProduct,
+                    profileNotStartUp = uiUser.profileNotStartUp,
+                    profileQuesToEmployer = uiUser.profileQuesToEmployer,
+                    profilePrefUkrainian = uiUser.profilePrefUkrainian,
+                    profilePrefEnglish = uiUser.profilePrefEnglish,
+                    profilePrefComm = uiUser.profilePrefComm,
                     // Contacts and CV
-                    fullName = currentAuthUser.fullName,
-                    email = currentAuthUser.email,
-                    skype = currentAuthUser.skype,
-                    phone = currentAuthUser.phone,
-                    telegram = currentAuthUser.telegram,
-                    whatsApp = currentAuthUser.whatsApp,
-                    linkedIn = currentAuthUser.linkedIn,
-                    gitHub = currentAuthUser.gitHub,
-                    portfolio = currentAuthUser.portfolio,
-                    cv = currentAuthUser.cv,
+                    contactsFullName = currentAuthUser.contactsFullName,
+                    contactsEmail = currentAuthUser.contactsEmail,
+                    contactsSkype = currentAuthUser.contactsSkype,
+                    contactsPhone = currentAuthUser.contactsPhone,
+                    contactsTelegram = currentAuthUser.contactsTelegram,
+                    contactsWhatsApp = currentAuthUser.contactsWhatsApp,
+                    contactsLinkedIn = currentAuthUser.contactsLinkedIn,
+                    contactsGitHub = currentAuthUser.contactsGitHub,
+                    contactsPortfolio = currentAuthUser.contactsPortfolio,
+                    contactsCV = currentAuthUser.contactsCV,
                     // Subscriptions
-                    accordingVacancies = currentAuthUser.accordingVacancies,
-                    notificationsFromEmployers = currentAuthUser.notificationsFromEmployers,
-                    automaticOffers = currentAuthUser.automaticOffers,
+                    subsVacancies = currentAuthUser.subsVacancies,
+                    subsNotifications = currentAuthUser.subsNotifications,
+                    subsAutoOffers = currentAuthUser.subsAutoOffers,
                     // Stop list
                     stopListSearch = currentAuthUser.stopListSearch,
-                    stopListBlockedCompanies = currentAuthUser.stopListBlockedCompanies,
-                    stopListBlockedRecruiters = currentAuthUser.stopListBlockedRecruiters,
-                    stopListBlockedVacancies = currentAuthUser.stopListBlockedVacancies
+                    stopListBlockCompanies = currentAuthUser.stopListBlockCompanies,
+                    stopListBlockRecruiters = currentAuthUser.stopListBlockRecruiters,
+                    stopListBlockVacancies = currentAuthUser.stopListBlockVacancies
                 )
             }
 
@@ -193,124 +170,124 @@ class UserViewModel : ViewModel() {
                     uid = currentAuthUser.uid,
                     // Profile
                     profileStatus = currentAuthUser.profileStatus,
-                    position = currentAuthUser.position,
-                    category = currentAuthUser.category,
-                    skills = currentAuthUser.skills,
-                    experienceProgress = currentAuthUser.experienceProgress,
-                    salary = currentAuthUser.salary,
-                    country = currentAuthUser.country,
-                    online = currentAuthUser.online,
-                    leave = currentAuthUser.leave,
-                    relocation = currentAuthUser.relocation,
-                    city = currentAuthUser.city,
-                    cityMoving = currentAuthUser.cityMoving,
-                    englishLevel = currentAuthUser.englishLevel,
-                    experienceDescription = currentAuthUser.experienceDescription,
-                    achievements = currentAuthUser.achievements,
-                    expectation = currentAuthUser.expectation,
-                    expectationCombatant = currentAuthUser.expectationCombatant,
-                    employmentOptionsRemote = currentAuthUser.employmentOptionsRemote,
-                    employmentOptionsOffice = currentAuthUser.employmentOptionsOffice,
-                    employmentOptionsPartTime = currentAuthUser.employmentOptionsPartTime,
-                    employmentOptionsFreelance = currentAuthUser.employmentOptionsFreelance,
-                    hourlyRate = currentAuthUser.hourlyRate,
-                    notConsideringDomainsAdult = currentAuthUser.notConsideringDomainsAdult,
-                    notConsideringDomainsGambling = currentAuthUser.notConsideringDomainsGambling,
-                    notConsideringDomainsDating = currentAuthUser.notConsideringDomainsDating,
-                    notConsideringDomainsGameDev = currentAuthUser.notConsideringDomainsGameDev,
-                    notConsideringDomainsCrypto = currentAuthUser.notConsideringDomainsCrypto,
-                    notConsideringTypeCompanyAgency = currentAuthUser.notConsideringTypeCompanyAgency,
-                    notConsideringTypeCompanyOutsource = currentAuthUser.notConsideringTypeCompanyOutsource,
-                    notConsideringTypeCompanyOutStaff = currentAuthUser.notConsideringTypeCompanyOutStaff,
-                    notConsideringTypeCompanyProduct = currentAuthUser.notConsideringTypeCompanyProduct,
-                    notConsideringTypeCompanyStartUp = currentAuthUser.notConsideringTypeCompanyStartUp,
-                    questionForEmployer = currentAuthUser.questionForEmployer,
-                    preferredLanguageUkrainian = currentAuthUser.preferredLanguageUkrainian,
-                    preferredLanguageEnglish = currentAuthUser.preferredLanguageEnglish,
-                    preferredCommunication = currentAuthUser.preferredCommunication,
+                    profilePosition = currentAuthUser.profilePosition,
+                    profileCategory = currentAuthUser.profileCategory,
+                    profileSkills = currentAuthUser.profileSkills,
+                    profileExpProgress = currentAuthUser.profileExpProgress,
+                    profileSalary = currentAuthUser.profileSalary,
+                    profileCountry = currentAuthUser.profileCountry,
+                    profileOnline = currentAuthUser.profileOnline,
+                    profileLeave = currentAuthUser.profileLeave,
+                    profileRelocation = currentAuthUser.profileRelocation,
+                    profileCity = currentAuthUser.profileCity,
+                    profileCityMoving = currentAuthUser.profileCityMoving,
+                    profileEngLevel = currentAuthUser.profileEngLevel,
+                    profileExpDescription = currentAuthUser.profileExpDescription,
+                    profileAchievements = currentAuthUser.profileAchievements,
+                    profileExpectation = currentAuthUser.profileExpectation,
+                    profileCombatant = currentAuthUser.profileCombatant,
+                    profileOptionRemote = currentAuthUser.profileOptionRemote,
+                    profileOptionOffice = currentAuthUser.profileOptionOffice,
+                    profileOptionPartTime = currentAuthUser.profileOptionPartTime,
+                    profileOptionFreelance = currentAuthUser.profileOptionFreelance,
+                    profileHourlyRate = currentAuthUser.profileHourlyRate,
+                    profileNotAdult = currentAuthUser.profileNotAdult,
+                    profileNotGambling = currentAuthUser.profileNotGambling,
+                    profileNotDating = currentAuthUser.profileNotDating,
+                    profileNotGameDev = currentAuthUser.profileNotGameDev,
+                    profileNotCrypto = currentAuthUser.profileNotCrypto,
+                    profileNotAgency = currentAuthUser.profileNotAgency,
+                    profileNotOutsource = currentAuthUser.profileNotOutsource,
+                    profileNotOutStaff = currentAuthUser.profileNotOutStaff,
+                    profileNotProduct = currentAuthUser.profileNotProduct,
+                    profileNotStartUp = currentAuthUser.profileNotStartUp,
+                    profileQuesToEmployer = currentAuthUser.profileQuesToEmployer,
+                    profilePrefUkrainian = currentAuthUser.profilePrefUkrainian,
+                    profilePrefEnglish = currentAuthUser.profilePrefEnglish,
+                    profilePrefComm = currentAuthUser.profilePrefComm,
                     // Contacts and CV
-                    fullName = uiUser.fullName,
-                    email = uiUser.email,
-                    skype = uiUser.skype,
-                    phone = uiUser.phone,
-                    telegram = uiUser.telegram,
-                    whatsApp = uiUser.whatsApp,
-                    linkedIn = uiUser.linkedIn,
-                    gitHub = uiUser.gitHub,
-                    portfolio = uiUser.portfolio,
-                    cv = uiUser.cv,
+                    contactsFullName = uiUser.contactsFullName,
+                    contactsEmail = uiUser.contactsEmail,
+                    contactsSkype = uiUser.contactsSkype,
+                    contactsPhone = uiUser.contactsPhone,
+                    contactsTelegram = uiUser.contactsTelegram,
+                    contactsWhatsApp = uiUser.contactsWhatsApp,
+                    contactsLinkedIn = uiUser.contactsLinkedIn,
+                    contactsGitHub = uiUser.contactsGitHub,
+                    contactsPortfolio = uiUser.contactsPortfolio,
+                    contactsCV = uiUser.contactsCV,
                     // Subscriptions
-                    accordingVacancies = currentAuthUser.accordingVacancies,
-                    notificationsFromEmployers = currentAuthUser.notificationsFromEmployers,
-                    automaticOffers = currentAuthUser.automaticOffers,
+                    subsVacancies = currentAuthUser.subsVacancies,
+                    subsNotifications = currentAuthUser.subsNotifications,
+                    subsAutoOffers = currentAuthUser.subsAutoOffers,
                     // Stop list
                     stopListSearch = currentAuthUser.stopListSearch,
-                    stopListBlockedCompanies = currentAuthUser.stopListBlockedCompanies,
-                    stopListBlockedRecruiters = currentAuthUser.stopListBlockedRecruiters,
-                    stopListBlockedVacancies = currentAuthUser.stopListBlockedVacancies
+                    stopListBlockCompanies = currentAuthUser.stopListBlockCompanies,
+                    stopListBlockRecruiters = currentAuthUser.stopListBlockRecruiters,
+                    stopListBlockVacancies = currentAuthUser.stopListBlockVacancies
                 )
             }
 
-            FragmentScreen.SUBSCRIPTIONS -> {
+            FragmentScreen.SUBS -> {
                 User(
                     uid = currentAuthUser.uid,
                     // Profile
                     profileStatus = currentAuthUser.profileStatus,
-                    position = currentAuthUser.position,
-                    category = currentAuthUser.category,
-                    skills = currentAuthUser.skills,
-                    experienceProgress = currentAuthUser.experienceProgress,
-                    salary = currentAuthUser.salary,
-                    country = currentAuthUser.country,
-                    online = currentAuthUser.online,
-                    leave = currentAuthUser.leave,
-                    relocation = currentAuthUser.relocation,
-                    city = currentAuthUser.city,
-                    cityMoving = currentAuthUser.cityMoving,
-                    englishLevel = currentAuthUser.englishLevel,
-                    experienceDescription = currentAuthUser.experienceDescription,
-                    achievements = currentAuthUser.achievements,
-                    expectation = currentAuthUser.expectation,
-                    expectationCombatant = currentAuthUser.expectationCombatant,
-                    employmentOptionsRemote = currentAuthUser.employmentOptionsRemote,
-                    employmentOptionsOffice = currentAuthUser.employmentOptionsOffice,
-                    employmentOptionsPartTime = currentAuthUser.employmentOptionsPartTime,
-                    employmentOptionsFreelance = currentAuthUser.employmentOptionsFreelance,
-                    hourlyRate = currentAuthUser.hourlyRate,
-                    notConsideringDomainsAdult = currentAuthUser.notConsideringDomainsAdult,
-                    notConsideringDomainsGambling = currentAuthUser.notConsideringDomainsGambling,
-                    notConsideringDomainsDating = currentAuthUser.notConsideringDomainsDating,
-                    notConsideringDomainsGameDev = currentAuthUser.notConsideringDomainsGameDev,
-                    notConsideringDomainsCrypto = currentAuthUser.notConsideringDomainsCrypto,
-                    notConsideringTypeCompanyAgency = currentAuthUser.notConsideringTypeCompanyAgency,
-                    notConsideringTypeCompanyOutsource = currentAuthUser.notConsideringTypeCompanyOutsource,
-                    notConsideringTypeCompanyOutStaff = currentAuthUser.notConsideringTypeCompanyOutStaff,
-                    notConsideringTypeCompanyProduct = currentAuthUser.notConsideringTypeCompanyProduct,
-                    notConsideringTypeCompanyStartUp = currentAuthUser.notConsideringTypeCompanyStartUp,
-                    questionForEmployer = currentAuthUser.questionForEmployer,
-                    preferredLanguageUkrainian = currentAuthUser.preferredLanguageUkrainian,
-                    preferredLanguageEnglish = currentAuthUser.preferredLanguageEnglish,
-                    preferredCommunication = currentAuthUser.preferredCommunication,
+                    profilePosition = currentAuthUser.profilePosition,
+                    profileCategory = currentAuthUser.profileCategory,
+                    profileSkills = currentAuthUser.profileSkills,
+                    profileExpProgress = currentAuthUser.profileExpProgress,
+                    profileSalary = currentAuthUser.profileSalary,
+                    profileCountry = currentAuthUser.profileCountry,
+                    profileOnline = currentAuthUser.profileOnline,
+                    profileLeave = currentAuthUser.profileLeave,
+                    profileRelocation = currentAuthUser.profileRelocation,
+                    profileCity = currentAuthUser.profileCity,
+                    profileCityMoving = currentAuthUser.profileCityMoving,
+                    profileEngLevel = currentAuthUser.profileEngLevel,
+                    profileExpDescription = currentAuthUser.profileExpDescription,
+                    profileAchievements = currentAuthUser.profileAchievements,
+                    profileExpectation = currentAuthUser.profileExpectation,
+                    profileCombatant = currentAuthUser.profileCombatant,
+                    profileOptionRemote = currentAuthUser.profileOptionRemote,
+                    profileOptionOffice = currentAuthUser.profileOptionOffice,
+                    profileOptionPartTime = currentAuthUser.profileOptionPartTime,
+                    profileOptionFreelance = currentAuthUser.profileOptionFreelance,
+                    profileHourlyRate = currentAuthUser.profileHourlyRate,
+                    profileNotAdult = currentAuthUser.profileNotAdult,
+                    profileNotGambling = currentAuthUser.profileNotGambling,
+                    profileNotDating = currentAuthUser.profileNotDating,
+                    profileNotGameDev = currentAuthUser.profileNotGameDev,
+                    profileNotCrypto = currentAuthUser.profileNotCrypto,
+                    profileNotAgency = currentAuthUser.profileNotAgency,
+                    profileNotOutsource = currentAuthUser.profileNotOutsource,
+                    profileNotOutStaff = currentAuthUser.profileNotOutStaff,
+                    profileNotProduct = currentAuthUser.profileNotProduct,
+                    profileNotStartUp = currentAuthUser.profileNotStartUp,
+                    profileQuesToEmployer = currentAuthUser.profileQuesToEmployer,
+                    profilePrefUkrainian = currentAuthUser.profilePrefUkrainian,
+                    profilePrefEnglish = currentAuthUser.profilePrefEnglish,
+                    profilePrefComm = currentAuthUser.profilePrefComm,
                     // Contacts and CV
-                    fullName = currentAuthUser.fullName,
-                    email = currentAuthUser.email,
-                    skype = currentAuthUser.skype,
-                    phone = currentAuthUser.phone,
-                    telegram = currentAuthUser.telegram,
-                    whatsApp = currentAuthUser.whatsApp,
-                    linkedIn = currentAuthUser.linkedIn,
-                    gitHub = currentAuthUser.gitHub,
-                    portfolio = currentAuthUser.portfolio,
-                    cv = currentAuthUser.cv,
+                    contactsFullName = currentAuthUser.contactsFullName,
+                    contactsEmail = currentAuthUser.contactsEmail,
+                    contactsSkype = currentAuthUser.contactsSkype,
+                    contactsPhone = currentAuthUser.contactsPhone,
+                    contactsTelegram = currentAuthUser.contactsTelegram,
+                    contactsWhatsApp = currentAuthUser.contactsWhatsApp,
+                    contactsLinkedIn = currentAuthUser.contactsLinkedIn,
+                    contactsGitHub = currentAuthUser.contactsGitHub,
+                    contactsPortfolio = currentAuthUser.contactsPortfolio,
+                    contactsCV = currentAuthUser.contactsCV,
                     // Subscriptions
-                    accordingVacancies = uiUser.accordingVacancies,
-                    notificationsFromEmployers = uiUser.notificationsFromEmployers,
-                    automaticOffers = uiUser.automaticOffers,
+                    subsVacancies = uiUser.subsVacancies,
+                    subsNotifications = uiUser.subsNotifications,
+                    subsAutoOffers = uiUser.subsAutoOffers,
                     // Stop list
                     stopListSearch = currentAuthUser.stopListSearch,
-                    stopListBlockedCompanies = currentAuthUser.stopListBlockedCompanies,
-                    stopListBlockedRecruiters = currentAuthUser.stopListBlockedRecruiters,
-                    stopListBlockedVacancies = currentAuthUser.stopListBlockedVacancies
+                    stopListBlockCompanies = currentAuthUser.stopListBlockCompanies,
+                    stopListBlockRecruiters = currentAuthUser.stopListBlockRecruiters,
+                    stopListBlockVacancies = currentAuthUser.stopListBlockVacancies
                 )
             }
 
@@ -319,79 +296,77 @@ class UserViewModel : ViewModel() {
                     uid = currentAuthUser.uid,
                     // Profile
                     profileStatus = currentAuthUser.profileStatus,
-                    position = currentAuthUser.position,
-                    category = currentAuthUser.category,
-                    skills = currentAuthUser.skills,
-                    experienceProgress = currentAuthUser.experienceProgress,
-                    salary = currentAuthUser.salary,
-                    country = currentAuthUser.country,
-                    online = currentAuthUser.online,
-                    leave = currentAuthUser.leave,
-                    relocation = currentAuthUser.relocation,
-                    city = currentAuthUser.city,
-                    cityMoving = currentAuthUser.cityMoving,
-                    englishLevel = currentAuthUser.englishLevel,
-                    experienceDescription = currentAuthUser.experienceDescription,
-                    achievements = currentAuthUser.achievements,
-                    expectation = currentAuthUser.expectation,
-                    expectationCombatant = currentAuthUser.expectationCombatant,
-                    employmentOptionsRemote = currentAuthUser.employmentOptionsRemote,
-                    employmentOptionsOffice = currentAuthUser.employmentOptionsOffice,
-                    employmentOptionsPartTime = currentAuthUser.employmentOptionsPartTime,
-                    employmentOptionsFreelance = currentAuthUser.employmentOptionsFreelance,
-                    hourlyRate = currentAuthUser.hourlyRate,
-                    notConsideringDomainsAdult = currentAuthUser.notConsideringDomainsAdult,
-                    notConsideringDomainsGambling = currentAuthUser.notConsideringDomainsGambling,
-                    notConsideringDomainsDating = currentAuthUser.notConsideringDomainsDating,
-                    notConsideringDomainsGameDev = currentAuthUser.notConsideringDomainsGameDev,
-                    notConsideringDomainsCrypto = currentAuthUser.notConsideringDomainsCrypto,
-                    notConsideringTypeCompanyAgency = currentAuthUser.notConsideringTypeCompanyAgency,
-                    notConsideringTypeCompanyOutsource = currentAuthUser.notConsideringTypeCompanyOutsource,
-                    notConsideringTypeCompanyOutStaff = currentAuthUser.notConsideringTypeCompanyOutStaff,
-                    notConsideringTypeCompanyProduct = currentAuthUser.notConsideringTypeCompanyProduct,
-                    notConsideringTypeCompanyStartUp = currentAuthUser.notConsideringTypeCompanyStartUp,
-                    questionForEmployer = currentAuthUser.questionForEmployer,
-                    preferredLanguageUkrainian = currentAuthUser.preferredLanguageUkrainian,
-                    preferredLanguageEnglish = currentAuthUser.preferredLanguageEnglish,
-                    preferredCommunication = currentAuthUser.preferredCommunication,
+                    profilePosition = currentAuthUser.profilePosition,
+                    profileCategory = currentAuthUser.profileCategory,
+                    profileSkills = currentAuthUser.profileSkills,
+                    profileExpProgress = currentAuthUser.profileExpProgress,
+                    profileSalary = currentAuthUser.profileSalary,
+                    profileCountry = currentAuthUser.profileCountry,
+                    profileOnline = currentAuthUser.profileOnline,
+                    profileLeave = currentAuthUser.profileLeave,
+                    profileRelocation = currentAuthUser.profileRelocation,
+                    profileCity = currentAuthUser.profileCity,
+                    profileCityMoving = currentAuthUser.profileCityMoving,
+                    profileEngLevel = currentAuthUser.profileEngLevel,
+                    profileExpDescription = currentAuthUser.profileExpDescription,
+                    profileAchievements = currentAuthUser.profileAchievements,
+                    profileExpectation = currentAuthUser.profileExpectation,
+                    profileCombatant = currentAuthUser.profileCombatant,
+                    profileOptionRemote = currentAuthUser.profileOptionRemote,
+                    profileOptionOffice = currentAuthUser.profileOptionOffice,
+                    profileOptionPartTime = currentAuthUser.profileOptionPartTime,
+                    profileOptionFreelance = currentAuthUser.profileOptionFreelance,
+                    profileHourlyRate = currentAuthUser.profileHourlyRate,
+                    profileNotAdult = currentAuthUser.profileNotAdult,
+                    profileNotGambling = currentAuthUser.profileNotGambling,
+                    profileNotDating = currentAuthUser.profileNotDating,
+                    profileNotGameDev = currentAuthUser.profileNotGameDev,
+                    profileNotCrypto = currentAuthUser.profileNotCrypto,
+                    profileNotAgency = currentAuthUser.profileNotAgency,
+                    profileNotOutsource = currentAuthUser.profileNotOutsource,
+                    profileNotOutStaff = currentAuthUser.profileNotOutStaff,
+                    profileNotProduct = currentAuthUser.profileNotProduct,
+                    profileNotStartUp = currentAuthUser.profileNotStartUp,
+                    profileQuesToEmployer = currentAuthUser.profileQuesToEmployer,
+                    profilePrefUkrainian = currentAuthUser.profilePrefUkrainian,
+                    profilePrefEnglish = currentAuthUser.profilePrefEnglish,
+                    profilePrefComm = currentAuthUser.profilePrefComm,
                     // Contacts and CV
-                    fullName = currentAuthUser.fullName,
-                    email = currentAuthUser.email,
-                    skype = currentAuthUser.skype,
-                    phone = currentAuthUser.phone,
-                    telegram = currentAuthUser.telegram,
-                    whatsApp = currentAuthUser.whatsApp,
-                    linkedIn = currentAuthUser.linkedIn,
-                    gitHub = currentAuthUser.gitHub,
-                    portfolio = currentAuthUser.portfolio,
-                    cv = currentAuthUser.cv,
+                    contactsFullName = currentAuthUser.contactsFullName,
+                    contactsEmail = currentAuthUser.contactsEmail,
+                    contactsSkype = currentAuthUser.contactsSkype,
+                    contactsPhone = currentAuthUser.contactsPhone,
+                    contactsTelegram = currentAuthUser.contactsTelegram,
+                    contactsWhatsApp = currentAuthUser.contactsWhatsApp,
+                    contactsLinkedIn = currentAuthUser.contactsLinkedIn,
+                    contactsGitHub = currentAuthUser.contactsGitHub,
+                    contactsPortfolio = currentAuthUser.contactsPortfolio,
+                    contactsCV = currentAuthUser.contactsCV,
                     // Subscriptions
-                    accordingVacancies = currentAuthUser.accordingVacancies,
-                    notificationsFromEmployers = currentAuthUser.notificationsFromEmployers,
-                    automaticOffers = currentAuthUser.automaticOffers,
+                    subsVacancies = currentAuthUser.subsVacancies,
+                    subsNotifications = currentAuthUser.subsNotifications,
+                    subsAutoOffers = currentAuthUser.subsAutoOffers,
                     // Stop list
                     stopListSearch = uiUser.stopListSearch,
-                    stopListBlockedCompanies = uiUser.stopListBlockedCompanies,
-                    stopListBlockedRecruiters = uiUser.stopListBlockedRecruiters,
-                    stopListBlockedVacancies = uiUser.stopListBlockedVacancies
+                    stopListBlockCompanies = uiUser.stopListBlockCompanies,
+                    stopListBlockRecruiters = uiUser.stopListBlockRecruiters,
+                    stopListBlockVacancies = uiUser.stopListBlockVacancies
                 )
             }
         }
+        Logger.logcat("updateUserFromUI tempUser - $tempUser", tag)
         viewModelScope.launch {
             val result = userRepository.updateUserToDatabase(tempUser)
             when (result) {
                 is Resource.Success -> {
                     val user = result.data
-                    Logger.logcat(
-                        "updateUserFromUI - upload user data to firebase Success: $user",
-                        tag
-                    )
                     _authorizedUser.postValue(user)
                 }
 
                 is Resource.Error -> Logger.logcat(result.message, "$tag updateUserFromUI")
-                else -> Logger.logcat(context.getString(R.string.error), "$tag updateUserFromUI")
+                else -> Logger.logcat(R.string.error.getRes(), "$tag updateUserFromUI")
             }
+
         }
     }
 
@@ -399,4 +374,7 @@ class UserViewModel : ViewModel() {
         userRepository.signOut()
         _authorizedUser.postValue(User(uid = "null"))
     }
+
+    // Extension function for get string from resources
+    private fun Int.getRes() = getApplication<Application>().getString(this)
 }

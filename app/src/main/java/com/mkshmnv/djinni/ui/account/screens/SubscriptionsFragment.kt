@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentSubscriptionsBinding
 import com.mkshmnv.djinni.model.FragmentScreen
@@ -15,59 +14,58 @@ import com.mkshmnv.djinni.ui.viewBinding
 class SubscriptionsFragment : Fragment(R.layout.fragment_subscriptions) {
     private val binding: FragmentSubscriptionsBinding by viewBinding()
     private val userViewModel: UserViewModel by activityViewModels()
-
-    // For logger
-    private val tag = this::class.simpleName!!
+    private lateinit var user: User
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Logger.logcat("onViewCreated", this::class.simpleName)
+        val currentUser = userViewModel.authorizedUser.value
+            ?: throw NullPointerException("AuthorizedUser is null")
+        user = User(
+            subsVacancies = currentUser.subsVacancies,
+            subsNotifications = currentUser.subsNotifications,
+            subsAutoOffers = currentUser.subsAutoOffers
+        )
+        loadUserData()
+        binding.apply {
+            rbgSubsNotifications.setOnCheckedChangeListener { _, _ ->
+                rbgSubsVacanciesActive(rbSubsNotificationsTelegram.isChecked)
+            }
 
-        userViewModel.authorizedUser.observeForever {
-            loadUserDataToUI(it)
-        }
-
-        binding.llSubsDisableAll.setOnClickListener {
-            // TODO: impl fun
+            llSubsDisableAll.setOnClickListener {
+                // TODO: implement disable all
+            }
         }
     }
 
     override fun onPause() {
-        saveUIUserData()
         super.onPause()
+        saveUserData()
     }
 
-    private fun loadUserDataToUI(currentUser: User) {
-        Logger.logcat("loadUserDataToUI", tag)
-        fun rbgSubsVacanciesActive(active: Boolean) {
-            binding.apply {
-                rbSubsVacanciesNotSend.isEnabled = !active
-                rbSubsVacanciesEmail.isEnabled = !active
-            }
-        }
+    private fun loadUserData() {
         binding.apply {
-            rbgSubsVacancies.check(currentUser.accordingVacancies.toInt())
-
+            rbgSubsVacancies.check(user.subsVacancies.toInt())
             rbgSubsNotifications.apply {
-                check(currentUser.notificationsFromEmployers.toInt())
+                check(user.subsNotifications.toInt())
                 rbgSubsVacanciesActive(rbSubsNotificationsTelegram.isChecked)
             }
-
-            chbSubsReceiveOffers.isChecked = currentUser.automaticOffers
+            chbSubsReceiveOffers.isChecked = user.subsAutoOffers
         }
     }
 
-    private fun saveUIUserData() {
+    private fun saveUserData() {
         binding.apply {
             val tempUser = User(
-                accordingVacancies = rbgSubsVacancies.checkedRadioButtonId.toString(),
-                notificationsFromEmployers = rbgSubsNotifications.checkedRadioButtonId.toString(),
-                automaticOffers = chbSubsReceiveOffers.isChecked,
+                subsVacancies = rbgSubsVacancies.checkedRadioButtonId.toString(),
+                subsNotifications = rbgSubsNotifications.checkedRadioButtonId.toString(),
+                subsAutoOffers = chbSubsReceiveOffers.isChecked,
             )
-            userViewModel.updateUserFromUI(
-                screen = FragmentScreen.SUBSCRIPTIONS,
-                uiUser = tempUser
-            )
+            userViewModel.updateUserFromUI(screen = FragmentScreen.SUBS, uiUser = tempUser)
         }
+    }
+
+    private fun rbgSubsVacanciesActive(active: Boolean) {
+        binding.rbSubsVacanciesNotSend.isEnabled = !active
+        binding.rbSubsVacanciesEmail.isEnabled = !active
     }
 }

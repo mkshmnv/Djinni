@@ -11,53 +11,86 @@ import com.mkshmnv.djinni.databinding.FragmentProfileBinding
 import com.mkshmnv.djinni.model.FragmentScreen
 import com.mkshmnv.djinni.model.User
 import com.mkshmnv.djinni.repository.UserViewModel
-import com.mkshmnv.djinni.setDropDownValuesExtWithCurrentPosition
+import com.mkshmnv.djinni.setPosition
 import com.mkshmnv.djinni.ui.viewBinding
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding: FragmentProfileBinding by viewBinding()
     private val userViewModel: UserViewModel by activityViewModels()
-
-    // For logger
-    private val tag = this::class.simpleName!!
+    private lateinit var user: User
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Logger.logcat("onViewCreated", tag)
-        userViewModel.authorizedUser.value?.let { loadUserDataToUI(it) }
+        val dataBaseUser = userViewModel.authorizedUser.value
+            ?: throw NullPointerException("AuthorizedUser is null")
+        user = User(
+            profileStatus = dataBaseUser.profileStatus,
+            profilePosition = dataBaseUser.profilePosition,
+            profileCategory = dataBaseUser.profileCategory,
+            profileSkills = dataBaseUser.profileSkills,
+            profileExpProgress = dataBaseUser.profileExpProgress,
+            profileSalary = dataBaseUser.profileSalary,
+            profileCountry = dataBaseUser.profileCountry,
+            profileOnline = dataBaseUser.profileOnline,
+            profileLeave = dataBaseUser.profileLeave,
+            profileRelocation = dataBaseUser.profileRelocation,
+            profileCity = dataBaseUser.profileCity,
+            profileCityMoving = dataBaseUser.profileCityMoving,
+            profileEngLevel = dataBaseUser.profileEngLevel,
+            profileExpDescription = dataBaseUser.profileExpDescription,
+            profileAchievements = dataBaseUser.profileAchievements,
+            profileExpectation = dataBaseUser.profileExpectation,
+            profileCombatant = dataBaseUser.profileCombatant,
+            profileOptionRemote = dataBaseUser.profileOptionRemote,
+            profileOptionOffice = dataBaseUser.profileOptionOffice,
+            profileOptionPartTime = dataBaseUser.profileOptionPartTime,
+            profileOptionFreelance = dataBaseUser.profileOptionFreelance,
+            profileHourlyRate = dataBaseUser.profileHourlyRate,
+            profileNotAdult = dataBaseUser.profileNotAdult,
+            profileNotGambling = dataBaseUser.profileNotGambling,
+            profileNotDating = dataBaseUser.profileNotDating,
+            profileNotGameDev = dataBaseUser.profileNotGameDev,
+            profileNotCrypto = dataBaseUser.profileNotCrypto,
+            profileNotAgency = dataBaseUser.profileNotAgency,
+            profileNotOutsource = dataBaseUser.profileNotOutsource,
+            profileNotOutStaff = dataBaseUser.profileNotOutStaff,
+            profileNotProduct = dataBaseUser.profileNotProduct,
+            profileNotStartUp = dataBaseUser.profileNotStartUp,
+            profileQuesToEmployer = dataBaseUser.profileQuesToEmployer,
+            profilePrefUkrainian = dataBaseUser.profilePrefUkrainian,
+            profilePrefEnglish = dataBaseUser.profilePrefEnglish,
+            profilePrefComm = dataBaseUser.profilePrefComm
+        )
+        loadUserData()
+
+        // Raise profile - Button TODO: impl
+        binding.btnRaiseProfile.setOnClickListener {
+            Logger.logcat("Button Raise Profile is clicked", this::class.simpleName!!)
+        }
     }
 
-    override fun onStop() {
-        super.onStop()
-        Logger.logcat("onStop", tag)
-        saveUIUserData()
+    override fun onPause() {
+        super.onPause()
+        saveUserData()
     }
 
-    private fun loadUserDataToUI(currentUser: User) {
+    private fun loadUserData() {
         binding.apply {
             // Status search - Radio Button Group
-            rbgStatusSearch.check(currentUser.profileStatus.toInt())
-
-            // Raise profile - Button TODO: impl
-            btnRaiseProfile.setOnClickListener {
-                Logger.logcat("Button Raise Profile is clicked", tag)
-            }
+            rbgStatusSearch.check(user.profileStatus.toInt())
 
             // Position - Edit Text
-            etProfilePosition.setText(currentUser.position)
+            etProfilePosition.setText(user.profilePosition)
 
             // Category - Spinner
-            spProfileCategory.setDropDownValuesExtWithCurrentPosition(
-                R.array.profile_categories,
-                currentUser.category
-            )
+            spProfileCategory.setPosition(R.array.profile_categories, user.profileCategory)
 
             // Skills - Edit Text
-            etProfileSkills.setText(currentUser.skills)
+            etProfileSkills.setText(user.profileSkills)
 
             // Experience - Seek Bar
             sbProfileExperience.apply {
-                progress = currentUser.experienceProgress
+                progress = user.profileExpProgress
                 setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                     override fun onProgressChanged(
                         seekBar: SeekBar?, progress: Int, fromUser: Boolean
@@ -82,133 +115,130 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                         }
                     }
 
-                    override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                    }
+                    override fun onStartTrackingTouch(seekBar: SeekBar?) {}
 
-                    override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                    }
+                    override fun onStopTrackingTouch(seekBar: SeekBar?) {}
                 })
             }
 
             // Salary expectation - Edit Text
-            etProfileSalary.setText(currentUser.salary)
+            etProfileSalary.setText(user.profileSalary)
 
             // Country of residence - Spinner
-            spProfileCountry.apply {
-                setDropDownValuesExtWithCurrentPosition(
-                    R.array.profile_countries,
-                    currentUser.country
-                )
-            }
-            chbProfileOnline.isChecked = currentUser.online
-            chbProfileLeaveCountry.isChecked = currentUser.leave
-            chbProfileRelocation.isChecked = currentUser.relocation
+            spProfileCountry.setPosition(R.array.profile_countries, user.profileCountry)
+            chbProfileOnline.isChecked = user.profileOnline
+            chbProfileLeaveCountry.isChecked = user.profileLeave
+            chbProfileRelocation.isChecked = user.profileRelocation
 
             // City - Edit Text
-            etProfileCity.setText(currentUser.city)
-            chbProfileCityMoving.isChecked = currentUser.cityMoving
+            etProfileCity.setText(user.profileCity)
+            chbProfileCityMoving.isChecked = user.profileCityMoving
 
             // English level - Radio Button Group
-            rbgProfileEnglishLevel.check(currentUser.englishLevel.toInt())
+            rbgProfileEnglishLevel.check(user.profileEngLevel.toInt())
 
             // Experience description - Edit Text
-            etProfileExperienceDescription.setText(currentUser.experienceDescription)
+            etProfileExperienceDescription.setText(user.profileExpDescription)
 
             // Achievements - Edit Text
-            etProfileAchievements.setText(currentUser.achievements)
+            etProfileAchievements.setText(user.profileAchievements)
 
             // Expectation - Edit Text
-            etProfileExpectation.setText(currentUser.expectation)
-            chbProfileExpectationCombatant.isChecked = currentUser.expectationCombatant
+            etProfileExpectation.setText(user.profileExpectation)
+            chbProfileExpectationCombatant.isChecked = user.profileCombatant
 
             // Employment options - Check Boxes
-            chbProfileEmploymentOptionsRemote.isChecked = currentUser.employmentOptionsRemote
-            chbProfileEmploymentOptionsOffice.isChecked = currentUser.employmentOptionsOffice
-            chbProfileEmploymentOptionsPartTime.isChecked = currentUser.employmentOptionsPartTime
-            chbProfileEmploymentOptionsFreelance.isChecked = currentUser.employmentOptionsFreelance
+            chbProfileEmploymentOptionsRemote.isChecked = user.profileOptionRemote
+            chbProfileEmploymentOptionsOffice.isChecked = user.profileOptionOffice
+            chbProfileEmploymentOptionsPartTime.isChecked = user.profileOptionPartTime
+            chbProfileEmploymentOptionsFreelance.isChecked = user.profileOptionFreelance
 
             // Hourly rate
-            etProfileHourlyRate.setText(currentUser.hourlyRate)
+            etProfileHourlyRate.setText(user.profileHourlyRate)
 
             // Not considering - Check Boxes
             // Domains
-            chbProfileNotConsideringDomainsAdult.isChecked = currentUser.notConsideringDomainsAdult
+            chbProfileNotConsideringDomainsAdult.isChecked = user.profileNotAdult
             chbProfileNotConsideringDomainsGambling.isChecked =
-                currentUser.notConsideringDomainsGambling
+                user.profileNotGambling
             chbProfileNotConsideringDomainsDating.isChecked =
-                currentUser.notConsideringDomainsDating
+                user.profileNotDating
             chbProfileNotConsideringDomainsGameDev.isChecked =
-                currentUser.notConsideringDomainsGameDev
+                user.profileNotGameDev
             chbProfileNotConsideringDomainsCrypto.isChecked =
-                currentUser.notConsideringDomainsCrypto
+                user.profileNotCrypto
             // Type of company
             chbProfileNotConsideringTypeCompanyAgency.isChecked =
-                currentUser.notConsideringTypeCompanyAgency
+                user.profileNotAgency
             chbProfileNotConsideringTypeCompanyOutsource.isChecked =
-                currentUser.notConsideringTypeCompanyOutsource
+                user.profileNotOutsource
             chbProfileNotConsideringTypeCompanyOutStaff.isChecked =
-                currentUser.notConsideringTypeCompanyOutStaff
+                user.profileNotOutStaff
             chbProfileNotConsideringTypeCompanyProduct.isChecked =
-                currentUser.notConsideringTypeCompanyProduct
+                user.profileNotProduct
             chbProfileNotConsideringTypeCompanyStartUp.isChecked =
-                currentUser.notConsideringTypeCompanyStartUp
+                user.profileNotStartUp
 
             // Question for employer
-            etProfileQuestionForEmployer.setText(currentUser.questionForEmployer)
+            etProfileQuestionForEmployer.setText(user.profileQuesToEmployer)
 
             // Preferred language - Check Boxes
-            chbProfilePreferredLanguageUkrainian.isChecked = currentUser.preferredLanguageUkrainian
-            chbProfilePreferredLanguageEnglish.isChecked = currentUser.preferredLanguageEnglish
+            chbProfilePreferredLanguageUkrainian.isChecked = user.profilePrefUkrainian
+            chbProfilePreferredLanguageEnglish.isChecked = user.profilePrefEnglish
 
             // Spinner Preferred method of communication - Spinner
-            spProfilePreferredCommunication.setDropDownValuesExtWithCurrentPosition(
+            spProfilePreferredCommunication.setPosition(
                 R.array.profile_methods,
-                currentUser.preferredCommunication
+                user.profilePrefComm
             )
         }
     }
 
-    private fun saveUIUserData() {
+    private fun saveUserData() {
         binding.apply {
+            // Get data from UI
             val tempUser = User(
                 profileStatus = rbgStatusSearch.checkedRadioButtonId.toString(),
-                position = etProfilePosition.text.toString(),
-                category = spProfileCategory.selectedItem.toString(),
-                skills = etProfileSkills.text.toString(),
-                experienceProgress = sbProfileExperience.progress,
-                salary = etProfileSalary.text.toString(),
-                country = spProfileCountry.selectedItem.toString(),
-                online = chbProfileOnline.isChecked,
-                leave = chbProfileLeaveCountry.isChecked,
-                relocation = chbProfileRelocation.isChecked,
-                city = etProfileCity.text.toString(),
-                cityMoving = chbProfileCityMoving.isChecked,
-                englishLevel = rbgProfileEnglishLevel.checkedRadioButtonId.toString(),
-                experienceDescription = etProfileExperienceDescription.text.toString(),
-                achievements = etProfileAchievements.text.toString(),
-                expectation = etProfileExpectation.text.toString(),
-                expectationCombatant = chbProfileExpectationCombatant.isChecked,
-                employmentOptionsRemote = chbProfileEmploymentOptionsRemote.isChecked,
-                employmentOptionsOffice = chbProfileEmploymentOptionsOffice.isChecked,
-                employmentOptionsPartTime = chbProfileEmploymentOptionsPartTime.isChecked,
-                employmentOptionsFreelance = chbProfileEmploymentOptionsFreelance.isChecked,
-                hourlyRate = etProfileHourlyRate.text.toString(),
-                notConsideringDomainsAdult = chbProfileNotConsideringDomainsAdult.isChecked,
-                notConsideringDomainsGambling = chbProfileNotConsideringDomainsGambling.isChecked,
-                notConsideringDomainsDating = chbProfileNotConsideringDomainsDating.isChecked,
-                notConsideringDomainsGameDev = chbProfileNotConsideringDomainsGameDev.isChecked,
-                notConsideringDomainsCrypto = chbProfileNotConsideringDomainsCrypto.isChecked,
-                notConsideringTypeCompanyAgency = chbProfileNotConsideringTypeCompanyAgency.isChecked,
-                notConsideringTypeCompanyOutsource = chbProfileNotConsideringTypeCompanyOutsource.isChecked,
-                notConsideringTypeCompanyOutStaff = chbProfileNotConsideringTypeCompanyOutStaff.isChecked,
-                notConsideringTypeCompanyProduct = chbProfileNotConsideringTypeCompanyProduct.isChecked,
-                notConsideringTypeCompanyStartUp = chbProfileNotConsideringTypeCompanyStartUp.isChecked,
-                questionForEmployer = etProfileQuestionForEmployer.text.toString(),
-                preferredLanguageUkrainian = chbProfilePreferredLanguageUkrainian.isChecked,
-                preferredLanguageEnglish = chbProfilePreferredLanguageEnglish.isChecked,
-                preferredCommunication = spProfilePreferredCommunication.selectedItem.toString()
+                profilePosition = etProfilePosition.text.toString(),
+                profileCategory = spProfileCategory.selectedItem.toString(),
+                profileSkills = etProfileSkills.text.toString(),
+                profileExpProgress = sbProfileExperience.progress,
+                profileSalary = etProfileSalary.text.toString(),
+                profileCountry = spProfileCountry.selectedItem.toString(),
+                profileOnline = chbProfileOnline.isChecked,
+                profileLeave = chbProfileLeaveCountry.isChecked,
+                profileRelocation = chbProfileRelocation.isChecked,
+                profileCity = etProfileCity.text.toString(),
+                profileCityMoving = chbProfileCityMoving.isChecked,
+                profileEngLevel = rbgProfileEnglishLevel.checkedRadioButtonId.toString(),
+                profileExpDescription = etProfileExperienceDescription.text.toString(),
+                profileAchievements = etProfileAchievements.text.toString(),
+                profileExpectation = etProfileExpectation.text.toString(),
+                profileCombatant = chbProfileExpectationCombatant.isChecked,
+                profileOptionRemote = chbProfileEmploymentOptionsRemote.isChecked,
+                profileOptionOffice = chbProfileEmploymentOptionsOffice.isChecked,
+                profileOptionPartTime = chbProfileEmploymentOptionsPartTime.isChecked,
+                profileOptionFreelance = chbProfileEmploymentOptionsFreelance.isChecked,
+                profileHourlyRate = etProfileHourlyRate.text.toString(),
+                profileNotAdult = chbProfileNotConsideringDomainsAdult.isChecked,
+                profileNotGambling = chbProfileNotConsideringDomainsGambling.isChecked,
+                profileNotDating = chbProfileNotConsideringDomainsDating.isChecked,
+                profileNotGameDev = chbProfileNotConsideringDomainsGameDev.isChecked,
+                profileNotCrypto = chbProfileNotConsideringDomainsCrypto.isChecked,
+                profileNotAgency = chbProfileNotConsideringTypeCompanyAgency.isChecked,
+                profileNotOutsource = chbProfileNotConsideringTypeCompanyOutsource.isChecked,
+                profileNotOutStaff = chbProfileNotConsideringTypeCompanyOutStaff.isChecked,
+                profileNotProduct = chbProfileNotConsideringTypeCompanyProduct.isChecked,
+                profileNotStartUp = chbProfileNotConsideringTypeCompanyStartUp.isChecked,
+                profileQuesToEmployer = etProfileQuestionForEmployer.text.toString(),
+                profilePrefUkrainian = chbProfilePreferredLanguageUkrainian.isChecked,
+                profilePrefEnglish = chbProfilePreferredLanguageEnglish.isChecked,
+                profilePrefComm = spProfilePreferredCommunication.selectedItem.toString()
             )
-            userViewModel.updateUserFromUI(FragmentScreen.PROFILE, uiUser = tempUser)
+            // Check user data if some changing save it to DB
+            if (tempUser != user) {
+                userViewModel.updateUserFromUI(FragmentScreen.PROFILE, uiUser = tempUser)
+            }
         }
     }
 }

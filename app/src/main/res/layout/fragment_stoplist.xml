@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".ui.account.screens.StoplistFragment">
+    tools:context=".ui.account.screens.StopListFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_stoplist_vacancies"

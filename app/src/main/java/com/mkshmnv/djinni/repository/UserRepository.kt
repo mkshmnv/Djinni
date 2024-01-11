@@ -13,7 +13,7 @@ class UserRepository {
     suspend fun registrationUser(email: String, password: String): Resource<User> {
         return try {
             val auth = auth.createUserWithEmailAndPassword(email, password).await()
-            val user = User(uid = auth.user?.uid.toString(), email = email)
+            val user = User(uid = auth.user?.uid.toString(), contactsEmail = email)
             database.child(user.uid).setValue(user)
             Resource.Success(user)
         } catch (e: Exception) {
