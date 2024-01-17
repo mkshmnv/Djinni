@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
@@ -20,9 +19,22 @@
             android:id="@+id/nav_salaries"
             android:icon="@drawable/ic_salaries_24dp"
             android:title="@string/menu_salaries" />
-        <item
-            android:id="@+id/nav_exit"
-            android:icon="@drawable/ic_exit_24dp"
-            android:title="@string/menu_exit" />
     </group>
+
+    <item android:title="@string/account">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings_24dp"
+                android:title="@string/menu_settings" />
+            <item
+                android:id="@+id/nav_sign_out"
+                android:icon="@drawable/ic_sign_out_24dp"
+                android:title="@string/menu_sign_out" />
+            <item
+                android:id="@+id/nav_delete"
+                android:icon="@drawable/ic_delete_24dp"
+                android:title="@string/menu_delete" />
+        </menu>
+    </item>
 </menu>

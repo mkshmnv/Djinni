@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.mkshmnv.djinni.Logger
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentSignUpBinding
 import com.mkshmnv.djinni.repository.UserViewModel
@@ -16,7 +17,8 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Logger.logcat("onViewCreated", this::class.simpleName!!)
+        val viewPager: ViewPager2 = requireActivity().findViewById(R.id.view_pager)
+        val tabLayout: TabLayout = requireActivity().findViewById(R.id.tab_layout)
         binding.apply {
             etSignUpEmail.setText("1@1.com")
             etSignUpPassword.setText("111111")
@@ -26,7 +28,11 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                     etEmail = etSignUpEmail,
                     etPass = etSignUpPassword,
                     etConfPass = etSignUpConfirmPassword
-                )
+                ) {
+                    val tabIndexToNavigate = 0
+                    viewPager.currentItem = tabIndexToNavigate
+                    tabLayout.getTabAt(tabIndexToNavigate)?.select()
+                }
             }
         }
     }

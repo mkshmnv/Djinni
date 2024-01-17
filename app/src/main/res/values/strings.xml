@@ -2,8 +2,7 @@
     <string name="app_name">Djinni</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_user_name">FirstName</string>
-    <string name="nav_user_surname">SecondName</string>
+    <string name="nav_user_full_name">Full Name</string>
     <string name="nav_user_status">online</string>
     <string name="nav_user_avatar">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -30,7 +29,7 @@
     <string name="menu_salaries">Salaries</string>
 
     <!-- TabLayout Profile - start -->
-    <string name="my_account">Account</string>
+    <string name="account">Account</string>
     <string name="tab_profile">Profile</string>
     <string name="tab_subs">Subs</string>
     <string name="tab_cv">CV</string>
@@ -58,9 +57,51 @@
     <string name="profile_category">Category</string>
     <string-array name="profile_categories">
         <item>Android</item>
-        <item>Recruiter</item>
+        <item>Artist</item>
+        <item>C++</item>
+        <item>Data Analyst</item>
+        <item>Data Engineer</item>
+        <item>Data Science</item>
+        <item>Delivery Manager</item>
+        <item>Design</item>
+        <item>DevOps</item>
+        <item>ERP</item>
+        <item>Flutter</item>
+        <item>Fullstack</item>
+        <item>Golang</item>
+        <item>Head Chief</item>
+        <item>HR</item>
         <item>iOS</item>
-        <!-- TODO Add all categories -->
+        <item>Java</item>
+        <item>JavaScript</item>
+        <item>Lead</item>
+        <item>Lead Generation</item>
+        <item>Marketing</item>
+        <item>Node.js</item>
+        <item>.NET</item>
+        <item>PHP</item>
+        <item>Product Manager</item>
+        <item>Product Owner</item>
+        <item>Project Manager</item>
+        <item>Python</item>
+        <item>QA</item>
+        <item>QA Automation</item>
+        <item>React Native</item>
+        <item>Recruiter</item>
+        <item>Ruby</item>
+        <item>Rust</item>
+        <item>Salesforce</item>
+        <item>Scala</item>
+        <item>Scrum Master</item>
+        <item>Security</item>
+        <item>SQL</item>
+        <item>Support</item>
+        <item>Technical Writing</item>
+        <item>Unity</item>
+        <item>Sysadmin</item>
+        <item>Sales</item>
+        <item>SEO</item>
+        <item>Other</item>
     </string-array>
 
     <string name="profile_skills">Skills</string>
@@ -417,7 +458,7 @@
     <!-- Account - start -->
     <string name="account_description">Job search on Djinni is anonymous. \nOnly those to whom you open contacts will see your personal data.</string>
     <string name="account_full_name">First name and Last name</string>
-    <string name="account_full_name_hint">Full name, please. There is no need to write Slava S.</string>
+    <string name="account_full_name_hint"><font size="14">Full name, please. There is no need to write John S.</font></string>
     <string name="account_email">Email</string>
     <string name="account_skype">Skype</string>
     <string name="account_phone">Phone</string>
@@ -461,8 +502,15 @@
     <string name="stoplist_how_work_description">Every time your profile comes up in the search results of an employer, Djinni checks whether that employer is on your stop list. If so, your profile disappears for him. Even if such an employer goes to your profile on Djinni, he will only see \"profile inactive\". Magic. \n\nWe cannot give a 100% guarantee that an employer will not find your profile on Djinni if they set such a goal. The purpose of the stop letter is to avoid awkward situations when you are accidentally found by an employer with whom you would not like to communicate.</string>
     <!-- Stoplist - end -->
 
-    <!-- Exit -->
-    <string name="menu_exit">Logout</string>
+    <!-- Settings -->
+    <string name="menu_settings">Settings</string>
+
+    <!-- Sign Out -->
+    <string name="menu_sign_out">Logout</string>
+
+    <!-- Delete -->
+    <string name="menu_delete">Delete</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -491,6 +539,14 @@
     <string name="auth_email_is_not_valid">Enter a valid email</string>
     <string name="auth_welcome_to_djinni">Welcome to Djinni!</string>
     <string name="auth_registration_success">Registration success!</string>
+
+    <string name="auth_sign_out_alert_title">Sign out</string>
+    <string name="auth_sign_out_alert_message">Are you sure want to sign out?</string>
+    <string name="auth_delete_alert_title">Account delete</string>
+    <string name="auth_delete_alert_message">Are you sure want delete account?</string>
+
+    <string name="auth_alert_positive">Yes</string>
+    <string name="auth_alert_negative">No</string>
     <!-- Authentication - end -->
 
     <string name="error">error</string>

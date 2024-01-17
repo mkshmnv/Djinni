@@ -4,64 +4,74 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentContactsBinding
-import com.mkshmnv.djinni.model.FragmentScreen
 import com.mkshmnv.djinni.model.User
 import com.mkshmnv.djinni.repository.UserViewModel
+import com.mkshmnv.djinni.ui.account.FragmentScreen
 import com.mkshmnv.djinni.ui.viewBinding
 
 class ContactsFragment : Fragment(R.layout.fragment_contacts) {
     private val binding: FragmentContactsBinding by viewBinding()
     private val userViewModel: UserViewModel by activityViewModels()
-
-    // For logger
-    private val tag = this::class.simpleName!!
+    private lateinit var user: User
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Logger.logcat("onViewCreated", tag)
-        userViewModel.authorizedUser.value?.let { loadUserDataToUI(it) }
+        val currentUser = userViewModel.authorizedUser.value
+            ?: throw NullPointerException("AuthorizedUser is null")
+        user = User(
+            contactsFullName = currentUser.contactsFullName,
+            contactsEmail = currentUser.contactsEmail,
+            contactsSkype = currentUser.contactsSkype,
+            contactsPhone = currentUser.contactsPhone,
+            contactsTelegram = currentUser.contactsTelegram,
+            contactsWhatsApp = currentUser.contactsWhatsApp,
+            contactsLinkedIn = currentUser.contactsLinkedIn,
+            contactsGitHub = currentUser.contactsGitHub,
+            contactsPortfolio = currentUser.contactsPortfolio,
+            contactsCV = currentUser.contactsCV
+        )
+        loadUserData()
     }
 
-    override fun onStop() {
-        super.onStop()
-        Logger.logcat("onStop", tag)
-        saveUIUserData()
+    override fun onPause() {
+        super.onPause()
+        saveUserData()
     }
 
-    private fun loadUserDataToUI(currentUser: User) {
-        Logger.logcat("loadUserDataToUI", tag)
+    private fun loadUserData() {
         binding.apply {
-            etAccountFullName.setText(currentUser.fullName)
-            etAccountEmail.setText(currentUser.email)
-            etAccountSkype.setText(currentUser.skype)
-            etAccountPhone.setText(currentUser.phone)
-            etAccountTelegram.setText(currentUser.telegram)
-            etAccountWhatsapp.setText(currentUser.whatsApp)
-            etAccountLinkedin.setText(currentUser.linkedIn)
-            etAccountGithub.setText(currentUser.gitHub)
-            etAccountPortfolio.setText(currentUser.portfolio)
-            etAccountCv.setText(currentUser.cv)
+            etAccountFullName.setText(user.contactsFullName)
+            etAccountEmail.setText(user.contactsEmail)
+            etAccountSkype.setText(user.contactsSkype)
+            etAccountPhone.setText(user.contactsPhone)
+            etAccountTelegram.setText(user.contactsTelegram)
+            etAccountWhatsapp.setText(user.contactsWhatsApp)
+            etAccountLinkedin.setText(user.contactsLinkedIn)
+            etAccountGithub.setText(user.contactsGitHub)
+            etAccountPortfolio.setText(user.contactsPortfolio)
+            etAccountCv.setText(user.contactsCV)
         }
     }
 
-    private fun saveUIUserData() {
+    private fun saveUserData() {
         binding.apply {
             val tempUser = User(
-                fullName = etAccountFullName.text.toString(),
-                email = etAccountEmail.text.toString(),
-                skype = etAccountSkype.text.toString(),
-                phone = etAccountPhone.text.toString(),
-                telegram = etAccountTelegram.text.toString(),
-                whatsApp = etAccountWhatsapp.text.toString(),
-                linkedIn = etAccountLinkedin.text.toString(),
-                gitHub = etAccountGithub.text.toString(),
-                portfolio = etAccountPortfolio.text.toString(),
-                cv = etAccountCv.text.toString()
+                contactsFullName = etAccountFullName.text.toString(),
+                contactsEmail = etAccountEmail.text.toString(),
+                contactsSkype = etAccountSkype.text.toString(),
+                contactsPhone = etAccountPhone.text.toString(),
+                contactsTelegram = etAccountTelegram.text.toString(),
+                contactsWhatsApp = etAccountWhatsapp.text.toString(),
+                contactsLinkedIn = etAccountLinkedin.text.toString(),
+                contactsGitHub = etAccountGithub.text.toString(),
+                contactsPortfolio = etAccountPortfolio.text.toString(),
+                contactsCV = etAccountCv.text.toString()
             )
-            userViewModel.updateUserFromUI(FragmentScreen.CONTACTS, uiUser = tempUser)
+            if (tempUser != user) {
+                userViewModel.updateUserFromUI(screen = FragmentScreen.CONTACTS, uiUser = tempUser)
+            }
         }
     }
 }

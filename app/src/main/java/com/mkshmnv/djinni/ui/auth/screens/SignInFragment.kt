@@ -17,33 +17,24 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userViewModel.apply {
-            binding.apply {
-                // TODO: TESTs remove
-                etSignInEmail.setText("1@1.com")
-                etSignInPassword.setText("111111")
-                btnSignIn.setOnClickListener {
-                    val email = etSignInEmail.text.toString()
-                    val password = etSignInPassword.text.toString()
-                    signInUser(email = email, password = password)
-                    showLoadingAnimation(true)
-                }
-                btnSignInWithGoogle.setOnClickListener {
-                    signInWithGoogle()
+        binding.apply {
+            // TODO: TESTs remove
+            etSignInEmail.setText("1@1.com")
+            etSignInPassword.setText("111111")
+            btnSignIn.setOnClickListener {
+                val email = etSignInEmail.text.toString()
+                val password = etSignInPassword.text.toString()
+                showLoadingAnimation(true)
+                userViewModel.signInUser(email = email, password = password) {
+                    showLoadingAnimation(false)
+                    val navController = findNavController()
+                    navController.navigate(R.id.action_nav_auth_pager_fragment_to_nav_account_pager_fragment)
                 }
             }
-            authorizedUser.observe(viewLifecycleOwner) {
-                showLoadingAnimation(false)
-                val navController = findNavController()
-                navController.navigate(R.id.action_nav_auth_pager_fragment_to_nav_account_pager_fragment)
-                onDestroy()
+            btnSignInWithGoogle.setOnClickListener {
+                userViewModel.signInWithGoogle()
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        userViewModel.authorizedUser.removeObservers(viewLifecycleOwner)
     }
 
     private fun showLoadingAnimation(show: Boolean) {

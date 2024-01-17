@@ -597,21 +597,13 @@
 
         </com.mkshmnv.djinni.ui.CustomViewWithTitle>
 
-        <!--        Update profile-->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_update_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:text="@string/update_profile" />
-
         <!--        Delete account-->
         <LinearLayout
             android:id="@+id/ll_delete_account"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:orientation="horizontal"
             tools:ignore="UseCompoundDrawables">
