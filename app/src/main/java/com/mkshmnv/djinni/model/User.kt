@@ -3,7 +3,7 @@ package com.mkshmnv.djinni.model
 data class User(
     val uid: String = "",
     // Profile
-    val profileStatus: String = "2131296747", //ProfileStatus = ProfileStatus.NOT_LOOKED,
+    val profileStatus: String = "2131296746", //ProfileStatus = ProfileStatus.NOT_LOOKED,
     val profilePosition: String = "",
     val profileCategory: String = "",
     val profileSkills: String = "",

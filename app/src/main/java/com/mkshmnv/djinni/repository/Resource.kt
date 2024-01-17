@@ -8,10 +8,12 @@ sealed class Resource<out T> {
             Logger.logcat("Data: $data", "Resource Success")
         }
     }
-    data class Error(val message: String) : Resource<Nothing>(){
+
+    data class Error(val message: String) : Resource<Nothing>() {
         init {
             Logger.logcat("Data: $message", "Resource Error")
         }
     }
+
     object Loading : Resource<Nothing>()
 }

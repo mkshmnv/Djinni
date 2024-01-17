@@ -1,4 +1,4 @@
-package com.mkshmnv.djinni.model
+package com.mkshmnv.djinni.ui.account
 
 enum class FragmentScreen {
     PROFILE,

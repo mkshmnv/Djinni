@@ -36,10 +36,24 @@
         tools:layout="@layout/fragment_contacts" />
 
     <fragment
+        android:id="@+id/nav_exit"
+        android:name="com.mkshmnv.djinni.ui.auth.screens.SignOutFragment"
+        android:label="@string/authentication"
+        tools:layout="@layout/fragment_sign_out">
+        <action
+            android:id="@+id/action_nav_exit_to_nav_auth_pager_fragment"
+            app:destination="@id/nav_auth_pager_fragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_account_pager_fragment"
         android:name="com.mkshmnv.djinni.ui.account.AccountPagerFragment"
         android:label="@string/my_account"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_nav_account_pager_fragment_to_nav_auth_pager_fragment"
+            app:destination="@id/nav_auth_pager_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_auth_pager_fragment"

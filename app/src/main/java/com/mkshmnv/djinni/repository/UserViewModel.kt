@@ -10,8 +10,8 @@ import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.Toast
 import com.mkshmnv.djinni.isEmail
-import com.mkshmnv.djinni.model.FragmentScreen
 import com.mkshmnv.djinni.model.User
+import com.mkshmnv.djinni.ui.account.FragmentScreen
 import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
@@ -22,11 +22,14 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     private val userRepository = UserRepository()
 
     // LiveData
-    private val _authorizedUser = MutableLiveData<User>()
-    val authorizedUser: LiveData<User> = _authorizedUser
+    private val _authorizedUser = MutableLiveData<User?>()
+    val authorizedUser: LiveData<User?> = _authorizedUser
 
     fun signUpUser(
-        etEmail: AppCompatEditText, etPass: AppCompatEditText, etConfPass: AppCompatEditText
+        etEmail: AppCompatEditText,
+        etPass: AppCompatEditText,
+        etConfPass: AppCompatEditText,
+        onComplete: () -> Unit
     ) {
         val email = etEmail.text.toString()
         val pass = etPass.text.toString()
@@ -55,11 +58,11 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                     val result = userRepository.registrationUser(email, pass)
                     when (result) {
                         is Resource.Success -> {
-                            signInUser(email, pass)
                             Toast.showWithLogger(
-                                R.string.auth_welcome_to_djinni.getRes(),
+                                R.string.auth_registration_success.getRes(),
                                 "$tag signUpUser"
                             )
+                            onComplete.invoke()
                         }
 
                         is Resource.Error -> Toast.showWithLogger(result.message, "$tag signUpUser")
@@ -71,13 +74,14 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun signInUser(email: String, password: String) {
+    fun signInUser(email: String, password: String, onComplete: () -> Unit) {
         viewModelScope.launch {
             val result = userRepository.loginUser(email, password)
             when (result) {
                 is Resource.Success -> {
                     val user = result.data
                     _authorizedUser.postValue(user)
+                    onComplete.invoke()
                 }
 
                 is Resource.Error -> Logger.logcat(result.message, "$tag updateUserFromUI")
@@ -97,9 +101,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun updateUserFromUI(screen: FragmentScreen, uiUser: User) {
-        Logger.logcat("updateUserFromUI screen - $screen", tag)
-        Logger.logcat("updateUserFromUI uiUser - $uiUser", tag)
-        val currentAuthUser = _authorizedUser.value ?: User() // TODO: fix to nullable
+        Logger.logcat("updateUserFromUI screen - $screen, uiUser - $uiUser", tag)
+        val currentAuthUser = _authorizedUser.value
+            ?: throw NullPointerException("AuthorizedUser is null")
         val tempUser = when (screen) {
             FragmentScreen.PROFILE -> {
                 // TODO: fix this
@@ -356,7 +360,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
         Logger.logcat("updateUserFromUI tempUser - $tempUser", tag)
         viewModelScope.launch {
-            val result = userRepository.updateUserToDatabase(tempUser)
+            val result = userRepository.updateUser(tempUser)
             when (result) {
                 is Resource.Success -> {
                     val user = result.data
@@ -366,13 +370,43 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 is Resource.Error -> Logger.logcat(result.message, "$tag updateUserFromUI")
                 else -> Logger.logcat(R.string.error.getRes(), "$tag updateUserFromUI")
             }
-
         }
     }
 
-    fun signOut() {
-        userRepository.signOut()
-        _authorizedUser.postValue(User(uid = "null"))
+    fun signOutUser(onComplete: () -> Unit) {
+        viewModelScope.launch {
+            val currentAuthUser = _authorizedUser.value
+                ?: throw NullPointerException("AuthorizedUser is null")
+            val result = userRepository.signOut(currentAuthUser)
+            when (result) {
+                is Resource.Success -> {
+                    Logger.logcat("User Sign Out Success", "$tag signOutUser")
+                    onComplete.invoke()
+                }
+
+                is Resource.Error -> Logger.logcat(result.message, "$tag signOutUser")
+                else -> Logger.logcat(R.string.error.getRes(), "$tag signOutUser")
+            }
+        }
+    }
+
+    fun deleteUser(onComplete: () -> Unit) {
+        val currentAuthUser = _authorizedUser.value
+            ?: throw NullPointerException("AuthorizedUser is null")
+        viewModelScope.launch {
+            Logger.logcat("deleteUser currentAuthUser - $currentAuthUser", "$tag deleteUser")
+            val result = userRepository.deleteUser(currentAuthUser)
+            when (result) {
+                is Resource.Success -> {
+                    Logger.logcat("User deleted Success", "$tag deleteUser")
+                    _authorizedUser.postValue(null)
+                    onComplete.invoke()
+                }
+
+                is Resource.Error -> Logger.logcat(result.message, "$tag deleteUser")
+                else -> Logger.logcat(R.string.error.getRes(), "$tag deleteUser")
+            }
+        }
     }
 
     // Extension function for get string from resources

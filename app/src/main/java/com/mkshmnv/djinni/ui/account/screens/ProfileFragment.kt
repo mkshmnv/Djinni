@@ -5,13 +5,14 @@ import android.view.View
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentProfileBinding
-import com.mkshmnv.djinni.model.FragmentScreen
 import com.mkshmnv.djinni.model.User
 import com.mkshmnv.djinni.repository.UserViewModel
 import com.mkshmnv.djinni.setPosition
+import com.mkshmnv.djinni.ui.account.FragmentScreen
 import com.mkshmnv.djinni.ui.viewBinding
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -61,11 +62,22 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             profilePrefEnglish = dataBaseUser.profilePrefEnglish,
             profilePrefComm = dataBaseUser.profilePrefComm
         )
+
         loadUserData()
 
-        // Raise profile - Button TODO: impl
-        binding.btnRaiseProfile.setOnClickListener {
-            Logger.logcat("Button Raise Profile is clicked", this::class.simpleName!!)
+        binding.apply {
+            // Raise profile - Button TODO: impl
+            btnRaiseProfile.setOnClickListener {
+                Logger.logcat("Button Raise Profile is clicked", this::class.simpleName!!)
+            }
+            // Delete Account - LL
+            llDeleteAccount.setOnClickListener {
+                // TODO: impl accept window delete account
+                userViewModel.deleteUser {
+                    val navController = findNavController()
+                    navController.navigate(R.id.nav_auth_pager_fragment)
+                }
+            }
         }
     }
 
@@ -236,7 +248,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 profilePrefComm = spProfilePreferredCommunication.selectedItem.toString()
             )
             // Check user data if some changing save it to DB
-            if (tempUser != user) {
+            if (tempUser != user && userViewModel.authorizedUser.value != null) {
                 userViewModel.updateUserFromUI(FragmentScreen.PROFILE, uiUser = tempUser)
             }
         }
