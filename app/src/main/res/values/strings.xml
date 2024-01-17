@@ -57,9 +57,51 @@
     <string name="profile_category">Category</string>
     <string-array name="profile_categories">
         <item>Android</item>
-        <item>Recruiter</item>
+        <item>Artist</item>
+        <item>C++</item>
+        <item>Data Analyst</item>
+        <item>Data Engineer</item>
+        <item>Data Science</item>
+        <item>Delivery Manager</item>
+        <item>Design</item>
+        <item>DevOps</item>
+        <item>ERP</item>
+        <item>Flutter</item>
+        <item>Fullstack</item>
+        <item>Golang</item>
+        <item>Head Chief</item>
+        <item>HR</item>
         <item>iOS</item>
-        <!-- TODO Add all categories -->
+        <item>Java</item>
+        <item>JavaScript</item>
+        <item>Lead</item>
+        <item>Lead Generation</item>
+        <item>Marketing</item>
+        <item>Node.js</item>
+        <item>.NET</item>
+        <item>PHP</item>
+        <item>Product Manager</item>
+        <item>Product Owner</item>
+        <item>Project Manager</item>
+        <item>Python</item>
+        <item>QA</item>
+        <item>QA Automation</item>
+        <item>React Native</item>
+        <item>Recruiter</item>
+        <item>Ruby</item>
+        <item>Rust</item>
+        <item>Salesforce</item>
+        <item>Scala</item>
+        <item>Scrum Master</item>
+        <item>Security</item>
+        <item>SQL</item>
+        <item>Support</item>
+        <item>Technical Writing</item>
+        <item>Unity</item>
+        <item>Sysadmin</item>
+        <item>Sales</item>
+        <item>SEO</item>
+        <item>Other</item>
     </string-array>
 
     <string name="profile_skills">Skills</string>
@@ -500,7 +542,7 @@
 
     <string name="auth_sign_out_alert_title">Sign out</string>
     <string name="auth_sign_out_alert_message">Are you sure want to sign out?</string>
-    <string name="auth_delete_alert_title">Account delete </string>
+    <string name="auth_delete_alert_title">Account delete</string>
     <string name="auth_delete_alert_message">Are you sure want delete account?</string>
 
     <string name="auth_alert_positive">Yes</string>

@@ -41,38 +41,33 @@ class MainActivity : AppCompatActivity() {
             navView.setupWithNavController(navController)
             // Setup the NavigationView item click listener
             navView.setNavigationItemSelectedListener { menuItem ->
-                val builder = AlertDialog.Builder(this@MainActivity)
                 when (menuItem.itemId) {
                     R.id.nav_sign_out -> {
-                        val title = getString(R.string.auth_sign_out_alert_title)
-                        val message = getString(R.string.auth_sign_out_alert_message)
-                        val positive = getString(R.string.auth_alert_positive)
-                        val negative = getString(R.string.auth_alert_negative)
-                        builder.setTitle(title).setMessage(message)
-                        builder.setPositiveButton(positive) { _, _ ->
-                            menuItem.onNavDestinationSelected(navController)
-                        }
-                        builder.setNegativeButton(negative) { _, _ ->
-                            // Close alert dialog
-                        }
-                        val alertDialog = builder.create()
-                        alertDialog.show()
+                        AlertDialog.Builder(this@MainActivity)
+                            .setTitle(R.string.auth_sign_out_alert_title)
+                            .setMessage(R.string.auth_sign_out_alert_message)
+                            .setPositiveButton(R.string.auth_alert_positive) { _, _ ->
+                                menuItem.onNavDestinationSelected(navController)
+                            }
+                            .setNegativeButton(R.string.auth_alert_negative) { _, _ ->
+                                // Close alert dialog
+                            }
+                            .create()
+                            .show()
                     }
 
                     R.id.nav_delete -> {
-                        val title = getString(R.string.auth_delete_alert_title)
-                        val message = getString(R.string.auth_delete_alert_message)
-                        val positive = getString(R.string.auth_alert_positive)
-                        val negative = getString(R.string.auth_alert_negative)
-                        builder.setTitle(title).setMessage(message)
-                        builder.setPositiveButton(positive) { _, _ ->
-                            menuItem.onNavDestinationSelected(navController)
-                        }
-                        builder.setNegativeButton(negative) { _, _ ->
-                            // Close alert dialog
-                        }
-                        val alertDialog = builder.create()
-                        alertDialog.show()
+                        AlertDialog.Builder(this@MainActivity)
+                            .setTitle(R.string.auth_delete_alert_title)
+                            .setMessage(R.string.auth_delete_alert_message)
+                            .setPositiveButton(R.string.auth_alert_positive) { _, _ ->
+                                menuItem.onNavDestinationSelected(navController)
+                            }
+                            .setNegativeButton(R.string.auth_alert_negative) { _, _ ->
+                                // Close alert dialog
+                            }
+                            .create()
+                            .show()
                     }
 
                     R.id.nav_settings -> navController.navigate(R.id.nav_account_pager_fragment)

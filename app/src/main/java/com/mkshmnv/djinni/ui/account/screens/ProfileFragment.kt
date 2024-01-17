@@ -5,8 +5,6 @@ import android.view.View
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
-import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentProfileBinding
 import com.mkshmnv.djinni.model.User
@@ -24,6 +22,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         val dataBaseUser = userViewModel.authorizedUser.value
             ?: throw NullPointerException("AuthorizedUser is null")
+
+        // Get user data from DB
         user = User(
             profileStatus = dataBaseUser.profileStatus,
             profilePosition = dataBaseUser.profilePosition,
@@ -63,29 +63,22 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             profilePrefComm = dataBaseUser.profilePrefComm
         )
 
+        // Load user data to UI
         loadUserData()
 
-        binding.apply {
-            // Raise profile - Button TODO: impl
-            btnRaiseProfile.setOnClickListener {
-                Logger.logcat("Button Raise Profile is clicked", this::class.simpleName!!)
-            }
-            // Delete Account - LL
-            llDeleteAccount.setOnClickListener {
-                // TODO: impl accept window delete account
-                userViewModel.deleteUser {
-                    val navController = findNavController()
-                    navController.navigate(R.id.nav_auth_pager_fragment)
-                }
-            }
+        // Raise profile - Button
+        binding.btnRaiseProfile.setOnClickListener {
+            userViewModel.raiseProfile()
         }
     }
 
+    // Save user data to DB every time when fragment paused
     override fun onPause() {
         super.onPause()
         saveUserData()
     }
 
+    // Get user data from DB
     private fun loadUserData() {
         binding.apply {
             // Status search - Radio Button Group
@@ -206,6 +199,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
     }
 
+    // Save user data to DB
     private fun saveUserData() {
         binding.apply {
             // Get data from UI

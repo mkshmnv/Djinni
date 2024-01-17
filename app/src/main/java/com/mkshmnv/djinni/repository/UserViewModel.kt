@@ -409,6 +409,23 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun raiseProfile() {
+        val currentAuthUser = _authorizedUser.value
+            ?: throw NullPointerException("AuthorizedUser is null")
+        viewModelScope.launch {
+            Logger.logcat("currentAuthUser - $currentAuthUser", "$tag raiseProfile")
+            val result = userRepository.raiseUser(currentAuthUser)
+            when (result) {
+                is Resource.Success -> {
+                    Logger.logcat("User raised Success", "$tag raiseProfile")
+                }
+
+                is Resource.Error -> Logger.logcat(result.message, "$tag raiseProfile")
+                else -> Logger.logcat(R.string.error.getRes(), "$tag raiseProfile")
+            }
+        }
+    }
+
     // Extension function for get string from resources
     private fun Int.getRes() = getApplication<Application>().getString(this)
 }

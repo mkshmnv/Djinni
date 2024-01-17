@@ -71,4 +71,13 @@ class UserRepository {
             Resource.Error(e.message ?: "Error getting user data")
         }
     }
+
+    suspend fun raiseUser(user: User): Resource<User> {
+        return try {
+            // TODO: Implement raise
+            Resource.Success(user)
+        } catch (e: Exception) {
+            Resource.Error(e.message ?: "Error getting user data")
+        }
+    }
 }
