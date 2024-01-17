@@ -1,4 +1,4 @@
-package com.mkshmnv.djinni.ui.auth.screens
+package com.mkshmnv.djinni.ui.account.screens
 
 import android.os.Bundle
 import android.view.View
@@ -9,12 +9,12 @@ import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.repository.UserViewModel
 
-class SignOutFragment : Fragment(R.layout.fragment_sign_out) {
+class DeleteAccountFragment : Fragment(R.layout.fragment_delete_account) {
     private val userViewModel: UserViewModel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userViewModel.signOutUser {
-            Logger.logcat("User signed out")
+        userViewModel.deleteUser {
+            Logger.logcat("User deleted")
             val navController = findNavController()
             navController.navigate(R.id.nav_auth_pager_fragment)
         }
