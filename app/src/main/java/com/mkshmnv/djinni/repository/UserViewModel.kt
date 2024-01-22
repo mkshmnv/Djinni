@@ -81,10 +81,15 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 is Resource.Success -> {
                     val user = result.data
                     _authorizedUser.postValue(user)
+                    Toast.show("${R.string.auth_welcome_to_djinni.getRes()}, ${user.contactsFullName}")
                     onComplete.invoke()
                 }
 
-                is Resource.Error -> Logger.logcat(result.message, "$tag updateUserFromUI")
+                is Resource.Error -> {
+                    Logger.logcat(result.message, "$tag updateUserFromUI")
+                    Toast.show(R.string.auth_error_connections.getRes())
+                }
+
                 else -> Logger.logcat(R.string.error.getRes(), "$tag updateUserFromUI")
             }
         }

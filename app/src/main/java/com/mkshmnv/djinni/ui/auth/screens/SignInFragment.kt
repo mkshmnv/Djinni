@@ -39,6 +39,6 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
     private fun showLoadingAnimation(show: Boolean) {
         // TODO: impl showLoadingAnimation
-        if (!show) Toast.show("Loading...") else Toast.show("Welcome!")
+        if (!show) Toast.show("Loading...")
     }
 }
