@@ -1,4 +1,4 @@
-package com.mkshmnv.djinni.model
+package com.mkshmnv.djinni.model.user
 
 enum class ProfileStatus {
     ACTIVE,

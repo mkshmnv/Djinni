@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentSubscriptionsBinding
-import com.mkshmnv.djinni.model.User
+import com.mkshmnv.djinni.model.user.User
 import com.mkshmnv.djinni.repository.UserViewModel
 import com.mkshmnv.djinni.ui.account.FragmentScreen
 import com.mkshmnv.djinni.ui.viewBinding

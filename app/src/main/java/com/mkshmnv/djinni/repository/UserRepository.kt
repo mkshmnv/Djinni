@@ -2,7 +2,7 @@ package com.mkshmnv.djinni.repository
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.mkshmnv.djinni.model.User
+import com.mkshmnv.djinni.model.user.User
 import kotlinx.coroutines.tasks.await
 
 class UserRepository {

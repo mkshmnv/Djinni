@@ -10,7 +10,7 @@ import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.Toast
 import com.mkshmnv.djinni.isEmail
-import com.mkshmnv.djinni.model.User
+import com.mkshmnv.djinni.model.user.User
 import com.mkshmnv.djinni.ui.account.FragmentScreen
 import kotlinx.coroutines.launch
 
