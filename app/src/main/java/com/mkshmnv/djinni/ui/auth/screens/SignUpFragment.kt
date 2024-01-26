@@ -8,7 +8,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentSignUpBinding
-import com.mkshmnv.djinni.repository.UserViewModel
+import com.mkshmnv.djinni.repository.user.UserViewModel
 import com.mkshmnv.djinni.ui.viewBinding
 
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {

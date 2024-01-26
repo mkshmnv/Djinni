@@ -8,7 +8,7 @@ import androidx.fragment.app.activityViewModels
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.databinding.FragmentProfileBinding
 import com.mkshmnv.djinni.model.user.User
-import com.mkshmnv.djinni.repository.UserViewModel
+import com.mkshmnv.djinni.repository.user.UserViewModel
 import com.mkshmnv.djinni.setPosition
 import com.mkshmnv.djinni.ui.account.FragmentScreen
 import com.mkshmnv.djinni.ui.viewBinding
@@ -164,25 +164,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             // Not considering - Check Boxes
             // Domains
             chbProfileNotConsideringDomainsAdult.isChecked = user.profileNotAdult
-            chbProfileNotConsideringDomainsGambling.isChecked =
-                user.profileNotGambling
-            chbProfileNotConsideringDomainsDating.isChecked =
-                user.profileNotDating
-            chbProfileNotConsideringDomainsGameDev.isChecked =
-                user.profileNotGameDev
-            chbProfileNotConsideringDomainsCrypto.isChecked =
-                user.profileNotCrypto
+            chbProfileNotConsideringDomainsGambling.isChecked = user.profileNotGambling
+            chbProfileNotConsideringDomainsDating.isChecked = user.profileNotDating
+            chbProfileNotConsideringDomainsGameDev.isChecked = user.profileNotGameDev
+            chbProfileNotConsideringDomainsCrypto.isChecked = user.profileNotCrypto
             // Type of company
-            chbProfileNotConsideringTypeCompanyAgency.isChecked =
-                user.profileNotAgency
-            chbProfileNotConsideringTypeCompanyOutsource.isChecked =
-                user.profileNotOutsource
-            chbProfileNotConsideringTypeCompanyOutStaff.isChecked =
-                user.profileNotOutStaff
-            chbProfileNotConsideringTypeCompanyProduct.isChecked =
-                user.profileNotProduct
-            chbProfileNotConsideringTypeCompanyStartUp.isChecked =
-                user.profileNotStartUp
+            chbProfileNotConsideringTypeCompanyAgency.isChecked = user.profileNotAgency
+            chbProfileNotConsideringTypeCompanyOutsource.isChecked = user.profileNotOutsource
+            chbProfileNotConsideringTypeCompanyOutStaff.isChecked = user.profileNotOutStaff
+            chbProfileNotConsideringTypeCompanyProduct.isChecked = user.profileNotProduct
+            chbProfileNotConsideringTypeCompanyStartUp.isChecked = user.profileNotStartUp
 
             // Question for employer
             etProfileQuestionForEmployer.setText(user.profileQuesToEmployer)
@@ -193,8 +184,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
             // Spinner Preferred method of communication - Spinner
             spProfilePreferredCommunication.setPosition(
-                R.array.profile_methods,
-                user.profilePrefComm
+                R.array.profile_methods, user.profilePrefComm
             )
         }
     }

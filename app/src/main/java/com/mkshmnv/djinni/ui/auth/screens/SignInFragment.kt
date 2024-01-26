@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.Toast
 import com.mkshmnv.djinni.databinding.FragmentSignInBinding
-import com.mkshmnv.djinni.repository.UserViewModel
+import com.mkshmnv.djinni.repository.user.UserViewModel
 import com.mkshmnv.djinni.ui.viewBinding
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {

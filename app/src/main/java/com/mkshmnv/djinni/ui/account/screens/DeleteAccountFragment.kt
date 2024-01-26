@@ -7,7 +7,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
-import com.mkshmnv.djinni.repository.UserViewModel
+import com.mkshmnv.djinni.repository.user.UserViewModel
 
 class DeleteAccountFragment : Fragment(R.layout.fragment_delete_account) {
     private val userViewModel: UserViewModel by activityViewModels()

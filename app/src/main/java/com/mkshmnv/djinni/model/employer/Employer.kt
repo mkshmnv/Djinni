@@ -5,13 +5,5 @@ data class Employer(
     val logo: String,
     val description: String,
     val website: String,
-    val type: TypeOfEmployer
+    val type: String
 )
-
-enum class TypeOfEmployer {
-    AGENCY,
-    OUTSOURCE,
-    OUTSTAFF,
-    PRODUCT,
-    STARTUP
-}

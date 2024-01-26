@@ -1,4 +1,4 @@
-package com.mkshmnv.djinni.repository
+package com.mkshmnv.djinni.repository.user
 
 import android.app.Application
 import androidx.appcompat.widget.AppCompatEditText
@@ -11,6 +11,7 @@ import com.mkshmnv.djinni.R
 import com.mkshmnv.djinni.Toast
 import com.mkshmnv.djinni.isEmail
 import com.mkshmnv.djinni.model.user.User
+import com.mkshmnv.djinni.repository.Resource
 import com.mkshmnv.djinni.ui.account.FragmentScreen
 import kotlinx.coroutines.launch
 

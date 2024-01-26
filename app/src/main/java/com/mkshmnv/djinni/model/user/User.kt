@@ -1,9 +1,11 @@
 package com.mkshmnv.djinni.model.user
 
+import com.google.gson.annotations.SerializedName
+
 data class User(
     val uid: String = "",
     // Profile
-    val profileStatus: String = "2131296746", //ProfileStatus = ProfileStatus.NOT_LOOKED,
+    @SerializedName("profileStatus") val profileStatus: String = "2131296746", //ProfileStatus = ProfileStatus.NOT_LOOKED,
     val profilePosition: String = "",
     val profileCategory: String = "",
     val profileSkills: String = "",

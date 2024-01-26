@@ -1,12 +1,5 @@
 package com.mkshmnv.djinni.ui.inbox
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import com.mkshmnv.djinni.R
-
 //class InboxAdapter : RecyclerView.Adapter<InboxAdapter.InboxViewHolder>() {
 //    val data = mutableListOf<MyData>()
 //

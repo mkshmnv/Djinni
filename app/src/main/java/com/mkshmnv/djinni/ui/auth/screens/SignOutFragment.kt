@@ -7,7 +7,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.mkshmnv.djinni.Logger
 import com.mkshmnv.djinni.R
-import com.mkshmnv.djinni.repository.UserViewModel
+import com.mkshmnv.djinni.repository.user.UserViewModel
 
 class SignOutFragment : Fragment(R.layout.fragment_sign_out) {
     private val userViewModel: UserViewModel by activityViewModels()
